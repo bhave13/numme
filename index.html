@@ -175,6 +175,16 @@
 
     .question-instruction { font-size: 1rem; color: var(--navy); font-weight: 600; }
 
+    .q-id-label {
+      position: absolute;
+      bottom: 0.75rem;
+      right: 1.5rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
     /* Scaffold */
     .scaffold-card { background: var(--chalk); border-left: 4px solid var(--navy-light); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
     .scaffold-header { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--navy); margin-bottom: 0.75rem; }
@@ -363,6 +373,7 @@
 
             <p class="question-instruction" id="q-instruction"></p>
           </div>
+          <div class="q-id-label" id="q-id-display"></div>
         </div>
 
         <!-- Scaffold (Level 1 only) -->
@@ -558,6 +569,7 @@ $(function () {
     $('#q-level-badge').text('Level ' + q.level).attr('class', 'level-badge l' + q.level);
     $('#q-topic').text(q.topic);
     $('#q-source').text(q.source || '');
+    $('#q-id-display').text('Q-ID: ' + q.id);
 
     // Content
     $('#q-context').text(q.context);
