@@ -1,0 +1,10789 @@
+const EXPLAIN_QA = {
+  "version": "1.0",
+  "title": "NCEA Numeracy — Process Idea 3 Practice Questions",
+  "description": "Students must take a clear stand (yes/no/agree/disagree/true/false) AND support it with a calculation using the given data. Either stand may be valid — what matters is that the justification matches the stand and uses real numbers.",
+  "config": {
+    "checklist_items": [
+      {
+        "id": "c1",
+        "label": "I clearly stated my position (yes / no / agree / disagree / true / false)"
+      },
+      {
+        "id": "c2",
+        "label": "I used actual numbers or data from the question (not just estimates)"
+      },
+      {
+        "id": "c3",
+        "label": "I showed a calculation or step-by-step mathematical working"
+      },
+      {
+        "id": "c4",
+        "label": "My calculation result directly supports the position I stated"
+      },
+      {
+        "id": "c5",
+        "label": "My explanation is clearly connected to the situation in the question"
+      }
+    ],
+    "verdict_thresholds": [
+      {
+        "min_score": 5,
+        "max_score": 5,
+        "label": "Excellent — full marks",
+        "colour": "green"
+      },
+      {
+        "min_score": 4,
+        "max_score": 4,
+        "label": "Good — one thing to improve",
+        "colour": "light-green"
+      },
+      {
+        "min_score": 3,
+        "max_score": 3,
+        "label": "Partial — a key element is missing",
+        "colour": "amber"
+      },
+      {
+        "min_score": 0,
+        "max_score": 2,
+        "label": "Needs more work — review the model answer carefully",
+        "colour": "red"
+      }
+    ],
+    "failure_modes": {
+      "no_position": {
+        "trigger_when": "c1_not_ticked",
+        "message": "⚠️ Common error: You showed a calculation but did not state a clear position. The examiner needs to know what you think BEFORE seeing your working. Always start with a word like yes, no, agree, disagree, true, or false."
+      },
+      "estimation_only": {
+        "trigger_when": "c3_not_ticked",
+        "message": "⚠️ Common error: You stated a position but did not show a calculation using the given data. Saying 'about 10,000 minutes in a week' is estimating — you need to show the actual multiplication or division step by step."
+      }
+    },
+    "level_descriptions": {
+      "1": "Scaffolded — sentence starters and a step-by-step calculation template are provided. Questions involve simple time and multiplication.",
+      "2": "No scaffolding — straightforward questions using time, distance, or basic arithmetic.",
+      "3": "No scaffolding — moderate complexity involving rates, unit conversion, or cost-per-unit comparisons.",
+      "4": "No scaffolding — complex questions requiring multi-step reasoning or comparison across multiple data points."
+    }
+  },
+  "questions": [
+    {
+      "id": "001",
+      "level": 1,
+      "topic": "Time — Unit Conversion",
+      "source": "2025 NZQA Numeracy (Term 2, Week 2), Q1(a)",
+      "context": "Mum has hurt her leg and will be on crutches while she recovers.",
+      "data": {
+        "type": "text",
+        "content": "Mum will be on crutches for four weeks."
+      },
+      "claim": "She says, \"Four weeks is about 40,000 minutes.\"",
+      "question": "Is she right? Use time calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "i agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true",
+          "about right",
+          "yes she is"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "i disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false",
+          "not right",
+          "no she is not",
+          "not exactly right"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": {
+        "sentence_starter": "I think she is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: how many minutes are in 1 hour (60), how many hours in 1 day (24), how many days in 1 week (7).",
+        "calculation_prompt": "Minutes in 1 hour  = ___\nMinutes in 1 day   = ___ × ___ = ___\nMinutes in 1 week  = ___ × ___ = ___\nMinutes in 4 weeks = ___ × ___ = ___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "60 minutes in 1 hour",
+            "60 × 24 = 1,440 minutes in 1 day",
+            "1,440 × 7 = 10,080 minutes in 1 week",
+            "10,080 × 4 = 40,320 minutes in 4 weeks"
+          ],
+          "result": "40,320 minutes",
+          "explanation": "40,320 rounds to 40,000 to the nearest thousand. Mum said 'about 40,000' which is a fair estimate, so she is right.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 4 (weeks), 7 (days), 24 (hours), and 60 (minutes)?",
+            "c3": "Look for: Did you show multiplication steps that lead to 40,320?",
+            "c4": "Look for: Did you explain that 40,320 is close to / rounds to 40,000 — which supports 'agree'?",
+            "c5": "Look for: Did you refer back to Mum's claim about being on crutches for four weeks?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "60 minutes in 1 hour",
+            "60 × 24 = 1,440 minutes in 1 day",
+            "1,440 × 7 = 10,080 minutes in 1 week",
+            "10,080 × 4 = 40,320 minutes in 4 weeks"
+          ],
+          "result": "40,320 minutes",
+          "explanation": "40,320 is NOT exactly 40,000. Mum is 320 minutes out, so she is not exactly right.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 4 (weeks), 7 (days), 24 (hours), and 60 (minutes)?",
+            "c3": "Look for: Did you show multiplication steps that lead to 40,320?",
+            "c4": "Look for: Did you state that 40,320 ≠ 40,000, which supports 'disagree'?",
+            "c5": "Look for: Did you explain that the exact number of minutes (40,320) is different from Mum's claim?"
+          }
+        }
+      }
+    },
+    {
+      "id": "002",
+      "level": 1,
+      "topic": "Multiplication — Money",
+      "source": "Original",
+      "context": "Rangi has been saving his pocket money to buy a new video game.",
+      "data": {
+        "type": "text",
+        "content": "Rangi saves $12 each week. He has been saving for 8 weeks."
+      },
+      "claim": "Rangi thinks he has saved about $100.",
+      "question": "Is Rangi right? Use a calculation to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "about right",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true",
+          "yes he is"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false",
+          "not right",
+          "no he is not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": {
+        "sentence_starter": "I think Rangi is [right / wrong] because my calculation shows that ...",
+        "hint": "To find total savings, multiply the amount saved each week by the number of weeks.",
+        "calculation_prompt": "Total savings = $___  ×  ___ weeks = $___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "$12 × 8 = $96"
+          ],
+          "result": "$96",
+          "explanation": "$96 is very close to $100 — only $4 away, which is less than 5% off. Saying 'about $100' is a reasonable estimate, so Rangi is right.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use $12 and 8 weeks from the question?",
+            "c3": "Look for: Did you write out the multiplication $12 × 8 = $96?",
+            "c4": "Look for: Did you explain that $96 is close to $100, which supports 'agree'?",
+            "c5": "Look for: Did you connect your answer back to Rangi's savings claim?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "$12 × 8 = $96"
+          ],
+          "result": "$96",
+          "explanation": "$96 is not $100. Rangi actually has $4 less than he thinks, so he is not exactly right.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use $12 and 8 weeks from the question?",
+            "c3": "Look for: Did you write out the multiplication $12 × 8 = $96?",
+            "c4": "Look for: Did you state that $96 ≠ $100, which supports 'disagree'?",
+            "c5": "Look for: Did you explain that Rangi's actual savings ($96) is less than he claimed ($100)?"
+          }
+        }
+      }
+    },
+    {
+      "id": "003",
+      "level": 2,
+      "topic": "Measurement — Distance and Unit Conversion",
+      "source": "2023 NZQA Numeracy (Term 4), Q4(c)",
+      "context": "Dairy cows walk long distances each day as they graze across large paddocks.",
+      "data": {
+        "type": "text",
+        "content": "On average, a dairy cow takes about 12,000 steps per day. Each step measures about 1.6 metres."
+      },
+      "claim": "A farmer claims that each of her dairy cows walks 20 km per day.",
+      "question": "Is her claim reasonable? Write a calculation that supports your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "yes it is",
+          "it is reasonable",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "not right",
+          "false",
+          "no it is not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "12,000 × 1.6 = 19,200 metres per day",
+            "19,200 ÷ 1,000 = 19.2 km per day"
+          ],
+          "result": "19.2 km",
+          "explanation": "19.2 km is very close to 20 km — a difference of only 0.8 km, which is less than 4%. The farmer's claim of 20 km is a reasonable estimate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar?",
+            "c2": "Look for: Did you use 12,000 (steps) and 1.6 (metres per step) from the question?",
+            "c3": "Look for: Did you multiply 12,000 × 1.6 = 19,200 m and then convert to km (÷ 1,000)?",
+            "c4": "Look for: Did you explain that 19.2 km ≈ 20 km, supporting 'agree'?",
+            "c5": "Look for: Did you connect your result back to the farmer's claim about her cows?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "12,000 × 1.6 = 19,200 metres per day",
+            "19,200 ÷ 1,000 = 19.2 km per day"
+          ],
+          "result": "19.2 km",
+          "explanation": "The actual calculation gives 19.2 km, not 20 km. The farmer's claim overstates the distance by 800 metres, so the claim is not exactly correct.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar?",
+            "c2": "Look for: Did you use 12,000 (steps) and 1.6 (metres per step) from the question?",
+            "c3": "Look for: Did you multiply 12,000 × 1.6 = 19,200 m and convert to km?",
+            "c4": "Look for: Did you state that 19.2 km ≠ 20 km, which supports 'disagree'?",
+            "c5": "Look for: Did you explain that the data does not match the farmer's exact claim of 20 km?"
+          }
+        }
+      }
+    },
+    {
+      "id": "004",
+      "level": 2,
+      "topic": "Time — Duration Comparison",
+      "source": "2023 NZQA Numeracy (Term 4), Q1(g)",
+      "context": "Three flights leave from Auckland airport to Pacific island destinations. All times shown are New Zealand time.",
+      "data": {
+        "type": "table",
+        "caption": "Auckland to Pacific flights",
+        "headers": [
+          "Destination",
+          "Departs (NZ time)",
+          "Arrives (NZ time)"
+        ],
+        "rows": [
+          [
+            "Nadi, Fiji",
+            "09:55",
+            "13:00"
+          ],
+          [
+            "Nuku'alofa, Tonga",
+            "11:25",
+            "14:15"
+          ],
+          [
+            "Alofi, Niue",
+            "08:15",
+            "11:45"
+          ]
+        ],
+        "notes": "All times are NZ time. No time zone adjustment is needed."
+      },
+      "claim": "Olioli claims that compared to the flights to Fiji and Niue, the flight to Tonga takes the longest.",
+      "question": "Is Olioli right? Use the times to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "olioli is right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "olioli is wrong",
+          "false",
+          "not right"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Fiji:  13:00 − 09:55 = 3 hours 5 minutes",
+            "Tonga: 14:15 − 11:25 = 2 hours 50 minutes",
+            "Niue:  11:45 − 08:15 = 3 hours 30 minutes"
+          ],
+          "result": "Fiji 3h 5min, Tonga 2h 50min, Niue 3h 30min",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The data shows Tonga (2h 50min) is actually the SHORTEST flight, not the longest. Niue (3h 30min) is the longest. Olioli is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Fiji:  13:00 − 09:55 = 3 hours 5 minutes",
+            "Tonga: 14:15 − 11:25 = 2 hours 50 minutes",
+            "Niue:  11:45 − 08:15 = 3 hours 30 minutes"
+          ],
+          "result": "Tonga is the shortest (2h 50min). Niue is the longest (3h 30min).",
+          "explanation": "Olioli is wrong. The flight to Niue takes the longest at 3 hours 30 minutes. The flight to Tonga (2 hours 50 minutes) is actually the shortest of the three.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar?",
+            "c2": "Look for: Did you use the departure and arrival times from the table?",
+            "c3": "Look for: Did you subtract times to find each flight duration?",
+            "c4": "Look for: Did you show that Tonga is the shortest (not longest), supporting 'disagree'?",
+            "c5": "Look for: Did you identify which flight IS longest (Niue, 3h 30min) to counter Olioli's claim?"
+          }
+        }
+      }
+    },
+    {
+      "id": "005",
+      "level": 3,
+      "topic": "Rate — Distance per Minute",
+      "source": "2024 NZQA Numeracy (Term 2), Q5(c)",
+      "context": "Michaela is a women's Rugby 7s player. She played the full game without being substituted.",
+      "data": {
+        "type": "text",
+        "content": "Michaela played all 14 minutes of the game. She ran a total distance of 1,540 metres during the game."
+      },
+      "claim": "Ani says that, on average, Michaela ran over 100 metres for every minute she played.",
+      "question": "Is Ani's claim reasonable? Use the measurements provided to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "ani is right",
+          "yes she did"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "ani is wrong",
+          "no she did not"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "1,540 m ÷ 14 minutes = 110 metres per minute"
+          ],
+          "result": "110 metres per minute",
+          "explanation": "110 metres per minute is greater than 100 metres per minute. Ani's claim is correct — Michaela did run over 100 metres per minute on average.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar?",
+            "c2": "Look for: Did you use 1,540 metres and 14 minutes from the question?",
+            "c3": "Look for: Did you divide 1,540 ÷ 14 to get 110 m/min?",
+            "c4": "Look for: Did you state that 110 > 100, which supports 'agree'?",
+            "c5": "Look for: Did you connect 110 m/min back to Ani's claim of 'over 100 metres per minute'?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Disagree is NOT supported by this data",
+          "calculation_steps": [
+            "1,540 m ÷ 14 minutes = 110 metres per minute"
+          ],
+          "result": "110 metres per minute",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. 110 m/min is greater than 100 m/min, which means Ani's claim IS correct. The correct stand is 'agree'.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "006",
+      "level": 3,
+      "topic": "Rate — Cost per Unit (Value Comparison)",
+      "source": "2025 NZQA Numeracy (Term 2, Week 2), Q3(d)",
+      "context": "A supermarket sells the same brand of Edam cheese in three different block sizes. A shopper is trying to decide which block gives the best value for money.",
+      "data": {
+        "type": "table",
+        "caption": "Edam cheese prices",
+        "headers": [
+          "Block size",
+          "Price"
+        ],
+        "rows": [
+          [
+            "1 kg (1,000 g)",
+            "$13.79"
+          ],
+          [
+            "500 g",
+            "$8.19"
+          ],
+          [
+            "250 g",
+            "$6.19"
+          ]
+        ],
+        "notes": null
+      },
+      "claim": "The shopper says, \"The 500-gram block is the cheapest option per 100 grams.\"",
+      "question": "Is the shopper right? Use the weights and prices to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "the shopper is right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "not right",
+          "the shopper is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "1 kg block:  $13.79 ÷ 10 = $1.379 per 100 g",
+            "500 g block: $8.19 ÷ 5  = $1.638 per 100 g",
+            "250 g block: $6.19 ÷ 2.5 = $2.476 per 100 g"
+          ],
+          "result": "1 kg = $1.38/100g, 500 g = $1.64/100g, 250 g = $2.48/100g",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The 1 kg block ($1.38 per 100g) is cheaper per 100 grams than the 500 g block ($1.64 per 100g). The shopper is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "1 kg block:  $13.79 ÷ 10  = $1.379 per 100 g  ← cheapest",
+            "500 g block: $8.19 ÷ 5   = $1.638 per 100 g",
+            "250 g block: $6.19 ÷ 2.5 = $2.476 per 100 g  ← most expensive"
+          ],
+          "result": "1 kg block is cheapest at $1.38 per 100 g",
+          "explanation": "The 500 g block is NOT the cheapest per 100 g. The 1 kg block costs $1.38 per 100 g, which is less than the 500 g block at $1.64 per 100 g. The larger the block, the better the value.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar?",
+            "c2": "Look for: Did you use the prices and gram weights from the table?",
+            "c3": "Look for: Did you divide the price by the number of 100g portions for at least two blocks?",
+            "c4": "Look for: Did you show that the 1 kg block ($1.38/100g) is cheaper than the 500g block ($1.64/100g), supporting 'disagree'?",
+            "c5": "Look for: Did you clearly state which block IS cheapest (the 1 kg block) to counter the shopper's claim?"
+          }
+        }
+      }
+    },
+    {
+      "id": "007",
+      "level": 4,
+      "topic": "Statistics — Percentage / Proportion from a Data Table",
+      "source": "2024 NZQA Numeracy (Term 2), Q5(f)",
+      "context": "The Rugby 7s World Cup for men has been held since 1993. The table below shows New Zealand's placing in each tournament. Only the teams finishing 1st or 2nd played in the final.",
+      "data": {
+        "type": "table",
+        "caption": "New Zealand's placing in Rugby 7s World Cups",
+        "headers": [
+          "Year",
+          "NZ placing"
+        ],
+        "rows": [
+          [
+            "1993",
+            "7th"
+          ],
+          [
+            "1997",
+            "3rd"
+          ],
+          [
+            "2001",
+            "1st (Winner)"
+          ],
+          [
+            "2005",
+            "2nd"
+          ],
+          [
+            "2009",
+            "5th"
+          ],
+          [
+            "2013",
+            "1st (Winner)"
+          ],
+          [
+            "2018",
+            "1st (Winner)"
+          ],
+          [
+            "2022",
+            "2nd"
+          ]
+        ],
+        "notes": "Teams finishing 1st or 2nd played in the final."
+      },
+      "claim": "A commentator says: \"New Zealand has been in the men's final for over 60% of the Rugby 7s World Cups.\"",
+      "question": "Is this statement true? Explain your answer using information from the table.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "true",
+          "correct",
+          "agree",
+          "the statement is true",
+          "it is true"
+        ],
+        "negative": [
+          "no",
+          "false",
+          "incorrect",
+          "disagree",
+          "the statement is false",
+          "it is false",
+          "not true"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / True / Agree",
+          "calculation_steps": [
+            "Count total World Cups from the table: 1993, 1997, 2001, 2005, 2009, 2013, 2018, 2022 = 8 tournaments",
+            "Count NZ's finals appearances (1st or 2nd): 2001, 2005, 2013, 2018, 2022 = 5 times",
+            "5 ÷ 8 = 0.625 = 62.5%"
+          ],
+          "result": "62.5%",
+          "explanation": "New Zealand appeared in the final 5 times out of 8 World Cups. 5 ÷ 8 = 62.5%, which is greater than 60%. The commentator's statement is true.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'true', 'agree', or similar?",
+            "c2": "Look for: Did you count the finals appearances (5) and total tournaments (8) from the table?",
+            "c3": "Look for: Did you divide 5 ÷ 8 to get 0.625 or 62.5%?",
+            "c4": "Look for: Did you show that 62.5% > 60%, which supports 'true'?",
+            "c5": "Look for: Did you identify the specific years NZ was in the final (2001, 2005, 2013, 2018, 2022)?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / False is NOT supported by this data",
+          "calculation_steps": [
+            "8 World Cups total",
+            "NZ in the final: 2001, 2005, 2013, 2018, 2022 = 5 times",
+            "5 ÷ 8 = 62.5%"
+          ],
+          "result": "62.5% — which IS over 60%",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. NZ was in the final 5 out of 8 times (62.5%), which is over 60%. The statement is TRUE.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "008",
+      "level": 4,
+      "topic": "Statistics — Multi-Attribute Comparison",
+      "source": "2025 NZQA Numeracy (Term 2, Week 2), Q2(d)",
+      "context": "A camping store sells three down jackets. Each jacket has a fill quality (FQ) rating — a higher FQ number means the jacket provides better warmth.",
+      "data": {
+        "type": "table",
+        "caption": "Down jacket specifications",
+        "headers": [
+          "Jacket colour",
+          "FQ (Fill Quality)",
+          "Weight",
+          "Price"
+        ],
+        "rows": [
+          [
+            "Red",
+            "400",
+            "620 g",
+            "$179"
+          ],
+          [
+            "Yellow",
+            "600",
+            "560 g",
+            "$329"
+          ],
+          [
+            "Blue",
+            "800",
+            "450 g",
+            "$439"
+          ]
+        ],
+        "notes": null
+      },
+      "claim": "A customer says: \"Jackets with a higher FQ cost more, but weigh less, than jackets with a lower FQ.\"",
+      "question": "Is it true to say this? Use numbers from at least two jacket tags to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "true",
+          "correct",
+          "agree",
+          "it is true",
+          "the statement is true"
+        ],
+        "negative": [
+          "no",
+          "false",
+          "incorrect",
+          "disagree",
+          "it is false",
+          "the statement is false",
+          "not true"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / True / Agree",
+          "calculation_steps": [
+            "Compare Red (FQ 400) and Blue (FQ 800):",
+            "  Price:  $179 (FQ 400)  vs  $439 (FQ 800)  → higher FQ costs more ✓",
+            "  Weight: 620 g (FQ 400) vs  450 g (FQ 800)  → higher FQ weighs less ✓",
+            "Same pattern holds for Red vs Yellow and Yellow vs Blue."
+          ],
+          "result": "As FQ increases: price increases and weight decreases — true for all three jackets.",
+          "explanation": "The statement is true. The Blue jacket (FQ 800) costs $439 and weighs 450 g, while the Red jacket (FQ 400) costs $179 and weighs 620 g. Higher FQ means higher price AND lower weight.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'true', 'agree', or similar?",
+            "c2": "Look for: Did you use FQ, weight, AND price numbers from at least two jackets?",
+            "c3": "Look for: Did you compare both price AND weight across two or more jackets?",
+            "c4": "Look for: Did you show both parts of the claim are true (price goes up, weight goes down as FQ increases)?",
+            "c5": "Look for: Did you clearly state the pattern holds — higher FQ costs more and weighs less?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / False is NOT supported by this data",
+          "calculation_steps": [
+            "Red:    FQ 400, Weight 620 g, Price $179",
+            "Yellow: FQ 600, Weight 560 g, Price $329",
+            "Blue:   FQ 800, Weight 450 g, Price $439",
+            "As FQ increases: price always increases ✓, weight always decreases ✓",
+            "There is no counterexample in the table."
+          ],
+          "result": "Both parts of the claim hold for all three jacket comparisons.",
+          "explanation": "⚠️ This stand is NOT supported by the data. All three jackets follow the same pattern — higher FQ means higher price AND lower weight. There is no counterexample in the table, so the claim is TRUE.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "009",
+      "level": 1,
+      "topic": "Measurement",
+      "source": "Original",
+      "context": "Liam is building a wooden workbench in his garage.",
+      "data": {
+        "type": "text",
+        "content": "Liam has a timber plank that is 240 cm long. He cuts off a piece that measures 1.8 metres long."
+      },
+      "claim": "He says, \"After I cut my piece, I will have exactly 80 cm of timber left over.\"",
+      "question": "Is Liam right? Use measurement calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Liam is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: how many centimetres are in 1 metre (100 cm). Convert the cut piece into centimetres first.",
+        "calculation_prompt": "Cut piece in cm = 1.8 m × ___ = ___ cm\nRemaining timber = 240 cm − ___ cm = ___ cm"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Convert 1.8 metres to centimetres: 1.8 × 100 = 180 cm",
+            "Subtract the cut piece from the total length: 240 cm − 180 cm = 60 cm"
+          ],
+          "result": "60 cm",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The actual leftover timber is 60 cm, which does not match Liam's claim of 80 cm. Liam is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Convert 1.8 metres to centimetres: 1.8 × 100 = 180 cm",
+            "Subtract the cut piece from the total length: 240 cm − 180 cm = 60 cm"
+          ],
+          "result": "60 cm",
+          "explanation": "Liam is wrong. 1.8 metres is 180 cm. When you subtract 180 cm from the original 240 cm plank, you are left with exactly 60 cm of timber, not 80 cm.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 240 cm and 1.8 m from the question?",
+            "c3": "Look for: Did you show the conversion (1.8 m = 180 cm) and the subtraction (240 − 180 = 60)?",
+            "c4": "Look for: Did you state that 60 cm is different from 80 cm, which supports your stand?",
+            "c5": "Look for: Did you connect your answer back to Liam's workbench or timber plank?"
+          }
+        }
+      }
+    },
+    {
+      "id": "010",
+      "level": 1,
+      "topic": "Fractions & Ratios",
+      "source": "Original",
+      "context": "Mere is making a large pot of rēwana bread for her whānau.",
+      "data": {
+        "type": "text",
+        "content": "The recipe needs 12 cups of flour. Mere only has a 1/4 cup measuring scoop."
+      },
+      "claim": "Mere says, \"I will need to use my scoop exactly 48 times to get the 12 cups of flour.\"",
+      "question": "Is Mere right? Use fraction calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Mere is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: how many 1/4 cups make 1 whole cup (4 scoops). Then multiply that by the number of cups needed.",
+        "calculation_prompt": "Scoops in 1 cup = ___\nTotal scoops for 12 cups = 12 × ___ = ___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Find how many 1/4 scoops make 1 whole cup: 4 scoops",
+            "Multiply the scoops per cup by the total cups needed: 12 × 4 = 48 scoops"
+          ],
+          "result": "48 scoops",
+          "explanation": "Mere is right. Since it takes 4 of the quarter-cup scoops to make 1 whole cup, she will need to use the scoop exactly 48 times to get 12 cups (12 × 4 = 48).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 12 cups and 1/4 cup scoop from the question?",
+            "c3": "Look for: Did you show that 4 scoops make a cup and multiply 12 × 4 = 48?",
+            "c4": "Look for: Did you explain that your result of 48 matches Mere's claim, supporting your stand?",
+            "c5": "Look for: Did you mention Mere's rēwana bread or flour?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Find how many 1/4 scoops make 1 whole cup: 4 scoops",
+            "Multiply the scoops per cup by the total cups needed: 12 × 4 = 48 scoops"
+          ],
+          "result": "48 scoops",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The math shows Mere needs exactly 48 scoops, which perfectly matches her claim. The correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "011",
+      "level": 1,
+      "topic": "Percentages",
+      "source": "Original",
+      "context": "Sam is buying a new gaming mouse online from a computer store.",
+      "data": {
+        "type": "text",
+        "content": "The gaming mouse usually costs $80. The store has a sale offering 25% off."
+      },
+      "claim": "Sam says, \"With the 25% discount, the mouse will cost me $55.\"",
+      "question": "Is Sam right? Use percentage calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Sam is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: 25% is the same as a quarter (1/4) of the price. Find the discount first, then subtract it from $80.",
+        "calculation_prompt": "Discount amount = 25% of $80 = $80 ÷ 4 = $___\nSale price = $80 − $___ = $___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate 25% of $80 (one quarter of $80): $80 ÷ 4 = $20 discount",
+            "Subtract the discount from the original price: $80 − $20 = $60"
+          ],
+          "result": "$60",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The sale price is actually $60, not $55. Sam is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Calculate 25% of $80 (one quarter of $80): $80 ÷ 4 = $20 discount",
+            "Subtract the discount from the original price: $80 − $20 = $60"
+          ],
+          "result": "$60",
+          "explanation": "Sam is wrong. 25% of $80 is $20. When you subtract the $20 discount from the original price of $80, the mouse costs $60, not $55.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $80 and 25% from the question?",
+            "c3": "Look for: Did you show that the discount is $20 and the final price is $60?",
+            "c4": "Look for: Did you explain that $60 is different from $55, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Sam's gaming mouse?"
+          }
+        }
+      }
+    },
+    {
+      "id": "012",
+      "level": 1,
+      "topic": "Time",
+      "source": "Original",
+      "context": "Sarah is training for a local 5km fun run.",
+      "data": {
+        "type": "text",
+        "content": "She runs around the school track for 45 minutes on Monday, 35 minutes on Wednesday, and 40 minutes on Friday."
+      },
+      "claim": "Sarah says, \"I spent a total of exactly 2 hours running this week.\"",
+      "question": "Is Sarah right? Use time calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Sarah is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: add all the running times in minutes together first, then convert the total minutes to hours (60 minutes = 1 hour).",
+        "calculation_prompt": "Total running minutes = ___ + ___ + ___ = ___ minutes\nTotal hours = ___ minutes ÷ 60 = ___ hours"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Add the minutes from all three days: 45 + 35 + 40 = 120 minutes",
+            "Convert minutes to hours by dividing by 60: 120 ÷ 60 = 2 hours"
+          ],
+          "result": "2 hours",
+          "explanation": "Sarah is right. Her total running time adds up to 120 minutes. Since there are 60 minutes in an hour, 120 minutes is exactly 2 hours.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 45, 35, and 40 minutes from the question?",
+            "c3": "Look for: Did you show that the times add up to 120 minutes, which equals 2 hours?",
+            "c4": "Look for: Did you explain that 2 hours matches Sarah's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Sarah's training or running?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Add the minutes from all three days: 45 + 35 + 40 = 120 minutes",
+            "Convert minutes to hours by dividing by 60: 120 ÷ 60 = 2 hours"
+          ],
+          "result": "2 hours",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Sarah ran for exactly 120 minutes, which is exactly 2 hours. Her claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "013",
+      "level": 1,
+      "topic": "Rates",
+      "source": "Original",
+      "context": "Ben is harvesting honey from his backyard beehives.",
+      "data": {
+        "type": "text",
+        "content": "Each hive produces 15 kg of honey. Ben has 6 hives in total."
+      },
+      "claim": "Ben says, \"If I sell all my honey in 1 kg jars, I will have exactly 100 jars to sell.\"",
+      "question": "Is Ben right? Use multiplication to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Ben is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: multiply the amount of honey per hive by the total number of hives. Since each jar holds 1 kg, the total kilograms will equal the number of jars.",
+        "calculation_prompt": "Total honey produced = ___ kg × ___ hives = ___ kg\nTotal jars (at 1 kg each) = ___ jars"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Multiply the honey per hive by the number of hives: 15 × 6 = 90 kg",
+            "Convert total weight into 1 kg jars: 90 kg = 90 jars"
+          ],
+          "result": "90 jars",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Ben's hives produce 90 kg of honey in total, which means he has 90 jars, not 100. Ben is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Multiply the honey per hive by the number of hives: 15 × 6 = 90 kg",
+            "Convert total weight into 1 kg jars: 90 kg = 90 jars"
+          ],
+          "result": "90 jars",
+          "explanation": "Ben is wrong. When you multiply 15 kg of honey by 6 hives, the total amount produced is 90 kg. Since each jar holds 1 kg, he will only have 90 jars to sell, not 100.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 15 kg and 6 hives from the question?",
+            "c3": "Look for: Did you write out the multiplication step 15 × 6 = 90?",
+            "c4": "Look for: Did you explain that 90 jars is less than 100, which supports your stand?",
+            "c5": "Look for: Did you connect your answer back to Ben's honey or beehives?"
+          }
+        }
+      }
+    },
+    {
+      "id": "014",
+      "level": 1,
+      "topic": "Measurement",
+      "source": "Original",
+      "context": "The school weather station measures daily temperatures.",
+      "data": {
+        "type": "text",
+        "content": "On a winter morning in Taupō, the temperature is -2°C. By afternoon, the temperature rises by 12°C."
+      },
+      "claim": "The teacher says, \"The afternoon temperature is exactly 10°C.\"",
+      "question": "Is the teacher right? Use a temperature calculation to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "the teacher is right",
+          "she is right",
+          "hes right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "the teacher is wrong",
+          "she is wrong",
+          "hes wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think the teacher is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: starting at -2 on a thermometer and counting up by 12 degrees. You can write this as -2 + 12.",
+        "calculation_prompt": "Afternoon temperature = −2°C + 12°C = ___°C"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Identify the starting temperature: -2°C",
+            "Add the increase in temperature: −2 + 12 = 10°C"
+          ],
+          "result": "10°C",
+          "explanation": "The teacher is right. When the temperature starts at -2°C and rises by 12°C, it passes through 0°C and reaches exactly 10°C.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers -2°C and 12°C from the question?",
+            "c3": "Look for: Did you write down the addition step −2 + 12 = 10?",
+            "c4": "Look for: Did you explain that 10°C matches the teacher's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to the weather station or temperature?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Identify the starting temperature: -2°C",
+            "Add the increase in temperature: −2 + 12 = 10°C"
+          ],
+          "result": "10°C",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The temperature arithmetic (-2 + 12) results in exactly 10°C, which is correct. The correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "015",
+      "level": 1,
+      "topic": "Fractions & Ratios",
+      "source": "Original",
+      "context": "Sione's school is mixing orange drink for their Polyfest stall.",
+      "data": {
+        "type": "text",
+        "content": "The instructions say to mix orange concentrate and water in a ratio of 1 part concentrate to 4 parts water. Sione uses 2 litres of concentrate."
+      },
+      "claim": "Sione says, \"I need to mix in exactly 8 litres of water.\"",
+      "question": "Is Sione right? Use ratio calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "sione is right",
+          "true",
+          "he is right",
+          "hes right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "sione is wrong",
+          "false",
+          "he is wrong",
+          "hes wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Sione is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: for every 1 litre of concentrate, you need 4 litres of water. If you have 2 litres of concentrate, multiply that amount by 4.",
+        "calculation_prompt": "Water needed = 2 L of concentrate × 4 parts water = ___ L"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Identify the ratio of concentrate to water: 1 to 4",
+            "Multiply the concentrate amount by 4 to find the water needed: 2 × 4 = 8 L"
+          ],
+          "result": "8 litres",
+          "explanation": "Sione is right. Since the ratio is 1:4, he needs 4 times as much water as concentrate. 2 litres of concentrate multiplied by 4 is exactly 8 litres of water.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 1 part, 4 parts, and 2 litres from the question?",
+            "c3": "Look for: Did you show the multiplication step 2 × 4 = 8?",
+            "c4": "Look for: Did you explain that 8 litres matches Sione's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to the Polyfest orange drink?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Identify the ratio of concentrate to water: 1 to 4",
+            "Multiply the concentrate amount by 4 to find the water needed: 2 × 4 = 8 L"
+          ],
+          "result": "8 litres",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Sione's calculation of 8 litres of water is correct based on the 1:4 ratio. The correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "016",
+      "level": 1,
+      "topic": "Measurement",
+      "source": "Original",
+      "context": "Emily is framing a rectangular mirror she made in woodworking class.",
+      "data": {
+        "type": "text",
+        "content": "The mirror is 50 cm wide and 80 cm long. She needs wooden framing to go all the way around the outside edges."
+      },
+      "claim": "Emily says, \"I will need exactly 1.3 metres of wood to frame the mirror.\"",
+      "question": "Is Emily right? Use perimeter and unit conversion to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Emily is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: a rectangle has 4 sides (2 widths and 2 lengths). Add them all together to find the perimeter in cm, then convert to metres (100 cm = 1 m).",
+        "calculation_prompt": "Perimeter in cm = ___ cm + ___ cm + ___ cm + ___ cm = ___ cm\nLength in metres = ___ cm ÷ 100 = ___ m"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Add the four sides of the mirror: 50 + 50 + 80 + 80 = 260 cm",
+            "Convert centimetres to metres: 260 ÷ 100 = 2.6 m"
+          ],
+          "result": "2.6 m",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Emily needs 2.6 metres of wood for the frame, which is double her claim of 1.3 metres. Emily is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Add the four sides of the mirror: 50 + 50 + 80 + 80 = 260 cm",
+            "Convert centimetres to metres: 260 ÷ 100 = 2.6 m"
+          ],
+          "result": "2.6 m",
+          "explanation": "Emily is wrong. The total perimeter of the mirror is 260 cm (50 + 50 + 80 + 80). Since 100 cm equals 1 metre, she needs exactly 2.6 metres of wood, not 1.3 metres.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 50 cm and 80 cm from the question?",
+            "c3": "Look for: Did you show that the perimeter is 260 cm and convert it to 2.6 m?",
+            "c4": "Look for: Did you explain that 2.6 m is different from 1.3 m, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Emily's mirror frame?"
+          }
+        }
+      }
+    },
+    {
+      "id": "017",
+      "level": 1,
+      "topic": "Percentages",
+      "source": "Original",
+      "context": "David is buying a new bike helmet at a local sports shop.",
+      "data": {
+        "type": "text",
+        "content": "The helmet costs $90. The assistant offers a 10% discount if David joins the free rewards club."
+      },
+      "claim": "David thinks, \"I will save exactly $10 by joining the club.\"",
+      "question": "Is David right? Use percentage calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think David is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: to find 10% of any amount, you divide that amount by 10.",
+        "calculation_prompt": "Savings = 10% of $90 = $90 ÷ 10 = $___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate 10% of $90: $90 ÷ 10 = $9"
+          ],
+          "result": "$9",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. David will save $9, which is not equal to his claim of $10. David is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Calculate 10% of $90: $90 ÷ 10 = $9"
+          ],
+          "result": "$9",
+          "explanation": "David is wrong. To find 10% of $90, you divide by 10, which equals $9. He will save exactly $9, which is $1 less than he thinks.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $90 and 10% from the question?",
+            "c3": "Look for: Did you write down the division step $90 ÷ 10 = $9?",
+            "c4": "Look for: Did you explain that $9 is different from $10, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to David's bike helmet?"
+          }
+        }
+      }
+    },
+    {
+      "id": "018",
+      "level": 1,
+      "topic": "Time",
+      "source": "Original",
+      "context": "Chloe is taking the train from Wellington to Upper Hutt.",
+      "data": {
+        "type": "text",
+        "content": "The train departs Wellington Station at 3:15 p.m. and arrives in Upper Hutt at 4:05 p.m."
+      },
+      "claim": "Chloe says, \"My train trip takes exactly 50 minutes.\"",
+      "question": "Is Chloe right? Use time calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Chloe is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: count the minutes from 3:15 p.m. to the next hour (4:00 p.m.), which is 45 minutes, then add the remaining minutes past the hour.",
+        "calculation_prompt": "Minutes from 3:15 to 4:00 = ___ minutes\nMinutes from 4:00 to 4:05 = ___ minutes\nTotal time = ___ minutes + ___ minutes = ___ minutes"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Calculate minutes from 3:15 p.m. to 4:00 p.m.: 45 minutes",
+            "Add the remaining minutes past the hour (4:00 p.m. to 4:05 p.m.): 45 + 5 = 50 minutes"
+          ],
+          "result": "50 minutes",
+          "explanation": "Chloe is right. The trip from 3:15 p.m. to 4:00 p.m. is 45 minutes, plus another 5 minutes to reach 4:05 p.m., which equals exactly 50 minutes.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the train times 3:15 p.m. and 4:05 p.m. from the question?",
+            "c3": "Look for: Did you show that 45 minutes + 5 minutes = 50 minutes?",
+            "c4": "Look for: Did you explain that 50 minutes matches Chloe's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Chloe's train trip?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate minutes from 3:15 p.m. to 4:00 p.m.: 45 minutes",
+            "Add the remaining minutes past the hour (4:00 p.m. to 4:05 p.m.): 45 + 5 = 50 minutes"
+          ],
+          "result": "50 minutes",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The time elapsed between 3:15 p.m. and 4:05 p.m. is exactly 50 minutes, which makes Chloe's claim correct. The correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "019",
+      "level": 1,
+      "topic": "Construction",
+      "source": "Original",
+      "context": "Aroha is building a raised vegetable garden bed at her local kōhanga reo.",
+      "data": {
+        "type": "text",
+        "content": "Aroha has a budget of $120. Each timber plank she needs costs $15. She needs to buy exactly 9 planks."
+      },
+      "claim": "Aroha says, \"My $120 budget is enough to buy all 9 planks.\"",
+      "question": "Is Aroha right? Use multiplication to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Aroha is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: find the total cost of the 9 planks by multiplying the price of one plank ($15) by 9. Then compare this to her budget.",
+        "calculation_prompt": "Total cost of planks = $15 × 9 = $___\nBudget compared to cost = $120 budget vs $___ cost"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Multiply the cost of one plank by the total planks needed: $15 × 9 = $135"
+          ],
+          "result": "$135",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The total cost of the planks is $135, which is more than Aroha's $120 budget. Aroha is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Multiply the cost of one plank by the total planks needed: $15 × 9 = $135",
+            "Compare the total cost to the budget: $135 is greater than $120"
+          ],
+          "result": "$135",
+          "explanation": "Aroha is wrong. 9 planks at $15 each will cost a total of $135 (9 × $15 = $135). Since her budget is only $120, she does not have enough money to buy all 9 planks.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $120, $15, and 9 planks from the question?",
+            "c3": "Look for: Did you show the multiplication step 15 × 9 = 135?",
+            "c4": "Look for: Did you explain that the cost of $135 is higher than her $120 budget, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Aroha's raised garden bed or the kōhanga reo?"
+          }
+        }
+      }
+    },
+    {
+      "id": "020",
+      "level": 1,
+      "topic": "Percentages",
+      "source": "Original",
+      "context": "Tyler is downloading a large video file for his digital technology class project.",
+      "data": {
+        "type": "text",
+        "content": "The total size of the video file is 800 megabytes (MB). The file download is exactly 50% complete."
+      },
+      "claim": "Tyler says, \"The computer has downloaded exactly 450 megabytes of the file so far.\"",
+      "question": "Is Tyler right? Use percentage calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Tyler is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: 50% is exactly half of the total file size. You can find this by dividing the total megabytes (800) by 2.",
+        "calculation_prompt": "Downloaded megabytes = 50% of 800 MB = 800 MB ÷ 2 = ___ MB"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate 50% of the total file size: 800 ÷ 2 = 400 MB"
+          ],
+          "result": "400 MB",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Exactly 50% of 800 MB is 400 MB, which does not match Tyler's claim of 450 MB. Tyler is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Calculate 50% of the total file size: 800 ÷ 2 = 400 MB"
+          ],
+          "result": "400 MB",
+          "explanation": "Tyler is wrong. 50% means half of the total amount. Half of 800 MB is 400 MB (800 ÷ 2 = 400). The computer has downloaded 400 MB, not 450 MB.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 800 MB and 50% from the question?",
+            "c3": "Look for: Did you show that 50% of 800 is 400?",
+            "c4": "Look for: Did you explain that 400 MB is different from 450 MB, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Tyler's video file download?"
+          }
+        }
+      }
+    },
+    {
+      "id": "021",
+      "level": 1,
+      "topic": "Fractions & Ratios",
+      "source": "Original",
+      "context": "Sione is making a large bowl of fruit punch for a church youth group dinner.",
+      "data": {
+        "type": "text",
+        "content": "A single recipe of fruit punch serves exactly 10 people. Sione needs to make enough to serve 60 people."
+      },
+      "claim": "Sione says, \"I need to multiply all the ingredients in the recipe by exactly 6.\"",
+      "question": "Is Sione right? Use division or multiplication to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Sione is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: divide the total number of people he needs to serve (60) by the number of people one single recipe serves (10).",
+        "calculation_prompt": "Recipe multiplier = 60 people ÷ 10 people per recipe = ___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Divide the total target guests by the single recipe servings: 60 ÷ 10 = 6"
+          ],
+          "result": "6",
+          "explanation": "Sione is right. Since one recipe serves 10 people, he needs to make 6 times the recipe to serve 60 people (60 ÷ 10 = 6). Multiplying all ingredients by 6 is correct.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 10 people and 60 people from the question?",
+            "c3": "Look for: Did you write out the division step 60 ÷ 10 = 6?",
+            "c4": "Look for: Did you explain that your multiplier of 6 matches Sione's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Sione's fruit punch or the youth group?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Divide the total target guests by the single recipe servings: 60 ÷ 10 = 6"
+          ],
+          "result": "6",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Sione needs to serve 60 people, which is exactly 6 times larger than the recipe's serving size of 10. The correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "022",
+      "level": 1,
+      "topic": "Fractions & Ratios",
+      "source": "Original",
+      "context": "Cooper is tracking his daily steps on his fitness watch.",
+      "data": {
+        "type": "text",
+        "content": "Cooper's daily goal is to walk 10,000 steps. By lunchtime, his watch shows he has walked exactly 7,500 steps."
+      },
+      "claim": "He says, \"I have completed exactly three-quarters (3/4) of my daily step goal.\"",
+      "question": "Is Cooper right? Use fraction calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Cooper is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: write his walked steps as a fraction of his total goal (7,500 / 10,000) and simplify it, or find what three-quarters (3/4) of 10,000 is.",
+        "calculation_prompt": "Three-quarters of goal = 10,000 ÷ 4 × 3 = ___ × 3 = ___ steps"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Divide the total goal into four equal quarters: 10,000 ÷ 4 = 2,500 steps per quarter",
+            "Multiply one quarter by three to find three-quarters: 2,500 × 3 = 7,500 steps"
+          ],
+          "result": "7,500 steps",
+          "explanation": "Cooper is right. One quarter (1/4) of his 10,000 step goal is 2,500 steps. Three-quarters (3/4) is 7,500 steps (2,500 × 3 = 7,500), which matches his watch exactly.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 10,000 and 7,500 from the question?",
+            "c3": "Look for: Did you show that 3/4 of 10,000 is equal to 7,500 steps?",
+            "c4": "Look for: Did you explain that 7,500 steps matches his watch, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Cooper's fitness watch or step goal?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Divide the total goal into four equal quarters: 10,000 ÷ 4 = 2,500 steps per quarter",
+            "Multiply one quarter by three to find three-quarters: 2,500 × 3 = 7,500 steps"
+          ],
+          "result": "7,500 steps",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. 7,500 out of 10,000 is exactly three-quarters (3/4). Cooper's claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "023",
+      "level": 1,
+      "topic": "Measurement",
+      "source": "Original",
+      "context": "Mia is buying sausages to organize a school netball team fundraising lunch.",
+      "data": {
+        "type": "text",
+        "content": "Each family pack of sausages costs exactly $8. Mia buys 12 family packs."
+      },
+      "claim": "She says, \"The total cost for all of the sausages is exactly $96.\"",
+      "question": "Is Mia right? Use multiplication to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Mia is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: multiply the cost of one pack ($8) by the total number of packs she bought (12).",
+        "calculation_prompt": "Total cost = $8 × 12 packs = $___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Multiply the cost of a single pack by the number of packs: $8 × 12 = $96"
+          ],
+          "result": "$96",
+          "explanation": "Mia is right. When you multiply the price of one family pack ($8) by the 12 packs she bought, the total cost comes to exactly $96 (12 × 8 = 96).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $8 and 12 packs from the question?",
+            "c3": "Look for: Did you write out the multiplication step 8 × 12 = 96?",
+            "c4": "Look for: Did you explain that $96 matches Mia's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Mia's netball fundraiser sausages?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Multiply the cost of a single pack by the number of packs: $8 × 12 = $96"
+          ],
+          "result": "$96",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. 12 packs multiplied by $8 is exactly $96. Her claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "024",
+      "level": 1,
+      "topic": "Rates",
+      "source": "Original",
+      "context": "Rawiri is putting honeycomb frames into new wooden beehive boxes.",
+      "data": {
+        "type": "text",
+        "content": "Each empty hive box holds exactly 10 honeycomb frames. Rawiri has 85 honeycomb frames."
+      },
+      "claim": "Rawiri says, \"I have enough frames to completely fill 9 hive boxes.\"",
+      "question": "Is Rawiri right? Use division or multiplication to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Rawiri is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: multiply the number of boxes he wants to fill (9) by the frames each box holds (10) to see how many frames he actually needs.",
+        "calculation_prompt": "Frames needed for 9 boxes = 9 boxes × 10 frames per box = ___ frames\nFrames Rawiri has = ___ frames"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Multiply the frames per box by the boxes he wants to fill: 10 × 9 = 90 frames"
+          ],
+          "result": "90 frames",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Rawiri needs 90 frames to completely fill 9 boxes, but he only has 85. Rawiri is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Multiply the frames per box by the boxes he wants to fill: 10 × 9 = 90 frames",
+            "Compare the needed frames to the frames Rawiri has: 90 frames needed vs 85 frames owned"
+          ],
+          "result": "90 frames",
+          "explanation": "Rawiri is wrong. To fill 9 boxes completely, he would need exactly 90 frames (9 × 10 = 90). Since he only has 85 frames, he is 5 frames short and can only fill 8 boxes completely.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 10 frames, 85 frames, and 9 boxes from the question?",
+            "c3": "Look for: Did you show that 9 boxes require 90 frames (9 × 10 = 90)?",
+            "c4": "Look for: Did you explain that 85 frames is less than 90, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Rawiri's beehive boxes or frames?"
+          }
+        }
+      }
+    },
+    {
+      "id": "025",
+      "level": 1,
+      "topic": "Time",
+      "source": "Original",
+      "context": "Zoe is planning a driving holiday from Christchurch to Dunedin.",
+      "data": {
+        "type": "text",
+        "content": "The total driving distance is 360 kilometres. Zoe plans to drive at an average speed of 90 kilometres per hour."
+      },
+      "claim": "Zoe says, \"The drive will take me exactly 4 hours of travel time, not including stops.\"",
+      "question": "Is Zoe right? Use speed and time calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Zoe is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: divide the total distance of the trip (360 km) by her planned speed (90 km per hour) to find the travel time in hours.",
+        "calculation_prompt": "Travel time = 360 km ÷ 90 km per hour = ___ hours"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Divide the total distance by the speed: 360 ÷ 90 = 4 hours"
+          ],
+          "result": "4 hours",
+          "explanation": "Zoe is right. When you divide the total driving distance of 360 km by her average speed of 90 km/h, the calculation gives exactly 4 hours (360 ÷ 90 = 4).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 360 km and 90 km/h from the question?",
+            "c3": "Look for: Did you write out the division step 360 ÷ 90 = 4?",
+            "c4": "Look for: Did you explain that 4 hours matches Zoe's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Zoe's drive from Christchurch to Dunedin?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Divide the total distance by the speed: 360 ÷ 90 = 4 hours"
+          ],
+          "result": "4 hours",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Dividing 360 km by 90 km/h results in exactly 4 hours of travel time. Zoe's claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "026",
+      "level": 1,
+      "topic": "Measurement",
+      "source": "Original",
+      "context": "Thomas is cutting a garden hose to make short irrigation pipes for his backyard vegetable rows.",
+      "data": {
+        "type": "text",
+        "content": "The garden hose is exactly 3 metres long. Thomas wants to cut it into equal pieces that are exactly 50 cm long."
+      },
+      "claim": "Thomas says, \"I will get exactly 6 pieces of hose from this length.\"",
+      "question": "Is Thomas right? Use measurement calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Thomas is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: convert the total length from metres to centimetres first (1 metre = 100 cm). Then divide the total centimetres by 50 cm.",
+        "calculation_prompt": "Hose length in cm = 3 m × 100 = ___ cm\nNumber of pieces = ___ cm ÷ 50 cm = ___ pieces"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Convert 3 metres to centimetres: 3 × 100 = 300 cm",
+            "Divide the total length in cm by the piece size: 300 ÷ 50 = 6 pieces"
+          ],
+          "result": "6 pieces",
+          "explanation": "Thomas is right. 3 metres of hose is equal to 300 cm. When cut into pieces of 50 cm each, he will get exactly 6 pieces (300 ÷ 50 = 6).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 3 m and 50 cm from the question?",
+            "c3": "Look for: Did you show that 3 m = 300 cm and divide 300 ÷ 50 = 6?",
+            "c4": "Look for: Did you explain that 6 pieces matches Thomas's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Thomas's garden hose or pipes?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Convert 3 metres to centimetres: 3 × 100 = 300 cm",
+            "Divide the total length in cm by the piece size: 300 ÷ 50 = 6 pieces"
+          ],
+          "result": "6 pieces",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Converting 3 m to 300 cm and dividing by 50 cm results in exactly 6 pieces. Thomas's claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "027",
+      "level": 1,
+      "topic": "Measurement",
+      "source": "Original",
+      "context": "Liam wants to buy a monthly subscription for a professional video-editing app on his computer.",
+      "data": {
+        "type": "text",
+        "content": "The subscription costs exactly $12 per month. Liam wants to subscribe for a full year (12 months)."
+      },
+      "claim": "He says, \"A full year's subscription will cost me exactly $140.\"",
+      "question": "Is Liam right? Use multiplication to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "he's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "he's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Liam is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: multiply the cost per month ($12) by the total number of months in a year (12 months).",
+        "calculation_prompt": "Total annual cost = $12 per month × 12 months = $___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Multiply the monthly price by the number of months: $12 × 12 = $144"
+          ],
+          "result": "$144",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The total year's cost is $144, which does not match Liam's claim of $140. Liam is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Multiply the monthly price by the number of months: $12 × 12 = $144"
+          ],
+          "result": "$144",
+          "explanation": "Liam is wrong. A full year's subscription consists of 12 months. When you multiply the $12 monthly cost by 12 months, the total comes to exactly $144, not $140.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $12 and 12 months from the question?",
+            "c3": "Look for: Did you write out the multiplication step 12 × 12 = 144?",
+            "c4": "Look for: Did you explain that $144 is different from $140, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Liam's video-editing app subscription?"
+          }
+        }
+      }
+    },
+    {
+      "id": "028",
+      "level": 1,
+      "topic": "Rates",
+      "source": "Original",
+      "context": "Olivia is preparing bottled water for her touch rugby team's weekend match.",
+      "data": {
+        "type": "text",
+        "content": "There are exactly 14 players on the team. Each player needs 1 bottle of water. Bottled water is sold in packs of 6."
+      },
+      "claim": "Olivia says, \"I need to buy exactly 2 packs of bottled water so every player gets a bottle.\"",
+      "question": "Is Olivia right? Use a calculation to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "she's right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "she's wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think Olivia is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: find how many total bottles of water are in 2 packs of 6. Then compare that number to the 14 players on the team.",
+        "calculation_prompt": "Water bottles in 2 packs = 2 packs × 6 bottles per pack = ___ bottles\nBottles compared to players = ___ bottles vs 14 players"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Multiply the number of bottles in one pack by 2 packs: 6 × 2 = 12 bottles"
+          ],
+          "result": "12 bottles",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. 2 packs only contain 12 bottles, which is not enough for all 14 players. Olivia is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Multiply the number of bottles in one pack by 2 packs: 6 × 2 = 12 bottles",
+            "Compare the total bottles to the number of players: 12 bottles are less than 14 players"
+          ],
+          "result": "12 bottles",
+          "explanation": "Olivia is wrong. Buying 2 packs of water only gives her a total of 12 bottles (2 × 6 = 12). Since there are 14 players, she would be 2 bottles short. She actually needs to buy 3 packs (18 bottles).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 14 players, 1 bottle each, and packs of 6 from the question?",
+            "c3": "Look for: Did you show the multiplication step 2 × 6 = 12?",
+            "c4": "Look for: Did you explain that 12 bottles is less than the 14 needed, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Olivia's touch rugby team?"
+          }
+        }
+      }
+    },
+    {
+      "id": "029",
+      "level": 1,
+      "topic": "Fractions & Ratios",
+      "source": "Original",
+      "context": "Tama is planting kūmara in a raised garden box.",
+      "data": {
+        "type": "text",
+        "content": "Tama has a garden box with an area of 2 square metres. Each kūmara plant needs exactly 1/4 (one quarter) of a square metre of soil to grow well."
+      },
+      "claim": "Tama says, \"I can grow exactly 8 kūmara plants in this garden box.\"",
+      "question": "Is Tama right? Use fraction calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "tama is right",
+          "true",
+          "he is right",
+          "hes right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "tama is wrong",
+          "false",
+          "he is wrong",
+          "hes wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Tama is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: how many plants can fit in 1 square metre (since each needs 1/4 of a square metre, that is 4 plants per square metre). Then multiply by 2.",
+        "calculation_prompt": "Plants in 1 square metre = 4\nTotal plants in 2 square metres = 4 × ___ = ___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Determine how many plants fit in 1 square metre: 4 plants (since 4 × 1/4 = 1)",
+            "Multiply the plants per square metre by the total area: 4 × 2 = 8 plants"
+          ],
+          "result": "8 plants",
+          "explanation": "Tama is right. Since each kūmara plant needs 1/4 of a square metre, 4 plants can grow in 1 square metre. For a 2 square metre box, he can grow exactly 8 plants (4 × 2 = 8).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 2 square metres and 1/4 square metre from the question?",
+            "c3": "Look for: Did you show that 4 plants fit in 1 square metre and multiply 4 × 2 = 8?",
+            "c4": "Look for: Did you explain that your result of 8 matches Tama's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Tama's kūmara plants or garden box?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Determine how many plants fit in 1 square metre: 4 plants",
+            "Multiply the plants per square metre by the total area: 4 × 2 = 8 plants"
+          ],
+          "result": "8 plants",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Tama can grow exactly 8 kūmara plants in a 2 square metre box. His claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "030",
+      "level": 1,
+      "topic": "Measurement",
+      "source": "Original",
+      "context": "David is making floating shelves in his bedroom.",
+      "data": {
+        "type": "text",
+        "content": "He has a wooden plank that is 1.5 metres long. He cuts it into 3 equal shelf pieces."
+      },
+      "claim": "He says, \"Each of my shelf pieces will be exactly 50 cm long.\"",
+      "question": "Is David right? Use measurement calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think David is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: convert 1.5 metres to centimetres first (1 metre = 100 cm). Then divide the total centimetres by 3.",
+        "calculation_prompt": "Plank length in cm = 1.5 m × 100 = ___ cm\nLength of each piece = ___ cm ÷ 3 = ___ cm"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Convert 1.5 metres to centimetres: 1.5 × 100 = 150 cm",
+            "Divide the total length in centimetres by 3 equal pieces: 150 ÷ 3 = 50 cm"
+          ],
+          "result": "50 cm",
+          "explanation": "David is right. A 1.5-metre plank is equal to 150 cm. When cut into 3 equal pieces, each shelf is exactly 50 cm long (150 ÷ 3 = 50).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 1.5 m and 3 equal pieces from the question?",
+            "c3": "Look for: Did you show that 1.5 m = 150 cm and divide 150 ÷ 3 = 50?",
+            "c4": "Look for: Did you explain that 50 cm matches David's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to David's wooden floating shelves?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Convert 1.5 metres to centimetres: 1.5 × 100 = 150 cm",
+            "Divide the total length in centimetres by 3 equal pieces: 150 ÷ 3 = 50 cm"
+          ],
+          "result": "50 cm",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Dividing 150 cm by 3 results in exactly 50 cm per piece. David's claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "031",
+      "level": 1,
+      "topic": "Multiplication",
+      "source": "Original",
+      "context": "Ana's whānau is preparing a koha (donation) for a family gathering at their local marae.",
+      "data": {
+        "type": "text",
+        "content": "There are 5 people in the whānau. Each person contributes exactly $25 to the koha."
+      },
+      "claim": "Ana says, \"Our total whānau koha will be exactly $125.\"",
+      "question": "Is Ana right? Use multiplication to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "ana is right",
+          "she is right",
+          "true",
+          "shes right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "ana is wrong",
+          "she is wrong",
+          "false",
+          "shes wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Ana is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: multiply the number of people in the whānau (5) by the amount each person contributes ($25).",
+        "calculation_prompt": "Total koha = 5 people × $25 each = $___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Multiply the number of family contributors by the individual contribution: 5 × $25 = $125"
+          ],
+          "result": "$125",
+          "explanation": "Ana is right. When you multiply the 5 people in her whānau by the $25 each person contributes, the total koha comes to exactly $125 (5 × 25 = 125).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 5 people and $25 from the question?",
+            "c3": "Look for: Did you write out the multiplication step 5 × 25 = 125?",
+            "c4": "Look for: Did you explain that $125 matches Ana's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to the whānau koha or marae gathering?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Multiply the number of family contributors by the individual contribution: 5 × $25 = $125"
+          ],
+          "result": "$125",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. 5 people contributing $25 each results in exactly $125. Her claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "032",
+      "level": 1,
+      "topic": "Measurement — Weight",
+      "source": "Adapted from 2024 NZQA Numeracy Exam (Term 2), Q1(b)",
+      "context": "A tuatara is resting on a log in the bush.",
+      "data": {
+        "type": "text",
+        "content": "The tuatara weighs exactly 1 kilogram. A giant wētā nearby weighs exactly 25 grams."
+      },
+      "claim": "A student says, \"The tuatara is exactly 40 times heavier than the wētā.\"",
+      "question": "Is the student right? Use mass calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "the student is right",
+          "correct stand"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "the student is wrong",
+          "incorrect stand"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think the student is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: convert 1 kilogram into grams first (1 kg = 1000 g). Then divide the tuatara's weight by the wētā's weight.",
+        "calculation_prompt": "Tuatara weight in grams = 1 kg × 1000 = ___ g\nTimes heavier = ___ g ÷ 25 g = ___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Convert the tuatara's weight from kilograms to grams: 1 kg × 1,000 = 1,000 g",
+            "Divide the tuatara's weight by the wētā's weight to find how many times heavier: 1,000 ÷ 25 = 40"
+          ],
+          "result": "40 times heavier",
+          "explanation": "The student is right. The tuatara weighs 1,000 grams. Dividing 1,000 grams by 25 grams shows that the tuatara is exactly 40 times heavier than the wētā (1,000 ÷ 25 = 40).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 1 kg and 25 g from the question?",
+            "c3": "Look for: Did you show that 1 kg = 1,000 g and divide 1,000 ÷ 25 = 40?",
+            "c4": "Look for: Did you explain that your result of 40 matches the student's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to the tuatara or the wētā?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Convert the tuatara's weight from kilograms to grams: 1 kg × 1,000 = 1,000 g",
+            "Divide the tuatara's weight by the wētā's weight to find how many times heavier: 1,000 ÷ 25 = 40"
+          ],
+          "result": "40 times heavier",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The tuatara (1,000 g) is exactly 40 times heavier than the wētā (25 g). The student's claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "033",
+      "level": 1,
+      "topic": "Measurement — Height",
+      "source": "Adapted from 2023 NZQA Numeracy Exam (Term 4), Q3(a)",
+      "context": "Mia is shaving her hair to raise money for charity.",
+      "data": {
+        "type": "text",
+        "content": "Mia is 1.72 metres tall. The distance from the bottom of her hanging hair to the ground is 89 centimetres."
+      },
+      "claim": "Mia says, \"My hair is exactly 0.83 metres long.\"",
+      "question": "Is Mia right? Use measurement calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "true",
+          "shes right",
+          "she's right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "false",
+          "shes wrong",
+          "she's wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Mia is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: convert Mia's height to centimetres first (1.72 m = 172 cm). Subtract the distance from her hair to the ground (89 cm) to find the hair length in cm. Then convert back to metres.",
+        "calculation_prompt": "Mia's height in cm = 1.72 m × 100 = ___ cm\nHair length in cm = ___ cm − 89 cm = ___ cm\nHair length in m = ___ cm ÷ 100 = ___ m"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Convert Mia's height from metres to centimetres: 1.72 × 100 = 172 cm",
+            "Subtract the distance from her hair to the ground: 172 cm − 89 cm = 83 cm",
+            "Convert the hair length back to metres: 83 ÷ 100 = 0.83 m"
+          ],
+          "result": "0.83 m",
+          "explanation": "Mia is right. Her height is 172 cm. Subtracting the 89 cm distance to the ground gives a hair length of 83 cm, which is exactly 0.83 metres.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 1.72 m and 89 cm from the question?",
+            "c3": "Look for: Did you show that 1.72 m = 172 cm and subtract 172 − 89 = 83 cm?",
+            "c4": "Look for: Did you explain that 83 cm equals 0.83 m, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Mia's height or hair length?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Convert Mia's height from metres to centimetres: 1.72 × 100 = 172 cm",
+            "Subtract the distance from her hair to the ground: 172 cm − 89 cm = 83 cm",
+            "Convert the hair length back to metres: 83 ÷ 100 = 0.83 m"
+          ],
+          "result": "0.83 m",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Subtracting 89 cm from 172 cm gives exactly 83 cm, which is 0.83 m. Mia's claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "034",
+      "level": 1,
+      "topic": "Percentages",
+      "source": "Adapted from 2025 NZQA Numeracy Exam (Term 3, Week 1), Q2(c)",
+      "context": "A sports club is buying an Automated External Defibrillator (AED) for emergencies.",
+      "data": {
+        "type": "text",
+        "content": "The AED normally costs $2,760. The medical store offers a 25% discount for local sports clubs."
+      },
+      "claim": "The club coach says, \"With the 25% discount, the AED will cost us exactly $2,000.\"",
+      "question": "Is the coach right? Use percentage calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "the coach is right",
+          "he is right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "the coach is wrong",
+          "he is wrong",
+          "false"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think the coach is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: 25% is the same as dividing the price by 4 to find the discount. Subtract that discount from the original price ($2,760) to find the final price.",
+        "calculation_prompt": "Discount amount = $2,760 ÷ 4 = $___\nFinal sale price = $2,760 − $___ = $___"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate 25% of the original cost (divide by 4): $2,760 ÷ 4 = $690 discount",
+            "Subtract the discount from the original price: $2,760 − $690 = $2,070 final price"
+          ],
+          "result": "$2,070",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. With the 25% discount, the final price is actually $2,070, not $2,000. The coach is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Calculate 25% of the original cost (divide by 4): $2,760 ÷ 4 = $690 discount",
+            "Subtract the discount from the original price: $2,760 − $690 = $2,070 final price"
+          ],
+          "result": "$2,070",
+          "explanation": "The coach is wrong. 25% of $2,760 is $690 (2,760 ÷ 4 = 690). When you subtract the $690 discount from $2,760, the actual price of the AED is $2,070, not $2,000.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $2,760 and 25% from the question?",
+            "c3": "Look for: Did you show that the discount is $690 and the final price is $2,070?",
+            "c4": "Look for: Did you explain that $2,070 is different from $2,000, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to the sports club or the AED?"
+          }
+        }
+      }
+    },
+    {
+      "id": "035",
+      "level": 1,
+      "topic": "Multiplication — Money",
+      "source": "Original",
+      "context": "A classroom is setting up a bee-friendly wildflower garden.",
+      "data": {
+        "type": "text",
+        "content": "A packet of wildflower seeds costs $4. The school has a budget of $30. They want to buy exactly 8 packets."
+      },
+      "claim": "The class leader says, \"Our $30 budget is enough to buy all 8 packets of seeds.\"",
+      "question": "Is the class leader right? Use multiplication to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "true",
+          "shes right",
+          "she's right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "false",
+          "shes wrong",
+          "she's wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think the class leader is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: find the total cost of 8 seed packets by multiplying the price ($4) by 8. Then compare this to the $30 budget.",
+        "calculation_prompt": "Total cost of seeds = $4 × 8 = $___\nBudget compared to cost = $30 budget vs $___ cost"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Multiply the cost per packet by the number of packets: $4 × 8 = $32"
+          ],
+          "result": "$32",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. The total cost of the seeds is $32, which is more than the $30 budget. The class leader is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Multiply the cost per packet by the number of packets: $4 × 8 = $32",
+            "Compare the total cost to the budget: $32 is greater than $30"
+          ],
+          "result": "$32",
+          "explanation": "The class leader is wrong. 8 packets of seeds at $4 each cost a total of $32 (8 × 4 = 32). Since the budget is only $30, they do not have enough money and are $2 short.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $4, $30, and 8 packets from the question?",
+            "c3": "Look for: Did you show the multiplication step 4 × 8 = 32?",
+            "c4": "Look for: Did you explain that the cost of $32 is higher than the $30 budget, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to the wildflower garden or seeds?"
+          }
+        }
+      }
+    },
+    {
+      "id": "036",
+      "level": 1,
+      "topic": "Division — Time",
+      "source": "Original",
+      "context": "A school basketball game is divided into four equal playing quarters.",
+      "data": {
+        "type": "text",
+        "content": "The total playing time of the basketball game is exactly 40 minutes."
+      },
+      "claim": "The team coach says, \"Each quarter of the game lasts exactly 12 minutes.\"",
+      "question": "Is the coach right? Use division to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "the coach is right",
+          "he is right",
+          "true",
+          "hes right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "the coach is wrong",
+          "he is wrong",
+          "false",
+          "hes wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": {
+        "sentence_starter": "I think the coach is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: divide the total playing time (40 minutes) by the 4 equal quarters of the game.",
+        "calculation_prompt": "Length of each quarter = 40 minutes ÷ 4 quarters = ___ minutes"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Divide the total playing minutes by the 4 quarters: 40 ÷ 4 = 10 minutes"
+          ],
+          "result": "10 minutes",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Each quarter lasts exactly 10 minutes, which is not equal to the coach's claim of 12 minutes. The coach is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Divide the total playing minutes by the 4 quarters: 40 ÷ 4 = 10 minutes"
+          ],
+          "result": "10 minutes",
+          "explanation": "The coach is wrong. If the total game is 40 minutes and it is divided into 4 equal quarters, each quarter lasts exactly 10 minutes (40 ÷ 4 = 10), not 12 minutes.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 40 minutes and 4 quarters from the question?",
+            "c3": "Look for: Did you show the division step 40 ÷ 4 = 10?",
+            "c4": "Look for: Did you explain that 10 minutes is different from 12 minutes, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to the school basketball quarters?"
+          }
+        }
+      }
+    },
+    {
+      "id": "037",
+      "level": 1,
+      "topic": "Measurement — Width",
+      "source": "Original",
+      "context": "Liam is setting up a dual-monitor stand on his study desk.",
+      "data": {
+        "type": "text",
+        "content": "Each computer monitor is exactly 45 cm wide. He places the two monitors side-by-side with no gap."
+      },
+      "claim": "Liam says, \"The two monitors together take up exactly 0.9 metres of width on my desk.\"",
+      "question": "Is Liam right? Use width calculations and unit conversion to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "he is right",
+          "hes right",
+          "true",
+          "he's right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "he is wrong",
+          "hes wrong",
+          "false",
+          "he's wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Liam is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: add the widths of the two monitors together in centimetres (45 cm + 45 cm), then convert the total to metres (100 cm = 1 m).",
+        "calculation_prompt": "Total width in cm = 45 cm + 45 cm = ___ cm\nTotal width in m = ___ cm ÷ 100 = ___ m"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Add the widths of the two monitors together: 45 + 45 = 90 cm",
+            "Convert centimetres to metres by dividing by 100: 90 ÷ 100 = 0.9 m"
+          ],
+          "result": "0.9 m",
+          "explanation": "Liam is right. The total width in centimetres is 90 cm (45 + 45 = 90). Since 100 cm equals 1 metre, 90 cm is exactly 0.9 metres (90 ÷ 100 = 0.9).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 45 cm and 2 monitors from the question?",
+            "c3": "Look for: Did you show that 45 + 45 = 90 cm and convert 90 cm to 0.9 m?",
+            "c4": "Look for: Did you explain that 0.9 metres matches Liam's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Liam's monitors or study desk?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Add the widths of the two monitors together: 45 + 45 = 90 cm",
+            "Convert centimetres to metres by dividing by 100: 90 ÷ 100 = 0.9 m"
+          ],
+          "result": "0.9 m",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. 45 cm + 45 cm is 90 cm, which is exactly 0.9 metres. Liam's claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this stand is not mathematically valid."
+          }
+        }
+      }
+    },
+    {
+      "id": "038",
+      "level": 1,
+      "topic": "Fractions & Ratios",
+      "source": "Original",
+      "context": "Emma is baking a giant pavlova for a family dinner.",
+      "data": {
+        "type": "text",
+        "content": "Emma buys a carton of 12 eggs. She uses exactly half (1/2) of the carton of eggs to make the pavlova."
+      },
+      "claim": "Emma says, \"I used exactly 6 eggs from the carton for my pavlova.\"",
+      "question": "Is Emma right? Use fraction calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "she is right",
+          "shes right",
+          "true",
+          "she's right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "she is wrong",
+          "shes wrong",
+          "false",
+          "she's wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": {
+        "sentence_starter": "I think Emma is [right / wrong] because my calculation shows that ...",
+        "hint": "Think about: find half (1/2) of 12 eggs by dividing the total number of eggs in the carton (12) by 2.",
+        "calculation_prompt": "Half of carton = 12 eggs ÷ 2 = ___ eggs"
+      },
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Divide the total number of eggs by 2 to find half (1/2) of the carton: 12 ÷ 2 = 6 eggs"
+          ],
+          "result": "6 eggs",
+          "explanation": "Emma is right. Since there are 12 eggs in a carton, half (1/2) of the carton is exactly 6 eggs (12 ÷ 2 = 6).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 12 eggs and 1/2 from the question?",
+            "c3": "Look for: Did you show that 12 divided by 2 is equal to 6?",
+            "c4": "Look for: Did you explain that 6 eggs matches Emma's claim, supporting your stand?",
+            "c5": "Look for: Did you connect your answer back to Emma's pavlova or egg carton?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Divide the total number of eggs by 2 to find half (1/2) of the carton: 12 ÷ 2 = 6 eggs"
+          ],
+          "result": "6 eggs",
+          "explanation": "⚠️ This stand is NOT supported by the calculation. Half of a 12-egg carton is exactly 6 eggs. Emma's claim is correct, so the correct stand is agree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid.",
+            "c2": "N/A — this stand is not mathematically valid.",
+            "c3": "N/A — this stand is not mathematically valid.",
+            "c4": "N/A — this stand is not mathematically valid.",
+            "c5": "N/A — this completes the evidence checklist."
+          }
+        }
+      }
+    },
+    {
+      "id": "039",
+      "level": 2,
+      "topic": "Construction & Woodworking — Timber Estimation",
+      "source": "Original",
+      "context": "Wiremu is building a timber deck in his backyard.",
+      "data": {
+        "type": "text",
+        "content": "The deck requires 45 planks of timber, each exactly 2.4 metres long. The timber merchant only sells these planks in 3.0-metre lengths, which Wiremu will have to cut to size."
+      },
+      "claim": "Wiremu claims: \"I need to buy exactly 108 metres of timber in total.\"",
+      "question": "Is Wiremu right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "wiremu is right",
+          "wiremus claim is right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "wiremu is wrong",
+          "wiremus claim is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Find the net timber length needed: 45 planks × 2.4 metres = 108 metres."
+          ],
+          "result": "108 metres",
+          "explanation": "⚠️ This stand is incorrect because Wiremu cannot buy a total of 108 metres. Since the planks are sold only in 3.0-metre lengths, he must buy full 3.0-metre planks.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Determine the number of 3.0-metre planks Wiremu must buy: 45 planks are needed, so he must buy 45 planks of 3.0-metre length.",
+            "Calculate the total timber length he must purchase: 45 planks × 3.0 metres = 135 metres.",
+            "Compare with Wiremu's claim: 135 metres ≠ 108 metres."
+          ],
+          "result": "135 metres",
+          "explanation": "Wiremu is wrong. Although the net length of timber used is 108 metres ($45 \\times 2.4 = 108$), he cannot buy raw metres. He must buy 45 planks of 3.0 metres each, which means he must buy a total of 135 metres.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 45 planks, 2.4 metres, and 3.0 metres from the question?",
+            "c3": "Look for: Did you show that 45 planks × 3.0 m = 135 m?",
+            "c4": "Look for: Did you explain that 135 metres is the actual total he must purchase, which is more than 108 metres?",
+            "c5": "Look for: Did you connect your answer to the merchant selling planks in 3.0-metre lengths?"
+          }
+        }
+      }
+    },
+    {
+      "id": "040",
+      "level": 2,
+      "topic": "Hospitality & Food — Scaling Recipes",
+      "source": "Original",
+      "context": "Hāna is making a batch of chocolate chip cookies for a school gala.",
+      "data": {
+        "type": "text",
+        "content": "Her recipe makes 24 cookies and requires 150 grams of chocolate chips. Hāna needs to bake 60 cookies in total."
+      },
+      "claim": "She says, \"I will need exactly 400 grams of chocolate chips for my 60 cookies.\"",
+      "question": "Is she right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "she is right",
+          "she's right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "she is wrong",
+          "she's wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Scale factor = 60 ÷ 24 = 2.5 batches.",
+            "Chocolate chips = 150 g × 2.5 = 375 grams."
+          ],
+          "result": "375 grams",
+          "explanation": "⚠️ This stand is incorrect because the scaling calculation yields exactly 375 grams of chocolate chips, not 400 grams.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Find how many batches Hāna needs to make: 60 cookies ÷ 24 cookies = 2.5 batches.",
+            "Multiply the ingredients of one batch by 2.5: 150 grams × 2.5 = 375 grams.",
+            "Compare the calculated weight with Hāna's claim: 375 grams ≠ 400 grams."
+          ],
+          "result": "375 grams",
+          "explanation": "Hāna is wrong. To bake 60 cookies, she needs to make 2.5 times her base recipe ($60 \\div 24 = 2.5$). Multiplying the required chocolate chips by 2.5 gives 375 grams ($150 \\times 2.5 = 375$), which is less than her claim of 400 grams.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 24, 150, and 60 from the question?",
+            "c3": "Look for: Did you show that 60 ÷ 24 = 2.5 batches and 150 × 2.5 = 375 grams?",
+            "c4": "Look for: Did you explain that 375 grams is not equal to 400 grams, proving her claim is wrong?",
+            "c5": "Look for: Did you connect the calculation back to Hāna's chocolate chip cookies gala project?"
+          }
+        }
+      }
+    },
+    {
+      "id": "041",
+      "level": 2,
+      "topic": "Beekeeping & Primary Industries — Weight Conversion",
+      "source": "Original",
+      "context": "Aroha manages several beehives on a farm in Northland and is harvesting honey.",
+      "data": {
+        "type": "text",
+        "content": "On average, one healthy beehive produces 25 kilograms of honey per year. Aroha has 12 beehives."
+      },
+      "claim": "She claims, \"My beehives will produce about 300,000 grams of honey in total this year.\"",
+      "question": "Is her claim correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes she is",
+          "about right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she is not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate the total honey yield in kilograms: 12 beehives × 25 kilograms = 300 kilograms.",
+            "Convert kilograms to grams: 300 kilograms × 1,000 = 300,000 grams.",
+            "Compare with Aroha's claim: 300,000 grams is exactly equal to her estimate of 300,000 grams."
+          ],
+          "result": "300,000 grams",
+          "explanation": "Aroha is correct. Her 12 hives produce a total of 300 kilograms of honey ($12 \\times 25 = 300$). Since there are 1,000 grams in a kilogram, 300 kilograms is exactly 300,000 grams, matching her estimate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 12 hives, 25 kg, and 1,000 g/kg?",
+            "c3": "Look for: Did you show that 12 × 25 = 300 kg and 300 × 1,000 = 300,000 grams?",
+            "c4": "Look for: Did you state that 300,000 grams is exactly the same as her claim, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer back to Aroha's honey harvest yield?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate the total honey yield in kilograms: 12 beehives × 25 kilograms = 300 kilograms.",
+            "Convert kilograms to grams: 300 kilograms × 1,000 = 300,000 grams."
+          ],
+          "result": "300,000 grams",
+          "explanation": "Aroha is not exactly correct because her beehives will produce exactly 300,000 grams, so saying it will produce 'about' 300,000 grams is slightly imprecise when the calculation is exact. Alternatively, actual hive yields are variable, so an exact calculation from the averages might not reflect the actual harvest.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 12 hives, 25 kg, and 1,000 g/kg?",
+            "c3": "Look for: Did you show that 12 × 25 = 300 kg and 300 × 1,000 = 300,000 grams?",
+            "c4": "Look for: Did you explain that the average is exactly 300,000 g rather than 'about', supporting 'disagree'?",
+            "c5": "Look for: Did you connect your answer to the averages of the beehive honey harvest?"
+          }
+        }
+      }
+    },
+    {
+      "id": "042",
+      "level": 2,
+      "topic": "Travel, Transport & Tourism — Fuel Consumption",
+      "source": "Original",
+      "context": "Ken is planning a road trip from Auckland to Rotorua.",
+      "data": {
+        "type": "text",
+        "content": "The distance is 228 kilometres. Ken's car uses 8 litres of petrol for every 100 kilometres travelled."
+      },
+      "claim": "Ken claims: \"I will need less than 18 litres of petrol for the trip.\"",
+      "question": "Is Ken correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "ken is correct",
+          "ken is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "ken is incorrect",
+          "ken is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Find the petrol required: 228 km ÷ 100 = 2.28 units of 100 km.",
+            "Calculate total petrol: 2.28 × 8 litres = 18.24 litres."
+          ],
+          "result": "18.24 litres",
+          "explanation": "⚠️ This stand is incorrect because the calculations show Ken needs exactly 18.24 litres, which is more than 18 litres, so Ken's claim of needing less than 18 litres is false.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Determine how many units of 100 kilometres Ken will travel: 228 km ÷ 100 = 2.28.",
+            "Multiply by the fuel rate: 2.28 × 8 litres = 18.24 litres.",
+            "Compare with Ken's claim: 18.24 litres is more than 18 litres."
+          ],
+          "result": "18.24 litres",
+          "explanation": "Ken is incorrect. For every 100 km, his car uses 8 litres. For 228 km, his car will use exactly 18.24 litres ($2.28 \\times 8 = 18.24$). Since 18.24 is more than 18, his claim of needing less than 18 litres is wrong.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 228 km, 100 km, and 8 litres from the question?",
+            "c3": "Look for: Did you show that 228 ÷ 100 × 8 = 18.24 litres?",
+            "c4": "Look for: Did you explain that 18.24 litres is greater than 18 litres, supporting 'disagree'?",
+            "c5": "Look for: Did you connect your answer back to Ken's trip to Rotorua?"
+          }
+        }
+      }
+    },
+    {
+      "id": "043",
+      "level": 2,
+      "topic": "Sports & Recreation — Track Conversion",
+      "source": "Original",
+      "context": "Liam is training for a 5 km fun run at his local athletics track.",
+      "data": {
+        "type": "text",
+        "content": "The track is a standard oval shape where one full lap measures exactly 400 metres."
+      },
+      "claim": "Liam says: \"To run 5 km, I need to complete exactly 12.5 laps of the track.\"",
+      "question": "Is Liam right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "liam is right",
+          "liam is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "liam is wrong",
+          "liam is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Convert the goal distance from kilometres to metres: 5 km × 1,000 = 5,000 metres.",
+            "Divide the total metres by the length of one lap: 5,000 m ÷ 400 m = 12.5 laps.",
+            "Compare with Liam's claim: 12.5 laps matches his claim exactly."
+          ],
+          "result": "12.5 laps",
+          "explanation": "Liam is right. A 5 km run is exactly 5,000 metres ($5 \\times 1,000 = 5,000$). Dividing this by the track's lap length of 400 metres yields exactly 12.5 laps ($5,000 \\div 400 = 12.5$), which supports his claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar?",
+            "c2": "Look for: Did you use 5 km, 1,000 m/km, and 400 m in your working?",
+            "c3": "Look for: Did you show that 5,000 ÷ 400 = 12.5 laps?",
+            "c4": "Look for: Did you explain that 12.5 laps is exactly what Liam claimed, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer back to Liam's fun run training?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Convert 5 km to 5,000 m: 5 km × 1,000 = 5,000 metres.",
+            "Laps required: 5,000 m ÷ 400 m = 12.5 laps."
+          ],
+          "result": "12.5 laps",
+          "explanation": "⚠️ This stand is incorrect because the track calculation proves Liam needs exactly 12.5 laps, which aligns perfectly with his claim. He is right.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "044",
+      "level": 2,
+      "topic": "Shopping & Consumer Maths — Unit Rate Pricing",
+      "source": "Original",
+      "context": "Bella is buying soda cans for a family barbecue. A local supermarket sells the soda in two different pack sizes.",
+      "data": {
+        "type": "table",
+        "caption": "Soda pricing options",
+        "headers": [
+          "Pack size",
+          "Price"
+        ],
+        "rows": [
+          [
+            "6-pack",
+            "$4.50"
+          ],
+          [
+            "18-pack",
+            "$12.60"
+          ]
+        ],
+        "notes": null
+      },
+      "claim": "Bella says: \"The 18-pack is the cheaper option per can.\"",
+      "question": "Is Bella right? Use calculations comparing unit prices to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "bella is right",
+          "bella is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "bella is wrong",
+          "bella is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Calculate the price per can for the 6-pack: $4.50 ÷ 6 = $0.75 per can.",
+            "Calculate the price per can for the 18-pack: $12.60 ÷ 18 = $0.70 per can.",
+            "Compare the unit prices: $0.70 < $0.75."
+          ],
+          "result": "$0.70 per can vs $0.75 per can",
+          "explanation": "Bella is right. The 18-pack costs $0.70 per can ($12.60 ÷ 18 = $0.70), while the 6-pack costs $0.75 per can ($4.50 ÷ 6 = $0.75). Since $0.70 is cheaper than $0.75, the 18-pack is the better value option.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the prices $4.50 and $12.60, and can counts 6 and 18 from the table?",
+            "c3": "Look for: Did you divide both prices by their respective pack counts to find $0.75 and $0.70?",
+            "c4": "Look for: Did you show that $0.70 < $0.75, which supports the 'agree' position?",
+            "c5": "Look for: Did you refer back to Bella buying soda cans for the barbecue?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Disagree is NOT supported by this data",
+          "calculation_steps": [
+            "6-pack can price: $4.50 ÷ 6 = $0.75 per can.",
+            "18-pack can price: $12.60 ÷ 18 = $0.70 per can."
+          ],
+          "result": "$0.70 per can vs $0.75 per can",
+          "explanation": "⚠️ This stand is incorrect because the unit calculations show the 18-pack is cheaper ($0.70 per can) than the 6-pack ($0.75 per can). Bella's claim is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "045",
+      "level": 2,
+      "topic": "Digital Technology & School — Printing Speed & Time",
+      "source": "Original",
+      "context": "Mr. Davis is printing a school newsletter on the school's high-speed photocopier.",
+      "data": {
+        "type": "text",
+        "content": "The photocopier prints at a rate of 45 pages per minute. The school newsletter has 8 pages, and Mr. Davis needs to print 150 copies."
+      },
+      "claim": "Mr. Davis says: \"It will take me about 25 minutes to print all the copies of the newsletter.\"",
+      "question": "Is he right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "he is right",
+          "he's right",
+          "about right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "he is wrong",
+          "he's wrong",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Calculate the total number of pages to be printed: 150 copies × 8 pages per copy = 1,200 pages.",
+            "Calculate the printing duration in minutes: 1,200 pages ÷ 45 pages per minute = 26.67 minutes.",
+            "Round the duration: 26.67 minutes is approximately 25 to 30 minutes, making 25 minutes a reasonable estimate."
+          ],
+          "result": "26.67 minutes",
+          "explanation": "Mr. Davis is right. The total number of pages is 1,200 ($150 \\times 8 = 1,200$). Printing at 45 pages per minute takes 26.67 minutes ($1,200 \\div 45 = 26.67$). Since 26.67 minutes is close to 25 minutes, it is a reasonable estimate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 150, 8, and 45 from the question?",
+            "c3": "Look for: Did you show that 150 × 8 = 1,200 and 1,200 ÷ 45 = 26.67 minutes?",
+            "c4": "Look for: Did you state that 26.67 minutes is close to 25 minutes, supporting 'agree'?",
+            "c5": "Look for: Did you refer to Mr. Davis's task of printing school newsletters?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Calculate the total number of pages to be printed: 150 copies × 8 pages per copy = 1,200 pages.",
+            "Calculate the printing duration in minutes: 1,200 pages ÷ 45 pages per minute = 26.67 minutes.",
+            "Compare with his claim: 26.67 minutes is more than 25 minutes."
+          ],
+          "result": "26.67 minutes",
+          "explanation": "Mr. Davis is wrong. The total number of pages is 1,200 ($150 \\times 8 = 1,200$). Printing at 45 pages per minute takes 26.67 minutes ($1,200 \\div 45 = 26.67$). This is more than 25 minutes, meaning he will run out of time if he only allocates 25 minutes.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 150, 8, and 45 from the question?",
+            "c3": "Look for: Did you show that 150 × 8 = 1,200 and 1,200 ÷ 45 = 26.67 minutes?",
+            "c4": "Look for: Did you explain that 26.67 minutes is greater than 25 minutes, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the answer back to the newsletters being printed?"
+          }
+        }
+      }
+    },
+    {
+      "id": "046",
+      "level": 2,
+      "topic": "Environment & Weather — Average Rainfall",
+      "source": "Original",
+      "context": "A community group in Nelson is monitoring rainfall using a cylindrical rain gauge in a garden.",
+      "data": {
+        "type": "table",
+        "caption": "Rainfall records over 4 weeks",
+        "headers": [
+          "Week",
+          "Rainfall (mm)"
+        ],
+        "rows": [
+          [
+            "Week 1",
+            "15"
+          ],
+          [
+            "Week 2",
+            "24"
+          ],
+          [
+            "Week 3",
+            "8"
+          ],
+          [
+            "Week 4",
+            "31"
+          ]
+        ],
+        "notes": null
+      },
+      "claim": "A local weather enthusiast claims: \"The average weekly rainfall over this period was more than 20 mm.\"",
+      "question": "Is this claim correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the claim is correct",
+          "the claim is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the claim is incorrect",
+          "the claim is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Sum the rainfall of all weeks: 15 + 24 + 8 + 31 = 78 mm.",
+            "Calculate the average: 78 mm ÷ 4 = 19.5 mm."
+          ],
+          "result": "19.5 mm",
+          "explanation": "⚠️ This stand is incorrect because the calculations yield an average weekly rainfall of 19.5 mm, which is less than 20 mm, making the enthusiast's claim false.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Sum the rainfall of all weeks from the table: 15 + 24 + 8 + 31 = 78 mm.",
+            "Divide by the number of weeks to find the average: 78 mm ÷ 4 = 19.5 mm.",
+            "Compare with the claim: 19.5 mm is less than 20 mm."
+          ],
+          "result": "19.5 mm",
+          "explanation": "The claim is incorrect. The total rainfall recorded is 78 mm ($15 + 24 + 8 + 31 = 78$). Dividing this by 4 weeks gives an average weekly rainfall of 19.5 mm ($78 \\div 4 = 19.5$). Since 19.5 mm is less than 20 mm, the enthusiast's claim is wrong.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the rainfall values 15, 24, 8, and 31 from the table?",
+            "c3": "Look for: Did you add the values together and divide by 4 to get 19.5 mm?",
+            "c4": "Look for: Did you show that 19.5 mm is less than 20 mm, supporting 'disagree'?",
+            "c5": "Look for: Did you connect your answer back to the community rain gauge measurements?"
+          }
+        }
+      }
+    },
+    {
+      "id": "047",
+      "level": 2,
+      "topic": "Conservation & Wildlife — Planting Density",
+      "source": "Original",
+      "context": "Tama is planting native manuka trees along a stream bank to help restore the local environment.",
+      "data": {
+        "type": "text",
+        "content": "The planting guide states that there should be exactly 3 manuka trees planted for every 5 square metres of land. Tama's stream bank area is a rectangle measuring 15 metres by 8 metres."
+      },
+      "claim": "Tama says: \"I will need to plant 72 manuka trees to cover this area at the recommended density.\"",
+      "question": "Is Tama right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "tama is right",
+          "tama is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "tama is wrong",
+          "tama is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Calculate the area of the rectangular stream bank: 15 metres × 8 metres = 120 square metres.",
+            "Calculate the number of 5-square-metre blocks: 120 sq m ÷ 5 sq m = 24 blocks.",
+            "Multiply the blocks by the number of trees per block: 24 blocks × 3 trees = 72 trees.",
+            "Compare with Tama's claim: 72 trees matches his claim exactly."
+          ],
+          "result": "72 trees",
+          "explanation": "Tama is right. The total area of the stream bank is 120 square metres ($15 \\times 8 = 120$). This area contains 24 blocks of 5 square metres ($120 \\div 5 = 24$). Multiplying by 3 trees per block yields exactly 72 manuka trees ($24 \\times 3 = 72$), which supports his claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the dimensions 15 m and 8 m, and the density ratio 3 trees per 5 sq m?",
+            "c3": "Look for: Did you show that the area is 120 sq m and that the planting calculation yields 72 trees?",
+            "c4": "Look for: Did you state that 72 trees matches Tama's claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer back to the restoration of the stream bank?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Area of stream bank: 15 m × 8 m = 120 sq m.",
+            "Trees required: 120 ÷ 5 × 3 = 72 trees."
+          ],
+          "result": "72 trees",
+          "explanation": "⚠️ This stand is incorrect because the calculations prove Tama needs exactly 72 native trees, which aligns perfectly with his claim. He is right.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "048",
+      "level": 2,
+      "topic": "Charity & Fundraising — Sausage Sizzle Profit",
+      "source": "Original",
+      "context": "The Student Council is running a sausage sizzle to raise money for a local animal shelter.",
+      "data": {
+        "type": "text",
+        "content": "They buy ingredients for $120. They sell each sausage for $2.50. They sold 180 sausages in total."
+      },
+      "claim": "The President says: \"We made more than $350 in profit from the sausage sizzle.\"",
+      "question": "Is the President correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the president is correct",
+          "the president is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the president is incorrect",
+          "the president is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate total sales revenue: 180 sausages × $2.50 = $450.",
+            "Calculate profit by subtracting ingredient costs: $450 - $120 = $330."
+          ],
+          "result": "$330",
+          "explanation": "⚠️ This stand is incorrect because the calculations yield a total profit of exactly $330, which is less than $350, so the President is wrong.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate total revenue from selling sausages: 180 sausages × $2.50 = $450.",
+            "Calculate profit by subtracting the ingredient cost: $450 - $120 = $330.",
+            "Compare with the President's claim: $330 is less than $350."
+          ],
+          "result": "$330",
+          "explanation": "The President is incorrect. The total sales revenue is $450 ($180 × $2.50 = $450). Subtracting the ingredient cost of $120 gives a net profit of $330 ($450 - $120 = $330). Since $330 is less than $350, they did not make more than $350.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $120, $2.50, and 180 from the question?",
+            "c3": "Look for: Did you show that 180 × $2.50 = $450, and $450 - $120 = $330?",
+            "c4": "Look for: Did you state that $330 is less than $350, supporting 'disagree'?",
+            "c5": "Look for: Did you refer back to the sausage sizzle fundraising activity?"
+          }
+        }
+      }
+    },
+    {
+      "id": "049",
+      "level": 2,
+      "topic": "Construction & Woodworking — Raised Garden Area",
+      "source": "Original",
+      "context": "Rawiri is building a square raised vegetable garden in his school's horticultural area.",
+      "data": {
+        "type": "text",
+        "content": "The perimeter of the square garden bed is exactly 7.2 metres. Rawiri wants to buy a weed-protection mat that will cover the entire floor of the garden bed."
+      },
+      "claim": "Rawiri says: \"The floor area of my garden bed is exactly 3.24 square metres.\"",
+      "question": "Is Rawiri right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "rawiri is right",
+          "rawiri is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "rawiri is wrong",
+          "rawiri is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Find the side length of the square garden: 7.2 metres ÷ 4 sides = 1.8 metres.",
+            "Calculate the area of the square garden bed: 1.8 metres × 1.8 metres = 3.24 square metres.",
+            "Compare with Rawiri's claim: 3.24 square metres is exactly equal to his claim."
+          ],
+          "result": "3.24 square metres",
+          "explanation": "Rawiri is right. Since the garden bed is square, dividing the perimeter of 7.2 metres by 4 gives a side length of 1.8 metres ($7.2 \\div 4 = 1.8$). Squaring this side length gives a floor area of exactly 3.24 square metres ($1.8 \\times 1.8 = 3.24$), matching his claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the perimeter value of 7.2 metres in your calculations?",
+            "c3": "Look for: Did you divide by 4 to get 1.8 m, and then multiply 1.8 × 1.8 = 3.24 square metres?",
+            "c4": "Look for: Did you state that 3.24 square metres matches Rawiri's claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you connect the answer back to Rawiri's square raised garden bed?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Side length of square: 7.2 m ÷ 4 = 1.8 m.",
+            "Floor area: 1.8 m × 1.8 m = 3.24 square metres."
+          ],
+          "result": "3.24 square metres",
+          "explanation": "⚠️ This stand is incorrect because the calculations prove Rawiri's garden has a floor area of exactly 3.24 square metres, which matches his claim. He is right.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "050",
+      "level": 2,
+      "topic": "Hospitality & Food — Mixing Ratios",
+      "source": "Original",
+      "context": "Sophie is managing a juice bar at a local Saturday market.",
+      "data": {
+        "type": "text",
+        "content": "She makes a signature berry juice blend that mixes cranberry juice and apple juice in a ratio of 2:3 by volume. She wants to make 15 litres of this blend in total."
+      },
+      "claim": "Sophie says: \"I will need exactly 6 litres of cranberry juice.\"",
+      "question": "Is Sophie correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "sophie is correct",
+          "sophie is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "sophie is incorrect",
+          "sophie is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate the total number of parts in the ratio: 2 parts + 3 parts = 5 parts.",
+            "Determine the volume of one part: 15 litres ÷ 5 parts = 3 litres.",
+            "Multiply by the parts of cranberry juice: 2 parts × 3 litres = 6 litres.",
+            "Compare with Sophie's claim: 6 litres is exactly equal to her claim."
+          ],
+          "result": "6 litres",
+          "explanation": "Sophie is correct. The ratio of 2:3 means there are 5 total parts ($2 + 3 = 5$). Since 15 litres of juice are required, each part is 3 litres ($15 \\div 5 = 3$). Cranberry juice represents 2 parts, so she needs exactly 6 litres ($2 \\times 3 = 6$).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the ratio 2:3 and the total volume of 15 litres?",
+            "c3": "Look for: Did you show that 2 + 3 = 5, 15 ÷ 5 = 3, and 2 × 3 = 6 litres?",
+            "c4": "Look for: Did you state that 6 litres is exactly what Sophie claimed, supporting 'agree'?",
+            "c5": "Look for: Did you connect your working back to Sophie's juice bar Saturday market business?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Ratio parts: 2 + 3 = 5.",
+            "Volume of one part: 15 L ÷ 5 = 3 L.",
+            "Cranberry juice required: 2 × 3 L = 6 L."
+          ],
+          "result": "6 litres",
+          "explanation": "⚠️ This stand is incorrect because the ratio calculations prove Sophie needs exactly 6 litres of cranberry juice, which matches her claim. She is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "051",
+      "level": 2,
+      "topic": "Beekeeping & Primary Industries — Packaging Division",
+      "source": "Original",
+      "context": "Sam is a commercial beekeeper who is packaging honey jars into shipping boxes.",
+      "data": {
+        "type": "text",
+        "content": "Each shipping box can hold exactly 24 jars of honey. Sam has produced 500 jars of honey."
+      },
+      "claim": "Sam says: \"I will need exactly 20 boxes to pack all of my jars of honey.\"",
+      "question": "Is Sam right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "sam is right",
+          "sam is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "sam is wrong",
+          "sam is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Find the number of boxes: 500 ÷ 24 = 20.83 boxes."
+          ],
+          "result": "20.83 boxes",
+          "explanation": "⚠️ This stand is incorrect because 20 boxes can only hold 480 jars ($20 \\times 24 = 480$), leaving 20 jars unpacked. To ship ALL 500 jars, Sam needs a 21st box.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Divide the total number of jars by the capacity of one box: 500 jars ÷ 24 jars per box = 20.83 boxes.",
+            "Evaluate the remainder: 20 boxes × 24 jars = 480 jars. This leaves 20 jars unpacked.",
+            "Determine the total full and partial boxes required to pack *all* jars: 20 + 1 = 21 boxes."
+          ],
+          "result": "21 boxes",
+          "explanation": "Sam is wrong. If he uses exactly 20 boxes, he can only pack 480 jars ($20 \\times 24 = 480$). Because there are 20 jars left over, he must use a 21st box to pack all 500 jars of honey ($500 \\div 24 \\approx 20.83$).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 500 and 24 from the question?",
+            "c3": "Look for: Did you show that 500 ÷ 24 ≈ 20.83, or that 20 × 24 = 480 jars?",
+            "c4": "Look for: Did you explain that 20 boxes is not enough because 20 jars would be left behind, requiring 21 boxes in total?",
+            "c5": "Look for: Did you connect your answer back to Sam's honey packaging task?"
+          }
+        }
+      }
+    },
+    {
+      "id": "052",
+      "level": 2,
+      "topic": "Travel, Transport & Tourism — Flight Duration",
+      "source": "Original",
+      "context": "Sarah is travelling from Auckland to Fiji and looking at flight timetables.",
+      "data": {
+        "type": "table",
+        "caption": "Flight schedule (NZ standard time)",
+        "headers": [
+          "Event",
+          "NZ Time"
+        ],
+        "rows": [
+          [
+            "Flight departs Auckland",
+            "13:45"
+          ],
+          [
+            "Flight arrives in Fiji",
+            "16:55"
+          ]
+        ],
+        "notes": "No timezone adjustments are needed for these calculations."
+      },
+      "claim": "Sarah says: \"The flight takes exactly 3 hours and 10 minutes.\"",
+      "question": "Is Sarah right? Use time calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "sarah is right",
+          "sarah is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "sarah is wrong",
+          "sarah is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Identify the departure time: 13:45 (which is 1:45 PM).",
+            "Identify the arrival time: 16:55 (which is 4:55 PM).",
+            "Subtract the minutes: 55 minutes − 45 minutes = 10 minutes.",
+            "Subtract the hours: 16 hours − 13 hours = 3 hours.",
+            "Combine to find total duration: 3 hours and 10 minutes.",
+            "Compare with Sarah's claim: Matches exactly."
+          ],
+          "result": "3 hours and 10 minutes",
+          "explanation": "Sarah is right. The departure is at 13:45 and the arrival is at 16:55. Calculating the difference, $16:55 - 13:45$ gives exactly 3 hours and 10 minutes ($16 - 13 = 3$ hours, and $55 - 45 = 10$ minutes), which matches her claim exactly.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the departure time 13:45 and arrival time 16:55 from the table?",
+            "c3": "Look for: Did you show your subtraction steps to reach 3 hours and 10 minutes?",
+            "c4": "Look for: Did you state that 3 hours and 10 minutes matches Sarah's claim, supporting 'agree'?",
+            "c5": "Look for: Did you refer back to Sarah's flight from Auckland to Fiji?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Time subtraction: 16:55 − 13:45 = 3 hours 10 minutes."
+          ],
+          "result": "3 hours and 10 minutes",
+          "explanation": "⚠️ This stand is incorrect because the flight schedule subtraction shows the flight does indeed take exactly 3 hours and 10 minutes, which aligns perfectly with her claim. She is right.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "053",
+      "level": 2,
+      "topic": "Sports & Recreation — Median Sprint Times",
+      "source": "Original",
+      "context": "Jax is recording the results of his training sessions for the 100m sprint.",
+      "data": {
+        "type": "table",
+        "caption": "Sprint training times",
+        "headers": [
+          "Sprint Number",
+          "Time (seconds)"
+        ],
+        "rows": [
+          [
+            "Sprint 1",
+            "12.4"
+          ],
+          [
+            "Sprint 2",
+            "11.9"
+          ],
+          [
+            "Sprint 3",
+            "12.1"
+          ],
+          [
+            "Sprint 4",
+            "12.5"
+          ],
+          [
+            "Sprint 5",
+            "12.1"
+          ]
+        ],
+        "notes": null
+      },
+      "claim": "Jax's coach claims: \"Jax's median sprint time over these 5 runs is exactly 12.1 seconds.\"",
+      "question": "Is the coach right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "the coach is right",
+          "the coach is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "the coach is wrong",
+          "the coach is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "List the 5 sprint times in order from shortest to longest: 11.9, 12.1, 12.1, 12.4, 12.5.",
+            "Find the median (middle) value in this sorted list: The middle value (3rd out of 5) is 12.1 seconds.",
+            "Compare with the coach's claim: 12.1 seconds matches his claim exactly."
+          ],
+          "result": "12.1 seconds",
+          "explanation": "The coach is right. To find the median, the times must be arranged in order: 11.9, 12.1, 12.1, 12.4, 12.5. The middle time in this sorted set of 5 values is exactly 12.1 seconds, which supports the coach's claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use all 5 sprint times (12.4, 11.9, 12.1, 12.5, 12.1) from the table?",
+            "c3": "Look for: Did you show that you ordered the list as 11.9, 12.1, 12.1, 12.4, 12.5 and picked the middle value?",
+            "c4": "Look for: Did you explain that 12.1 seconds is indeed the median value, supporting 'agree'?",
+            "c5": "Look for: Did you connect the answer back to Jax's sprint training results?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Sorted list: 11.9, 12.1, 12.1, 12.4, 12.5.",
+            "Median (middle) value: 12.1 seconds."
+          ],
+          "result": "12.1 seconds",
+          "explanation": "⚠️ This stand is incorrect because sorting the 5 times yields a median of exactly 12.1 seconds, which aligns perfectly with the coach's claim. He is right.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "054",
+      "level": 2,
+      "topic": "Conservation & Wildlife — Kiwi Bird Population",
+      "source": "Original",
+      "context": "A wildlife sanctuary in Fiordland tracks the population of native southern brown kiwi birds.",
+      "data": {
+        "type": "text",
+        "content": "In 2020, the sanctuary recorded 160 kiwis. In 2025, they recorded 208 kiwis."
+      },
+      "claim": "The sanctuary manager claims: \"The kiwi population has increased by exactly 30% over these five years.\"",
+      "question": "Is the manager correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the manager is correct",
+          "the manager is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the manager is incorrect",
+          "the manager is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate the actual increase in birds: 208 kiwis − 160 kiwis = 48 kiwis.",
+            "Calculate the increase as a fraction of the starting population: 48 ÷ 160 = 0.3.",
+            "Convert the decimal to a percentage: 0.3 × 100 = 30%.",
+            "Compare with the claim: 30% matches the claim exactly."
+          ],
+          "result": "30% increase",
+          "explanation": "The manager is correct. The population grew by 48 birds. Dividing the increase of 48 by the starting population of 160 yields exactly 0.3 (or 30% growth), which confirms the claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 160 and 208 from the question?",
+            "c3": "Look for: Did you show that 208 − 160 = 48 and 48 ÷ 160 = 0.30 (or 30%)?",
+            "c4": "Look for: Did you show that the calculated percentage matches the 30% claim, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer back to the kiwi bird population tracking?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Kiwi increase: 208 − 160 = 48.",
+            "Percentage growth: 48 ÷ 160 = 0.30 or 30%."
+          ],
+          "result": "30% increase",
+          "explanation": "⚠️ This stand is incorrect because the percentage calculation proves the kiwi population increased by exactly 30%, which perfectly supports the manager's claim.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "055",
+      "level": 2,
+      "topic": "Charity & Fundraising — Sponsored Fun Run",
+      "source": "Original",
+      "context": "Keisha is participating in a sponsored 10 km run to raise money for her local school.",
+      "data": {
+        "type": "text",
+        "content": "Sponsor A pledges \$2.50 per kilometre completed. Sponsor B pledges a flat \$15.00 donation. Sponsor C pledges \$3.00 per kilometre completed."
+      },
+      "claim": "Keisha claims: \"I will raise more than $75 in total if I complete the full 10 km run.\"",
+      "question": "Is Keisha correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "keisha is correct",
+          "keisha is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "keisha is incorrect",
+          "keisha is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Sponsor A: 10 km × $2.50 = $25.",
+            "Sponsor B: flat $15.",
+            "Sponsor C: 10 km × $3.00 = $30.",
+            "Total raised: $25 + $15 + $30 = $70."
+          ],
+          "result": "$70",
+          "explanation": "⚠️ This stand is incorrect because the calculations show Keisha will raise exactly $70, which is less than $75, making her claim false.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate the amount from Sponsor A: 10 km × $2.50 = $25.",
+            "Identify flat amount from Sponsor B: $15.",
+            "Calculate the amount from Sponsor C: 10 km × $3.00 = $30.",
+            "Sum the total sponsorship money: $25 + $15 + $30 = $70.",
+            "Compare with the claim: $70 is less than $75."
+          ],
+          "result": "$70",
+          "explanation": "Keisha is incorrect. The total she will raise is exactly $70 (Sponsor A: $25 + Sponsor B: $15 + Sponsor C: $30 = $70). Since $70 is less than $75, she will not raise more than $75.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the distance 10 km and rates $2.50, $15.00, and $3.00 from the question?",
+            "c3": "Look for: Did you show that 10 × $2.50 = $25, 10 × $3.00 = $30, and $25 + $15 + $30 = $70?",
+            "c4": "Look for: Did you explain that $70 is less than her target of $75, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the answer back to Keisha's sponsored fun run?"
+          }
+        }
+      }
+    },
+    {
+      "id": "056",
+      "level": 2,
+      "topic": "Construction & Woodworking — Concrete Mix",
+      "source": "Original",
+      "context": "Tane is mixing concrete to lay a small garden path in his backyard.",
+      "data": {
+        "type": "text",
+        "content": "The recipe ratio of cement to sand to gravel by weight is exactly 1:2:4. Tane has 14 kilograms of cement."
+      },
+      "claim": "Tane says: \"I will need to mix in exactly 28 kilograms of sand to maintain the correct ratio.\"",
+      "question": "Is Tane right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "tane is right",
+          "tane is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "tane is wrong",
+          "tane is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Identify the ratio of cement to sand: 1 part cement to 2 parts sand.",
+            "Identify the starting amount of cement: 14 kilograms (which represents 1 part).",
+            "Multiply the cement weight by the sand parts: 14 kg × 2 = 28 kilograms of sand.",
+            "Compare with Tane's claim: 28 kg matches his claim exactly."
+          ],
+          "result": "28 kilograms of sand",
+          "explanation": "Tane is right. The ratio requires twice as much sand as cement (1:2). Since he has 14 kg of cement, multiplying by 2 yields exactly 28 kg of sand ($14 × 2 = 28$), which matches his claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the cement weight 14 kg and the ratio parts 1 and 2?",
+            "c3": "Look for: Did you show that 14 kg × 2 = 28 kg of sand?",
+            "c4": "Look for: Did you explain that 28 kg matches Tane's claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer to the concrete path mixing task?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Cement to sand ratio: 1:2.",
+            "Sand needed: 14 kg × 2 = 28 kg."
+          ],
+          "result": "28 kilograms of sand",
+          "explanation": "⚠️ This stand is incorrect because the ratio calculations prove Tane needs exactly 28 kg of sand, which matches his claim perfectly.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "057",
+      "level": 2,
+      "topic": "Hospitality & Food — Scones Batch Scaling",
+      "source": "Original",
+      "context": "The head baker at a Wellington cafe is scaling up a recipe to make large batches of cheese scones.",
+      "data": {
+        "type": "text",
+        "content": "The base recipe makes exactly 12 scones and requires 300 grams of flour. The cafe wants to bake 50 scones."
+      },
+      "claim": "The baker claims: \"We will need exactly 1.2 kilograms of flour for these 50 scones.\"",
+      "question": "Is the baker correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the baker is correct",
+          "the baker is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the baker is incorrect",
+          "the baker is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Scale factor: 50 ÷ 12 = 4.167.",
+            "Flour required: 4.167 × 300 g = 1,250 g.",
+            "Convert to kg: 1,250 g = 1.25 kg."
+          ],
+          "result": "1.25 kg of flour",
+          "explanation": "⚠️ This stand is incorrect because the calculations show they need 1.25 kg of flour, not 1.2 kg.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Determine the scale factor for the recipe: 50 scones ÷ 12 scones = 4.167 batches.",
+            "Calculate the flour needed in grams: 4.167 × 300 grams = 1,250 grams.",
+            "Convert grams to kilograms: 1,250 g ÷ 1,000 = 1.25 kg.",
+            "Compare with the claim: 1.25 kg is not equal to 1.2 kg."
+          ],
+          "result": "1.25 kilograms of flour",
+          "explanation": "The baker is incorrect. To scale the recipe from 12 to 50 scones, they must increase ingredients by 4.167 times ($50 ÷ 12$). Multiplying by 300g of flour yields 1,250g ($1,250 ÷ 1,000 = 1.25$ kg). Since 1.25 kg is different from 1.2 kg, the claim is incorrect.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 12, 300, and 50 from the question?",
+            "c3": "Look for: Did you show that 50 ÷ 12 = 4.167 and 4.167 × 300g = 1,250g (or 1.25 kg)?",
+            "c4": "Look for: Did you explain that 1.25 kg is not equal to 1.2 kg, supporting 'disagree'?",
+            "c5": "Look for: Did you refer back to scaling the cheese scone recipe for the Wellington cafe?"
+          }
+        }
+      }
+    },
+    {
+      "id": "058",
+      "level": 2,
+      "topic": "Beekeeping & Primary Industries — Hive Yield Percentage",
+      "source": "Original",
+      "context": "A commercial honey producer manages four different apiary sites in Canterbury and is auditing their seasonal yields.",
+      "data": {
+        "type": "table",
+        "caption": "Honey yields per apiary site",
+        "headers": [
+          "Apiary Site",
+          "Yield (kg)"
+        ],
+        "rows": [
+          [
+            "Site A",
+            "120"
+          ],
+          [
+            "Site B",
+            "180"
+          ],
+          [
+            "Site C",
+            "90"
+          ],
+          [
+            "Site D",
+            "110"
+          ]
+        ],
+        "notes": null
+      },
+      "claim": "The director claims: \"Site B produced exactly 36% of our total honey yield over these four sites.\"",
+      "question": "Is this claim correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the claim is correct",
+          "the claim is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the claim is incorrect",
+          "the claim is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Sum the total honey yield: 120 + 180 + 90 + 110 = 500 kilograms.",
+            "Identify Site B's yield: 180 kilograms.",
+            "Calculate Site B's proportion of the total: 180 ÷ 500 = 0.36.",
+            "Convert to a percentage: 0.36 × 100 = 36%.",
+            "Compare with the claim: 36% matches the claim exactly."
+          ],
+          "result": "36% of total yield",
+          "explanation": "The director is correct. The total yield across the four sites is exactly 500 kg ($120 + 180 + 90 + 110 = 500$). Site B produced 180 kg. Dividing 180 by the total 500 gives exactly 0.36, which represents 36% of the harvest.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the individual yield numbers (120, 180, 90, 110) from the table?",
+            "c3": "Look for: Did you show that the sum is 500 kg and that 180 ÷ 500 = 36%?",
+            "c4": "Look for: Did you explain that the calculated 36% matches the director's claim, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer to the honey yield auditing across Canterbury apiaries?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Total yield: 120 + 180 + 90 + 110 = 500 kg.",
+            "Site B yield proportion: 180 ÷ 500 = 36%."
+          ],
+          "result": "36% of total yield",
+          "explanation": "⚠️ This stand is incorrect because the calculations prove Site B produced exactly 36% of the total honey yield, which fully supports the director's claim.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "059",
+      "level": 2,
+      "topic": "Travel, Transport & Tourism — Campervan Rental Cost",
+      "source": "Original",
+      "context": "Henare and his whānau are renting a campervan in Queenstown for a 6-day holiday.",
+      "data": {
+        "type": "text",
+        "content": "The daily hire rate is $145. In addition to the daily rate, there is a flat insurance fee of $120 and a cleaning fee of $50."
+      },
+      "claim": "Henare claims: \"The total rental cost for our 6-day hire will be exactly $1,000.\"",
+      "question": "Is Henare right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "henare is right",
+          "henare is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "henare is wrong",
+          "henare is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Right is NOT supported by this data",
+          "calculation_steps": [
+            "Daily hire cost: 6 days × $145 = $870.",
+            "Fees: $120 + $50 = $170.",
+            "Total cost: $870 + $170 = $1,040."
+          ],
+          "result": "$1,040",
+          "explanation": "⚠️ This stand is incorrect because the total cost calculations result in exactly $1,040, which is more than Henare's estimate of $1,000.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Calculate total daily hire rate cost: 6 days × $145 per day = $870.",
+            "Calculate total cost including both flat fees: $870 + $120 (insurance) + $50 (cleaning) = $1,040.",
+            "Compare with Henare's claim: $1,040 is not equal to $1,000."
+          ],
+          "result": "$1,040",
+          "explanation": "Henare is wrong. The daily hire cost over 6 days is $870 ($6 × $145 = $870$). Adding the $120 insurance fee and $50 cleaning fee brings the actual total to $1,040 ($870 + $120 + $50 = $1,040$). Since $1,040 is different from $1,000, his claim is incorrect.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 6 days, $145, $120, and $50 from the question?",
+            "c3": "Look for: Did you show that 6 × $145 = $870, and $870 + $120 + $50 = $1,040?",
+            "c4": "Look for: Did you explain that $1,040 is different from $1,000, which supports 'disagree'?",
+            "c5": "Look for: Did you connect the answer back to the Queenstown campervan rental?"
+          }
+        }
+      }
+    },
+    {
+      "id": "060",
+      "level": 2,
+      "topic": "Sports & Recreation — Swimming Pool Volume",
+      "source": "Original",
+      "context": "The sports coordinator at school is calculating how much water is needed to fill the school's rectangular training pool.",
+      "data": {
+        "type": "text",
+        "content": "The training pool is exactly 12 metres long, 5 metres wide, and has a uniform depth of 1.5 metres."
+      },
+      "claim": "The sports coordinator claims: \"The training pool holds exactly 90 cubic metres of water when full.\"",
+      "question": "Is the coordinator right? Use volume calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "the coordinator is right",
+          "the coordinator is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "the coordinator is wrong",
+          "the coordinator is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Recall the formula for volume of a rectangular prism: Volume = length × width × depth.",
+            "Multiply the pool dimensions together: 12 metres × 5 metres × 1.5 metres = 90 cubic metres.",
+            "Compare with the claim: 90 cubic metres matches the claim exactly."
+          ],
+          "result": "90 cubic metres",
+          "explanation": "The coordinator is right. The volume of a rectangular pool is calculated as $12 × 5 × 1.5$. Multiplying these dimensions gives exactly 90 cubic metres ($60 × 1.5 = 90$), which matches the sports coordinator's claim exactly.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the dimensions 12 m, 5 m, and 1.5 m from the question?",
+            "c3": "Look for: Did you show that you multiplied 12 × 5 × 1.5 = 90 cubic metres?",
+            "c4": "Look for: Did you explain that 90 cubic metres is exactly what the coordinator claimed, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer back to finding the volume of the school training pool?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Volume calculation: 12 m × 5 m × 1.5 m = 90 cubic metres."
+          ],
+          "result": "90 cubic metres",
+          "explanation": "⚠️ This stand is incorrect because the volume calculations prove the pool holds exactly 90 cubic metres when full, matching the claim perfectly.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "061",
+      "level": 2,
+      "topic": "Shopping & Consumer Maths — Gym Membership Discount",
+      "source": "Original",
+      "context": "Mere is signing up for weekly payments on a gym membership in Auckland.",
+      "data": {
+        "type": "text",
+        "content": "The standard membership costs $15.00 per week. If Mere signs a 12-month contract (which is exactly 52 weeks), she receives a 15% discount on the total cost."
+      },
+      "claim": "Mere claims: \"With the contract discount, my total cost for 52 weeks will be less than $660.\"",
+      "question": "Is Mere correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "mere is correct",
+          "mere is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "mere is incorrect",
+          "mere is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Standard total cost: 52 weeks × $15 = $780.",
+            "Discount: 15% of $780 = $117.",
+            "Discounted total cost: $780 - $117 = $663."
+          ],
+          "result": "$663",
+          "explanation": "⚠️ This stand is incorrect because the calculations yield an actual discounted total cost of $663, which is more than $660.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate the standard total cost for 52 weeks: 52 × $15 = $780.",
+            "Calculate the 15% discount amount: 0.15 × $780 = $117.",
+            "Calculate the discounted total cost: $780 − $117 = $663.",
+            "Compare with Mere's claim: $663 is more than $660."
+          ],
+          "result": "$663",
+          "explanation": "Mere is incorrect. Her standard total cost is $780 ($52 × $15 = $780$). Applying a 15% discount subtracts $117 ($780 × 0.15 = $117$), leaving a discounted cost of $663 ($780 - $117 = $663$). Since $663 is greater than $660, her claim of it being less than $660 is wrong.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 52 weeks, $15, and 15% from the question?",
+            "c3": "Look for: Did you show that 52 × $15 = $780, 0.15 × $780 = $117, and $780 − $117 = $663?",
+            "c4": "Look for: Did you explain that $663 is more than $660, supporting 'disagree'?",
+            "c5": "Look for: Did you refer back to Mere's gym membership in Auckland?"
+          }
+        }
+      }
+    },
+    {
+      "id": "062",
+      "level": 2,
+      "topic": "Digital Technology & School — Internet Download Speed",
+      "source": "Original",
+      "context": "The school IT department is upgrading operating systems on computers in the computer lab.",
+      "data": {
+        "type": "text",
+        "content": "The system upgrade file is exactly 4.5 Gigabytes (GB) in size. The school's internet connection downloads files at a rate of 15 Megabytes per second (MB/s). Note: 1 GB = 1,000 MB."
+      },
+      "claim": "The IT technician claims: \"The download will take exactly 5 minutes to complete.\"",
+      "question": "Is the technician correct? Use rate calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the technician is correct",
+          "the technician is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the technician is incorrect",
+          "the technician is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Convert file size from Gigabytes to Megabytes: 4.5 GB × 1,000 = 4,500 Megabytes (MB).",
+            "Divide file size by the download rate to find time in seconds: 4,500 MB ÷ 15 MB/s = 300 seconds.",
+            "Convert duration from seconds to minutes: 300 seconds ÷ 60 seconds per minute = 5 minutes.",
+            "Compare with the claim: 5 minutes matches the claim exactly."
+          ],
+          "result": "5 minutes",
+          "explanation": "The technician is correct. Converting 4.5 GB yields 4,500 MB ($4.5 × 1,000$). At a speed of 15 MB/s, the file takes 300 seconds to download ($4,500 ÷ 15 = 300$). Converting to minutes gives exactly 5 minutes ($300 ÷ 60 = 5$), matching the claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 4.5 GB, 15 MB/s, 1,000 MB/GB, and 60 seconds/minute?",
+            "c3": "Look for: Did you show that 4.5 × 1,000 = 4,500 MB, 4,500 ÷ 15 = 300 seconds, and 300 ÷ 60 = 5 minutes?",
+            "c4": "Look for: Did you state that 5 minutes matches the claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you refer back to the school IT department operating system download?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "File size: 4.5 GB × 1,000 = 4,500 MB.",
+            "Download duration: 4,500 ÷ 15 = 300 seconds.",
+            "In minutes: 300 ÷ 60 = 5 minutes."
+          ],
+          "result": "5 minutes",
+          "explanation": "⚠️ This stand is incorrect because the rate calculations prove the download takes exactly 5 minutes, which matches the technician's claim perfectly.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "063",
+      "level": 2,
+      "topic": "Environment & Weather — Temperature Change",
+      "source": "Original",
+      "context": "Meteorologists in Central Otago are analyzing winter day weather patterns.",
+      "data": {
+        "type": "text",
+        "content": "On a cold July day, the lowest overnight temperature was recorded at −4.2°C. The highest daytime temperature reached 8.6°C."
+      },
+      "claim": "A local weather reporter says: \"The difference between the day's high temperature and the overnight low was exactly 12.8 degrees Celsius.\"",
+      "question": "Is the reporter correct? Use integer subtraction to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the reporter is correct",
+          "the reporter is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the reporter is incorrect",
+          "the reporter is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Recall the subtraction formula for difference: Difference = High Temperature − Low Temperature.",
+            "Substitute the integer values: 8.6°C − (−4.2°C) = 8.6°C + 4.2°C.",
+            "Add the absolute values: 8.6 + 4.2 = 12.8°C.",
+            "Compare with the claim: 12.8°C matches the claim exactly."
+          ],
+          "result": "12.8°C difference",
+          "explanation": "The reporter is correct. The difference between the highest daytime temperature and the lowest overnight temperature is calculated as $8.6 − (−4.2)$. Subtracting a negative number becomes addition, yielding exactly 12.8 degrees Celsius ($8.6 + 4.2 = 12.8$), which matches the reporter's claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the temperatures 8.6°C and −4.2°C from the question?",
+            "c3": "Look for: Did you show that you subtracted a negative number: 8.6 − (−4.2) = 12.8°C?",
+            "c4": "Look for: Did you explain that 12.8°C matches the reporter's claim, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer back to the Central Otago winter temperatures?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Temperature difference: 8.6 − (−4.2) = 12.8°C."
+          ],
+          "result": "12.8°C difference",
+          "explanation": "⚠️ This stand is incorrect because subtracting a negative value shows the difference between the low and high temperatures is exactly 12.8 degrees Celsius, confirming the reporter's claim.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "064",
+      "level": 2,
+      "topic": "Conservation & Wildlife — Pest Trapping Rates",
+      "source": "Original",
+      "context": "A community pest-trapping group in Dunedin is recording the number of rats caught over a four-month period.",
+      "data": {
+        "type": "table",
+        "caption": "Pest rats captured per month",
+        "headers": [
+          "Month",
+          "Rats Captured"
+        ],
+        "rows": [
+          [
+            "Month 1",
+            "34"
+          ],
+          [
+            "Month 2",
+            "45"
+          ],
+          [
+            "Month 3",
+            "28"
+          ],
+          [
+            "Month 4",
+            "53"
+          ]
+        ],
+        "notes": null
+      },
+      "claim": "The trapping coordinator claims: \"We caught an average of more than 42 rats per month over this period.\"",
+      "question": "Is the coordinator correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the coordinator is correct",
+          "the coordinator is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the coordinator is incorrect",
+          "the coordinator is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Total rats: 34 + 45 + 28 + 53 = 160.",
+            "Average rats per month: 160 ÷ 4 = 40 rats."
+          ],
+          "result": "40 rats per month",
+          "explanation": "⚠️ This stand is incorrect because the calculations yield an average of 40 rats per month, which is less than 42 rats.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Sum the total rats caught over the four months: 34 + 45 + 28 + 53 = 160.",
+            "Divide by the number of months to find the average: 160 ÷ 4 = 40 rats.",
+            "Compare with the coordinator's claim: 40 is less than 42."
+          ],
+          "result": "40 rats per month",
+          "explanation": "The coordinator is incorrect. The total number of rats caught over the four months is 160 ($34 + 45 + 28 + 53 = 160$). Dividing this by 4 gives an average of exactly 40 rats per month ($160 ÷ 4 = 40$). Since 40 is less than 42, they did not average more than 42.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the monthly rat totals (34, 45, 28, 53) from the table?",
+            "c3": "Look for: Did you add the numbers and divide by 4 to find an average of 40?",
+            "c4": "Look for: Did you explain that 40 is less than 42, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the answer back to the Dunedin community pest-trapping results?"
+          }
+        }
+      }
+    },
+    {
+      "id": "065",
+      "level": 2,
+      "topic": "Charity & Fundraising — Food Bank Donations",
+      "source": "Original",
+      "context": "A church youth group is sorting and organizing canned food donations for a local community food bank.",
+      "data": {
+        "type": "text",
+        "content": "They received 350 cans of food in total. Exactly 40% are canned vegetables, 30% are canned fruit, and the remaining cans are soup."
+      },
+      "claim": "The organizer says: \"We have exactly 105 cans of soup to donate.\"",
+      "question": "Is the organizer right? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "the organizer is right",
+          "the organizer is correct"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "the organizer is wrong",
+          "the organizer is incorrect"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Find the percentage of cans that are soup: 100% − (40% + 30%) = 30%.",
+            "Convert the percentage of soup to a decimal: 30% = 0.30.",
+            "Multiply total cans by the soup proportion: 350 × 0.30 = 105 cans of soup.",
+            "Compare with the claim: 105 cans matches the claim exactly."
+          ],
+          "result": "105 cans of soup",
+          "explanation": "The organizer is right. Canned vegetables and fruit make up 70% of the donations ($40% + 30% = 70%$), leaving 30% as soup ($100% − 70% = 30%$). Calculating 30% of 350 gives exactly 105 cans of soup ($350 × 0.30 = 105$), which matches the claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 350 cans, 40%, and 30% from the question?",
+            "c3": "Look for: Did you show that 100% − 70% = 30% and 350 × 0.30 = 105?",
+            "c4": "Look for: Did you explain that the calculated 105 cans matches the claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer back to organizing the food bank donations?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Wrong is NOT supported by this data",
+          "calculation_steps": [
+            "Soup percentage: 100% − 70% = 30%.",
+            "Soup cans: 350 × 0.30 = 105 cans."
+          ],
+          "result": "105 cans of soup",
+          "explanation": "⚠️ This stand is incorrect because the percentage calculations prove they have exactly 105 cans of soup, which aligns perfectly with the organizer's claim.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "066",
+      "level": 2,
+      "topic": "Construction & Woodworking — Concrete Fence Posts",
+      "source": "Original",
+      "context": "Mere is digging post holes and filling them with concrete to put up a timber fence.",
+      "data": {
+        "type": "text",
+        "content": "Each post hole requires exactly 0.15 cubic metres of concrete. Mere has exactly 8 post holes to fill."
+      },
+      "claim": "Mere says: \"I will need to order exactly 1.2 cubic metres of concrete in total for these fence post holes.\"",
+      "question": "Is Mere correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "mere is correct",
+          "mere is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "mere is incorrect",
+          "mere is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Identify the volume of concrete required per post hole: 0.15 cubic metres.",
+            "Multiply by the number of post holes: 0.15 × 8 = 1.2 cubic metres.",
+            "Compare with Mere's claim: 1.2 cubic metres matches her claim exactly."
+          ],
+          "result": "1.2 cubic metres",
+          "explanation": "Mere is correct. Multiplying the volume required per hole ($0.15$ cubic metres) by the 8 post holes results in exactly 1.2 cubic metres of concrete ($0.15 × 8 = 1.2$), which matches her claim.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 0.15 and 8 from the question?",
+            "c3": "Look for: Did you show that 0.15 × 8 = 1.2 cubic metres?",
+            "c4": "Look for: Did you explain that 1.2 cubic metres matches her claim, supporting 'agree'?",
+            "c5": "Look for: Did you refer back to Mere's task of putting up a timber fence?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Total volume needed: 0.15 × 8 = 1.2 cubic metres."
+          ],
+          "result": "1.2 cubic metres",
+          "explanation": "⚠️ This stand is incorrect because the calculations show the total concrete needed is exactly 1.2 cubic metres, supporting Mere's claim.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "067",
+      "level": 2,
+      "topic": "Hospitality & Food — Lemonade Recipe",
+      "source": "Original",
+      "context": "Students are mixing fresh lemonade to sell at a stall on school sports day.",
+      "data": {
+        "type": "text",
+        "content": "The recipe requires lemon juice, sugar syrup, and water in a ratio of exactly 1:1:8 by volume. The students want to make 20 litres of lemonade in total."
+      },
+      "claim": "The students claim: \"We will need exactly 2.5 litres of lemon juice for our 20-litre mixture.\"",
+      "question": "Are the students correct? Use ratio calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "they are correct",
+          "the students are right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "they are incorrect",
+          "the students are wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Total parts in ratio: 1 + 1 + 8 = 10.",
+            "Volume of one part: 20 L ÷ 10 = 2 L.",
+            "Lemon juice: 1 part × 2 L = 2 L."
+          ],
+          "result": "2 litres of lemon juice",
+          "explanation": "⚠️ This stand is incorrect because ratio division results in exactly 2 litres of lemon juice, not 2.5 litres.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate the total number of parts in the ratio: 1 part + 1 part + 8 parts = 10 parts.",
+            "Divide the total volume by the total parts: 20 litres ÷ 10 parts = 2 litres per part.",
+            "Determine the volume of lemon juice (1 part): 1 part × 2 litres = 2 litres.",
+            "Compare with the claim: 2 litres is not equal to 2.5 litres."
+          ],
+          "result": "2 litres of lemon juice",
+          "explanation": "The students are incorrect. The total ratio parts equal 10 ($1 + 1 + 8 = 10$). Dividing the 20-litre total volume by 10 parts yields exactly 2 litres per part ($20 ÷ 10 = 2$). Since lemon juice is 1 part, they need exactly 2 litres, which is different from their claim of 2.5 litres.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the ratio 1:1:8 and total volume of 20 litres?",
+            "c3": "Look for: Did you show that 1 + 1 + 8 = 10, 20 ÷ 10 = 2, and 1 × 2 = 2 litres?",
+            "c4": "Look for: Did you explain that 2 litres is not equal to 2.5 litres, supporting 'disagree'?",
+            "c5": "Look for: Did you refer back to mixing the lemonade mixture for the school sports day?"
+          }
+        }
+      }
+    },
+    {
+      "id": "068",
+      "level": 2,
+      "topic": "Beekeeping & Primary Industries — Clover Seed Planting",
+      "source": "Original",
+      "context": "A farmer in Canterbury is sowing clover seed to establish bee forage pasture.",
+      "data": {
+        "type": "text",
+        "content": "The recommended sowing rate is exactly 4 kilograms of seed per hectare. The rectangular paddock measures 300 metres by 500 metres. Note: 1 hectare = 10,000 square metres."
+      },
+      "claim": "The farmer claims: \"I will need exactly 6 kilograms of clover seed in total to plant this paddock.\"",
+      "question": "Is the farmer correct? Use calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "the farmer is correct",
+          "the farmer is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "the farmer is incorrect",
+          "the farmer is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate area: 300 m × 500 m = 150,000 square metres.",
+            "Convert to hectares: 150,000 ÷ 10,000 = 15 hectares.",
+            "Seed needed: 15 × 4 kg = 60 kg."
+          ],
+          "result": "60 kg of seed",
+          "explanation": "⚠️ This stand is incorrect because the calculations yield exactly 60 kg of seed needed, which is ten times more than the farmer's estimate of 6 kg.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not mathematically valid. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate the area of the paddock: 300 metres × 500 metres = 150,000 square metres.",
+            "Convert the paddock area to hectares: 150,000 sq m ÷ 10,000 sq m/ha = 15 hectares.",
+            "Calculate the seed required: 15 hectares × 4 kg/hectare = 60 kg.",
+            "Compare with the farmer's claim: 60 kg is not equal to 6 kg."
+          ],
+          "result": "60 kilograms of seed",
+          "explanation": "The farmer is incorrect. The paddock area is 150,000 square metres ($300 × 500 = 150,000$), which is exactly 15 hectares ($150,000 ÷ 10,000 = 15$). At a sowing rate of 4 kg per hectare, he needs exactly 60 kg of seed ($15 × 4 = 60$), which is much more than his claim of 6 kg.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the dimensions 300 m, 500 m, rate 4 kg, and conversion factor 10,000?",
+            "c3": "Look for: Did you show that 300 × 500 = 150,000 sq m, 150,000 ÷ 10,000 = 15 hectares, and 15 × 4 = 60 kg?",
+            "c4": "Look for: Did you explain that 60 kg is different from 6 kg, which supports 'disagree'?",
+            "c5": "Look for: Did you connect the answer back to sowing the clover forage seed in Canterbury?"
+          }
+        }
+      }
+    },
+    {
+      "id": "069",
+      "level": 3,
+      "topic": "Rate — Cost per Portion",
+      "source": "Original",
+      "context": "A school hāngī fundraiser is being organized. The kitchen needs to prepare kumara portions for the community dinner.",
+      "data": {
+        "type": "text",
+        "content": "A standard hāngī recipe serves 12 people and requires 3 kg of kumara. Kumara is sold in bulk 5 kg bags costing $18.50 per bag. The kitchen needs to prepare 150 portions."
+      },
+      "claim": "The head coordinator says, \"We can buy all the kumara we need for exactly $110.\"",
+      "question": "Is the coordinator correct? Show calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "she is right",
+          "he is right",
+          "yes they can",
+          "about right"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "she is wrong",
+          "he is wrong",
+          "no they cannot",
+          "not right"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Kumara needed per portion: 3 kg ÷ 12 = 0.25 kg",
+            "Total kumara needed for 150 portions: 150 × 0.25 kg = 37.5 kg",
+            "Bags of kumara required: 37.5 kg ÷ 5 kg = 7.5 bags",
+            "Since you cannot buy half-bags, you must round up to 8 bags",
+            "Total cost: 8 bags × $18.50 = $148.00"
+          ],
+          "result": "$148.00",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Even if the kitchen could purchase exactly 7.5 bags, the cost would be 7.5 × $18.50 = $138.75, which is still much more than $110. Since they must buy 8 bags, the cost is $148.00. The coordinator is incorrect.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculation shows the cost is $148.00, which does not support the claim of $110.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Find kumara needed per portion: 3 kg ÷ 12 = 0.25 kg",
+            "Find total kumara needed: 150 portions × 0.25 kg = 37.5 kg",
+            "Find bags required: 37.5 kg ÷ 5 kg per bag = 7.5 bags",
+            "Round up to whole bags: 8 bags of kumara must be purchased",
+            "Calculate total cost: 8 bags × $18.50 = $148.00"
+          ],
+          "result": "$148.00",
+          "explanation": "The coordinator is incorrect. The kitchen needs 37.5 kg of kumara, which requires buying 8 full bags. This will cost $148.00, which is $38.00 more than the coordinator's budget of $110.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the values 12 (people), 3 kg, 5 kg, 150 (portions), and $18.50?",
+            "c3": "Look for: Did you show the division step to find 0.25 kg/portion, and the multiplication to find $148.00?",
+            "c4": "Look for: Did you state that $148.00 is greater than $110.00, supporting your 'disagree' position?",
+            "c5": "Look for: Did you relate your answer back to purchasing whole bags of kumara for the fundraiser?"
+          }
+        }
+      }
+    },
+    {
+      "id": "070",
+      "level": 3,
+      "topic": "Measurement — Unit Conversion",
+      "source": "Original",
+      "context": "A family apiary in Southland is packaging their seasonal honey harvest into standard jars for a local farmers market.",
+      "data": {
+        "type": "text",
+        "content": "The apiary has a total bulk container of 45 kg of liquid honey. Each glass jar holds exactly 350 g of honey."
+      },
+      "claim": "The beekeeper says, \"This batch will fill about 130 jars.\"",
+      "question": "Is the beekeeper's statement reasonable? Use mass calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "yes it is",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "not right",
+          "false",
+          "no it is not"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Convert mass from kilograms to grams: 45 kg × 1,000 = 45,000 g",
+            "Divide total grams by jar capacity: 45,000 g ÷ 350 g = 128.57 jars"
+          ],
+          "result": "128.57 jars",
+          "explanation": "Yes, the claim is reasonable. The calculation shows the batch fills approximately 128.6 jars. This is extremely close to 130 jars (only about 1.4 jars off), making it a very fair estimate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you convert 45 kg into 45,000 g?",
+            "c3": "Look for: Did you divide 45,000 by 350 to find 128.57?",
+            "c4": "Look for: Did you explain that 128.57 is close to 130, which supports 'agree'?",
+            "c5": "Look for: Did you connect the values back to the honey jars at the market?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Convert mass from kilograms to grams: 45 kg × 1,000 = 45,000 g",
+            "Divide total grams by jar capacity: 45,000 g ÷ 350 g = 128.57 jars"
+          ],
+          "result": "128 jars",
+          "explanation": "No, the claim is not strictly reasonable. The apiary will only be able to fill 128 complete jars, with some honey left over. They do not have enough honey to fill 130 jars, as they are short by almost 2 full jars.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you convert 45 kg into 45,000 g?",
+            "c3": "Look for: Did you divide 45,000 by 350 to find 128.57?",
+            "c4": "Look for: Did you state that they can only fill 128 complete jars, which is less than 130, supporting 'disagree'?",
+            "c5": "Look for: Did you refer back to the exact physical limit of filling jars from the bulk honey container?"
+          }
+        }
+      }
+    },
+    {
+      "id": "071",
+      "level": 3,
+      "topic": "Rate — Data Transfer Speed",
+      "source": "Original",
+      "context": "A digital media student in Wellington is uploading high-definition video files of their school's kapa haka performance.",
+      "data": {
+        "type": "text",
+        "content": "The total size of the video files is 19.5 Gigabytes (GB). The school internet connection has an average upload speed of 12 Megabytes per second (MB/s). Note: 1 GB = 1,000 MB."
+      },
+      "claim": "The student says, \"The upload will take about 25 minutes.\"",
+      "question": "Is the student's time estimate correct? Use time and rate calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "she is right",
+          "he is right",
+          "true"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "not right",
+          "she is wrong",
+          "he is wrong",
+          "false",
+          "not exactly right"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Convert GB to MB: 19.5 GB × 1,000 = 19,500 MB",
+            "Calculate upload time in seconds: 19,500 MB ÷ 12 MB/s = 1,625 seconds",
+            "Convert seconds to minutes: 1,625 seconds ÷ 60 = 27.08 minutes"
+          ],
+          "result": "27.08 minutes",
+          "explanation": "Yes, the student is about right. The actual upload time is 27 minutes and 5 seconds. Since upload speeds fluctuate, estimating 'about 25 minutes' is a reasonable real-world approximation.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you convert 19.5 GB to 19,500 MB?",
+            "c3": "Look for: Did you divide 19,500 by 12, then divide by 60 to get 27.08 minutes?",
+            "c4": "Look for: Did you explain that 27 minutes is close to 25 minutes, supporting your positive stand?",
+            "c5": "Look for: Did you link your calculations to the file upload scenario?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Convert GB to MB: 19.5 GB × 1,000 = 19,500 MB",
+            "Calculate upload time in seconds: 19,500 MB ÷ 12 MB/s = 1,625 seconds",
+            "Convert seconds to minutes: 1,625 seconds ÷ 60 = 27.08 minutes (or 27 mins 5 seconds)"
+          ],
+          "result": "27.08 minutes",
+          "explanation": "No, the student is incorrect. The exact upload time is over 27 minutes. Underestimating by more than 2 minutes means they will run out of class time before the upload finishes, so it is not a correct estimate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar?",
+            "c2": "Look for: Did you convert 19.5 GB to 19,500 MB?",
+            "c3": "Look for: Did you divide 19,500 by 12, then divide by 60 to find 27.08 minutes?",
+            "c4": "Look for: Did you state that 27 minutes is longer than 25 minutes, supporting 'disagree'?",
+            "c5": "Look for: Did you explain how the 2-minute difference affects the student's task planning?"
+          }
+        }
+      }
+    },
+    {
+      "id": "072",
+      "level": 3,
+      "topic": "Statistics — Percentage Value",
+      "source": "Original",
+      "context": "An electronics store in Christchurch is discounting an interactive tablet during a King's Birthday weekend clearance sale.",
+      "data": {
+        "type": "text",
+        "content": "The original price of the tablet is $680 (which includes 15% GST). Method A: Deduct 20% from the GST-exclusive price, then add the 15% GST back. Method B: Deduct 20% directly from the final GST-inclusive price of $680."
+      },
+      "claim": "The salesperson says, \"Applying the 20% discount to either the GST-exclusive price or the GST-inclusive price results in the exact same final sale price.\"",
+      "question": "Is the salesperson correct? Show step-by-step calculations for both methods to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "she is right",
+          "he is right",
+          "true",
+          "exact same",
+          "yes they are"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "she is wrong",
+          "he is wrong",
+          "false",
+          "different prices"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Method A: Find GST-exclusive price: $680 ÷ 1.15 = $591.30",
+            "Method A: Apply 20% discount: $591.30 × 0.80 = $473.04",
+            "Method A: Add 15% GST back: $473.04 × 1.15 = $544.00",
+            "Method B: Apply 20% discount directly to $680: $680 × 0.80 = $544.00"
+          ],
+          "result": "$544.00 for both methods",
+          "explanation": "Yes, the salesperson is correct. Both methods lead to a final sale price of exactly $544.00. This is because multiplying a value by 0.8 and then 1.15 is mathematically identical to multiplying it by 1.15 and then 0.8.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the original price of $680, 15% GST, and 20% discount?",
+            "c3": "Look for: Did you calculate the exclusive price ($591.30) and the final price for both Method A and Method B ($544.00)?",
+            "c4": "Look for: Did you explicitly state that both methods lead to $544.00, supporting 'agree'?",
+            "c5": "Look for: Did you connect the math back to the salesperson's claim about tax and discounts?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Method A: GST-exclusive price = $680 ÷ 1.15 = $591.30",
+            "Method A: Discount exclusive price = $591.30 × 0.80 = $473.04",
+            "Method A: Add GST back = $473.04 × 1.15 = $544.00",
+            "Method B: Discount inclusive price = $680 × 0.80 = $544.00"
+          ],
+          "result": "$544.00 for both methods",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Both methods produce the exact same result of $544.00 because the order of multiplication does not change the final product. The correct stand is 'agree'.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show identical final prices, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "073",
+      "level": 3,
+      "topic": "Rate — Fuel Efficiency",
+      "source": "Original",
+      "context": "A family is planning a weekend road trip from Napier to Gisborne along State Highway 2.",
+      "data": {
+        "type": "text",
+        "content": "The one-way driving distance is 216 km. The family car has an average fuel efficiency rated at 8.2 Litres per 100 kilometres (L/100km). Petrol costs $2.85 per Litre."
+      },
+      "claim": "The driver says, \"We should budget about $50 for petrol for this one-way trip.\"",
+      "question": "Is this a reasonable petrol budget? Use fuel rate calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "not right",
+          "false",
+          "no it is not",
+          "under-budgeted"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Calculate total Litres needed: (216 km ÷ 100) × 8.2 L = 17.712 Litres",
+            "Calculate cost of fuel: 17.712 L × $2.85/L = $50.48"
+          ],
+          "result": "$50.48",
+          "explanation": "Yes, this budget is highly reasonable. The calculated fuel cost is $50.48, which is only 48 cents over the driver's $50 budget. For a road trip estimate, 'about $50' is an excellent approximation.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the fuel volume of 17.712 L?",
+            "c3": "Look for: Did you multiply 17.712 L by $2.85 to find $50.48?",
+            "c4": "Look for: Did you state that $50.48 is extremely close to $50, supporting your 'agree' position?",
+            "c5": "Look for: Did you relate the outcome back to budgeting for the drive to Gisborne?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Calculate total Litres needed: (216 km ÷ 100) × 8.2 L = 17.712 Litres",
+            "Calculate cost of fuel: 17.712 L × $2.85/L = $50.48"
+          ],
+          "result": "$50.48",
+          "explanation": "No, the budget is not safe. The exact minimum cost is $50.48. If they face traffic, hilly roads on SH2, or if fuel prices rise slightly, $50 will not be enough. They should budget slightly more to avoid running out of money.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you find the fuel volume of 17.712 L?",
+            "c3": "Look for: Did you multiply 17.712 L by $2.85 to find $50.48?",
+            "c4": "Look for: Did you state that the real cost ($50.48) exceeds the $50 budget, supporting 'disagree'?",
+            "c5": "Look for: Did you relate the risk of under-budgeting to the driving conditions of the Napier-Gisborne route?"
+          }
+        }
+      }
+    },
+    {
+      "id": "074",
+      "level": 3,
+      "topic": "Rate — Cost per Portion",
+      "source": "Original",
+      "context": "A school sports camp needs to purchase milk for 60 student athletes for a 5-day training camp.",
+      "data": {
+        "type": "table",
+        "caption": "Camp milk requirements and prices",
+        "headers": [
+          "Item",
+          "Specification / Price"
+        ],
+        "rows": [
+          [
+            "Daily allocation per student",
+            "250 mL"
+          ],
+          [
+            "1-litre carton price",
+            "$2.40"
+          ],
+          [
+            "2-litre bottle price",
+            "$4.50"
+          ],
+          [
+            "Camp duration",
+            "5 days"
+          ],
+          [
+            "Total students",
+            "60"
+          ]
+        ],
+        "notes": "Milk must be purchased in whole cartons/bottles."
+      },
+      "claim": "The camp cook says, \"Buying only 2-litre bottles is the cheapest way to purchase the exact amount of milk needed.\"",
+      "question": "Is the cook right? Use volume and price calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "right",
+          "correct",
+          "agree",
+          "true",
+          "yes he is",
+          "yes she is"
+        ],
+        "negative": [
+          "no",
+          "wrong",
+          "incorrect",
+          "disagree",
+          "false",
+          "no he is not",
+          "no she is not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Right / Agree",
+          "calculation_steps": [
+            "Total milk volume needed: 60 students × 5 days × 0.25 L = 75 Litres",
+            "Method A (2L bottles only): 75 L ÷ 2 L = 37.5 bottles -> must buy 38 bottles (76 L total)",
+            "Cost for Method A: 38 bottles × $4.50 = $171.00",
+            "Method B (1L cartons only): 75 L × $2.40 = $180.00"
+          ],
+          "result": "$171.00 for only 2L bottles",
+          "explanation": "Yes, the cook is right. Buying only 2L bottles ($171.00) is significantly cheaper than buying only 1L cartons ($180.00). Even though they buy 1L extra, the bulk savings make the 2L bottles the better direct choice.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'right', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the total required volume of 75 Litres?",
+            "c3": "Look for: Did you show that 38 bottles of 2L cost $171.00 and 75 cartons of 1L cost $180.00?",
+            "c4": "Look for: Did you explain that $171.00 is cheaper than $180.00, supporting 'agree'?",
+            "c5": "Look for: Did you connect the calculations back to feeding the athletes at the camp?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Wrong / Disagree",
+          "calculation_steps": [
+            "Total milk volume needed: 60 students × 5 days × 0.25 L = 75 Litres",
+            "Method A (2L bottles only): 38 bottles needed (76 L) × $4.50 = $171.00",
+            "Method C (Mixed combination): Buy 37 bottles of 2L (74 L) and 1 carton of 1L (1 L) = 75 L exactly",
+            "Cost for Method C: (37 × $4.50) + (1 × $2.40) = $166.50 + $2.40 = $168.90"
+          ],
+          "result": "$168.90 for the mixed combination",
+          "explanation": "No, the cook is wrong. Buying only 2-litre bottles is not the cheapest option. If they buy 37 bottles of 2-litres and one 1-litre carton, they get exactly 75 Litres for $168.90, which saves $2.10 compared to buying only 2-litre bottles.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'wrong', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate the total volume of 75 Litres?",
+            "c3": "Look for: Did you calculate the mixed combination cost ($168.90) and the 2L-only cost ($171.00)?",
+            "c4": "Look for: Did you prove that the mixed option is cheaper, supporting your 'disagree' stand?",
+            "c5": "Look for: Did you reference the exact milk portion needs of the camp students?"
+          }
+        }
+      }
+    },
+    {
+      "id": "075",
+      "level": 3,
+      "topic": "Measurement — Area & Wastage",
+      "source": "Original",
+      "context": "A builder is installing timber decking on a small rectangular residential patio in Nelson.",
+      "data": {
+        "type": "text",
+        "content": "The patio floor area to cover is exactly 12 square metres. The decking timber boards are 90 mm wide and 4.0 metres long. Note: 1,000 mm = 1 metre."
+      },
+      "claim": "The builder says, \"We will need exactly 30 of these boards to cover the area without any wastage.\"",
+      "question": "Is the builder correct? Write a calculation that supports your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes he is"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no he is not",
+          "not enough boards"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Convert board width to metres: 90 mm ÷ 1,000 = 0.09 m",
+            "Find area of one timber board: 0.09 m × 4.0 m = 0.36 square metres",
+            "Find boards needed to cover 12 square metres: 12 ÷ 0.36 = 33.33 boards"
+          ],
+          "result": "33.33 boards",
+          "explanation": "⚠️ This stand is NOT supported by the math. 30 boards will only cover 30 × 0.36 = 10.8 square metres, leaving the deck unfinished. They need at least 34 boards. The correct stand is 'disagree'.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — 30 boards is insufficient, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Convert board width to metres: 90 mm ÷ 1,000 = 0.09 m",
+            "Find the area of one timber board: 0.09 m × 4.0 m = 0.36 square metres",
+            "Calculate boards needed to cover 12 square metres: 12 ÷ 0.36 = 33.33 boards"
+          ],
+          "result": "33.33 boards",
+          "explanation": "The builder is incorrect. One board covers 0.36 square metres. To cover 12 square metres, they need 33.33 boards (which practically means purchasing 34 boards). Buying only 30 boards is not enough and will leave a gap of 1.2 square metres.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you convert 90 mm to 0.09 m?",
+            "c3": "Look for: Did you multiply 0.09 m × 4.0 m = 0.36 m² and divide 12 m² by 0.36 m²?",
+            "c4": "Look for: Did you show that 33.33 > 30, proving that 30 boards is not enough to support your stand?",
+            "c5": "Look for: Did you connect your answer back to the timber boards needed for the patio floor?"
+          }
+        }
+      }
+    },
+    {
+      "id": "076",
+      "level": 3,
+      "topic": "Statistics — Ratios & Fractions",
+      "source": "Original",
+      "context": "A beekeeper in Taupō is checking the health of a beehive by monitoring the balance of drone (male) bees and worker (female) bees.",
+      "data": {
+        "type": "text",
+        "content": "A healthy hive during summer should maintain a ratio of about 1 drone bee to every 30 worker bees. The beekeeper takes a sample from a hive and counts 450 drones and 14,000 workers."
+      },
+      "claim": "The beekeeper says, \"The proportion of drones in this hive is within normal healthy limits.\"",
+      "question": "Is the beekeeper's statement reasonable? Use ratios to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Determine the observed ratio of workers per drone: 14,000 worker bees ÷ 450 drone bees = 31.11 workers per drone",
+            "Compare observed ratio (1 : 31.11) to healthy target (1 : 30)"
+          ],
+          "result": "1 : 31.11",
+          "explanation": "Yes, the statement is reasonable. The observed ratio is approximately 1 drone to 31 worker bees. This is extremely close to the target healthy ratio of 1 to 30 (only a 3.7% variance), which is normal and healthy for a living hive.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 450 and 14,000 from the text?",
+            "c3": "Look for: Did you divide 14,000 by 450 to find 31.11?",
+            "c4": "Look for: Did you explain that 31.11 is very close to 30, supporting your positive stand?",
+            "c5": "Look for: Did you connect your answer back to the health balance of the beehive?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Determine the observed ratio of workers per drone: 14,000 worker bees ÷ 450 drone bees = 31.11 workers per drone",
+            "Compare observed ratio (1 : 31.11) to healthy target (1 : 30)"
+          ],
+          "result": "1 : 31.11",
+          "explanation": "No, it is not reasonable. The hive has fewer drones than expected. A ratio of 1 to 31.11 means they are short of drones. In a large population, this minor deficit can impact mating success, so it is strictly outside the ideal 1 to 30 target.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar?",
+            "c2": "Look for: Did you use the numbers 450 and 14,000 from the text?",
+            "c3": "Look for: Did you divide 14,000 by 450 to get 31.11?",
+            "c4": "Look for: Did you point out that 31.11 is different from 30, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the calculation to the drone and worker population biology?"
+          }
+        }
+      }
+    },
+    {
+      "id": "077",
+      "level": 3,
+      "topic": "Measurement — Volume",
+      "source": "Original",
+      "context": "A community emergency response centre in Whāngārei maintains a large rainwater tank to supply drinking water during civil defence emergencies.",
+      "data": {
+        "type": "text",
+        "content": "The cylindrical water tank has a flat base area of 3.2 square metres. It is currently filled with water to a depth of 1.5 metres. The emergency plan states the centre must maintain at least 5,000 Litres of water. Note: 1 cubic metre (m³) = 1,000 Litres."
+      },
+      "claim": "The emergency coordinator says, \"The tank currently holds enough water to meet our safety plan requirements.\"",
+      "question": "Is the coordinator correct? Use volume calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it does",
+          "about right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it does not",
+          "not enough"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate water volume in cubic metres: 3.2 square metres × 1.5 m = 4.8 m³",
+            "Convert volume to Litres: 4.8 m³ × 1,000 = 4,800 Litres"
+          ],
+          "result": "4,800 Litres",
+          "explanation": "Yes, it is practically reasonable. Although 4,800 Litres is technically 200 Litres short of the 5,000 L target, this represents 96% of the requirement. In a real-world emergency, 4,800 Litres is more than close enough to be considered sufficient.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the base area (3.2) and depth (1.5) from the question?",
+            "c3": "Look for: Did you multiply 3.2 × 1.5 = 4.8 m³ and convert to 4,800 Litres?",
+            "c4": "Look for: Did you argue that 4,800 L is 96% of the target, supporting 'agree'?",
+            "c5": "Look for: Did you relate the outcome back to emergency planning safety margins?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate water volume in cubic metres: 3.2 square metres × 1.5 m = 4.8 m³",
+            "Convert volume to Litres: 4.8 m³ × 1,000 = 4,800 Litres"
+          ],
+          "result": "4,800 Litres",
+          "explanation": "No, the coordinator is incorrect. The tank only holds 4,800 Litres, which is 200 Litres less than the strict 5,000 L safety requirement. Under the civil defence plan, they are under-prepared and must add more water.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar?",
+            "c2": "Look for: Did you use the base area (3.2) and depth (1.5) from the text?",
+            "c3": "Look for: Did you multiply 3.2 × 1.5 = 4.8 m³ and convert to 4,800 L?",
+            "c4": "Look for: Did you point out that 4,800 L is strictly less than 5,000 L, supporting 'disagree'?",
+            "c5": "Look for: Did you link your answer to the community safety guidelines of the response centre?"
+          }
+        }
+      }
+    },
+    {
+      "id": "078",
+      "level": 3,
+      "topic": "Rate — Cost per Portion",
+      "source": "Original",
+      "context": "A group of university students in Dunedin are planning their weekly communal flat dinner of spaghetti bolognese.",
+      "data": {
+        "type": "table",
+        "caption": "Communal grocery list and prices",
+        "headers": [
+          "Ingredient",
+          "Quantity",
+          "Price"
+        ],
+        "rows": [
+          [
+            "Premium minced beef",
+            "2 kg",
+            "$28.00"
+          ],
+          [
+            "Canned crushed tomatoes",
+            "3 cans",
+            "$1.50 per can"
+          ],
+          [
+            "Bulk pasta pack",
+            "1 kg",
+            "$3.50"
+          ]
+        ],
+        "notes": "The recipe yields exactly 10 equal portions."
+      },
+      "claim": "One flatmate claims, \"The cost of the ingredients is exactly $3.60 per portion.\"",
+      "question": "Is this flatmate's claim correct? Show your calculations.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes she is",
+          "yes he is",
+          "flatmate is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she is not",
+          "no he is not",
+          "flatmate is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate cost of tomatoes: 3 cans × $1.50 = $4.50",
+            "Calculate total grocery cost: $28.00 (beef) + $4.50 (tomatoes) + $3.50 (pasta) = $36.00",
+            "Calculate cost per portion: $36.00 ÷ 10 portions = $3.60 per portion"
+          ],
+          "result": "$3.60 per portion",
+          "explanation": "Yes, the flatmate is correct. The total cost for the ingredients is exactly $36.00. Dividing this total by the 10 portions yields an exact rate of $3.60 per portion.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the pricing values of $28.00, $1.50 (× 3), and $3.50 from the table?",
+            "c3": "Look for: Did you show that the sum is $36.00, and show division by 10 to find $3.60?",
+            "c4": "Look for: Did you verify that your calculation result ($3.60) matches the claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you reference the portions shared among the university flatmates?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Find tomato cost: 3 × $1.50 = $4.50",
+            "Find total cost: $28.00 + $4.50 + $3.50 = $36.00",
+            "Find portion cost: $36.00 ÷ 10 = $3.60"
+          ],
+          "result": "$3.60 per portion",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The total grocery bill is exactly $36.00, which means 10 portions cost exactly $3.60 each. The claim is TRUE.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the math produces exactly $3.60, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "079",
+      "level": 3,
+      "topic": "Statistics — Ratios & Fractions",
+      "source": "Original",
+      "context": "A high school in Rotorua is evaluating its student-to-teacher class ratios for Year 11 science courses.",
+      "data": {
+        "type": "text",
+        "content": "There are 165 Year 11 science students and 6 active science teachers."
+      },
+      "claim": "The principal says, \"Our student-to-teacher ratio is about 25 to 1.\"",
+      "question": "Is the principal's statement reasonable? Use ratios to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Determine the observed student-to-teacher ratio: 165 students ÷ 6 teachers = 27.5 students per teacher",
+            "Compare observed ratio (27.5 : 1) with the principal's claim (25 : 1)"
+          ],
+          "result": "27.5 to 1",
+          "explanation": "Yes, the statement is reasonable as an approximation. The actual ratio is 27.5 students per teacher. While slightly higher, in school planning terms, a difference of 2.5 students per class is close enough to be described as 'about 25 to 1'.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the school values of 165 and 6 from the text?",
+            "c3": "Look for: Did you divide 165 ÷ 6 to find 27.5?",
+            "c4": "Look for: Did you explain that 27.5 is reasonably close to 25, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to student class sizing?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Determine the observed student-to-teacher ratio: 165 students ÷ 6 teachers = 27.5 students per teacher",
+            "Compare observed ratio (27.5 : 1) with the principal's claim (25 : 1)"
+          ],
+          "result": "27.5 to 1",
+          "explanation": "No, the principal's statement is not reasonable. The actual ratio is 27.5 students per teacher, which is 10% higher than the claim of 25. Having an extra 2.5 students in every class increases teacher workload and changes the classroom dynamics significantly.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar?",
+            "c2": "Look for: Did you use the school values of 165 and 6?",
+            "c3": "Look for: Did you divide 165 ÷ 6 to find 27.5?",
+            "c4": "Look for: Did you state that 27.5 is significantly larger than 25, supporting 'disagree'?",
+            "c5": "Look for: Did you explain how an increase of 2.5 students per teacher impacts a class environment?"
+          }
+        }
+      }
+    },
+    {
+      "id": "080",
+      "level": 3,
+      "topic": "Rate — Speed / Pace",
+      "source": "Original",
+      "context": "An athlete is training around Lake Rotorua and tracking their average pace for marathon preparation.",
+      "data": {
+        "type": "text",
+        "content": "The athlete completed a 15 km training run in exactly 1 hour and 12 minutes."
+      },
+      "claim": "Their coach says, \"Your average speed was about 12 kilometres per hour.\"",
+      "question": "Is the coach correct? Use rate and speed calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes they are"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Convert minutes to hours: 12 minutes ÷ 60 = 0.2 hours",
+            "Find total time: 1.2 hours",
+            "Calculate speed: 15 km ÷ 1.2 hours = 12.5 km/h"
+          ],
+          "result": "12.5 km/h",
+          "explanation": "Yes, the coach is correct. The calculated average speed is 12.5 km/h. Since 12.5 is very close to 12 (only 0.5 km/h off), saying the pace was 'about 12 km/h' is a reasonable training estimate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you convert 1 hour 12 minutes to 1.2 hours?",
+            "c3": "Look for: Did you divide 15 by 1.2 to find 12.5 km/h?",
+            "c4": "Look for: Did you explain that 12.5 km/h is close to 12 km/h, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to the athlete's running speed?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Convert minutes to hours: 12 minutes ÷ 60 = 0.2 hours",
+            "Find total time: 1.2 hours",
+            "Calculate speed: 15 km ÷ 1.2 hours = 12.5 km/h"
+          ],
+          "result": "12.5 km/h",
+          "explanation": "No, the coach is incorrect. The actual average speed was 12.5 km/h, which is 0.5 km/h faster than the coach's claim. In marathon pacing, a difference of 0.5 km/h is very significant and represents a much faster pace.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you convert 1 hour 12 minutes into 1.2 hours?",
+            "c3": "Look for: Did you divide 15 by 1.2 to get 12.5 km/h?",
+            "c4": "Look for: Did you argue that 12.5 km/h is significantly faster than 12 km/h, supporting 'disagree'?",
+            "c5": "Look for: Did you explain how a pace difference of 0.5 km/h matters over marathon distances?"
+          }
+        }
+      }
+    },
+    {
+      "id": "081",
+      "level": 3,
+      "topic": "Statistics — Data Interpretation",
+      "source": "Original",
+      "context": "A high school geography class is analyzing winter weather data for Hawke's Bay.",
+      "data": {
+        "type": "table",
+        "caption": "Napier Winter Rainfall",
+        "headers": [
+          "Month",
+          "Total Rainfall (mm)"
+        ],
+        "rows": [
+          [
+            "June",
+            "85"
+          ],
+          [
+            "July",
+            "110"
+          ],
+          [
+            "August",
+            "75"
+          ]
+        ],
+        "notes": "Winter period is defined as June, July, and August."
+      },
+      "claim": "A student says, \"The average monthly rainfall for winter was over 100 mm.\"",
+      "question": "Is the student's statement correct? Use a calculation to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it was"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it was not",
+          "under 100"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Sum the winter rainfall: 85 mm + 110 mm + 75 mm = 270 mm",
+            "Divide by the number of months: 270 mm ÷ 3 = 90 mm"
+          ],
+          "result": "90 mm",
+          "explanation": "⚠️ This stand is NOT supported by the data. The average monthly rainfall is 90 mm, which is less than 100 mm. The student's claim is false. The correct stand is 'disagree'.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — 90 mm is less than 100 mm, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Sum the total winter rainfall: 85 mm + 110 mm + 75 mm = 270 mm",
+            "Calculate the monthly average: 270 mm ÷ 3 months = 90 mm"
+          ],
+          "result": "90 mm",
+          "explanation": "No, the student's statement is incorrect. The average monthly rainfall during winter was 90 mm, which is below the 100 mm mark. Only July had over 100 mm of rain, but the winter average was lower.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the table values (85, 110, 75)?",
+            "c3": "Look for: Did you add the values to get 270 mm and divide by 3 to find 90 mm?",
+            "c4": "Look for: Did you state that 90 mm is less than 100 mm, supporting your 'disagree' stand?",
+            "c5": "Look for: Did you connect the data analysis back to Napier's winter climate?"
+          }
+        }
+      }
+    },
+    {
+      "id": "082",
+      "level": 3,
+      "topic": "Rate — Cost per Unit",
+      "source": "Original",
+      "context": "A small artisanal bakery in Nelson is reviewing their supply costs for flour.",
+      "data": {
+        "type": "text",
+        "content": "The supplier offers bulk 20 kg sacks of organic flour for $32.00, or smaller 5 kg bags of the same flour for $10.50."
+      },
+      "claim": "The head baker says, \"Buying the 20 kg bulk sack saves us about 20% per kilogram compared to the 5 kg bags.\"",
+      "question": "Is the baker's savings estimate reasonable? Use cost-per-kilogram calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Calculate bulk price per kg: $32.00 ÷ 20 kg = $1.60 per kg",
+            "Calculate small bag price per kg: $10.50 ÷ 5 kg = $2.10 per kg",
+            "Calculate price difference: $2.10 − $1.60 = $0.50 per kg",
+            "Calculate percentage savings: ($0.50 ÷ $2.10) × 100 = 23.81% savings"
+          ],
+          "result": "23.81% savings",
+          "explanation": "Yes, the baker is correct. The bulk sack costs $1.60/kg while the smaller bags cost $2.10/kg, which means the bulk sack is 23.8% cheaper. Describing this savings as 'about 20%' is a fair estimate for a quick bakery budget check.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the bulk rate ($1.60/kg) and small bag rate ($2.10/kg)?",
+            "c3": "Look for: Did you find the percentage difference: (0.50 ÷ 2.10) × 100 = 23.8%?",
+            "c4": "Look for: Did you argue that 23.8% is close to 20%, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to the cost savings of buying bulk flour?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Calculate bulk price per kg: $32.00 ÷ 20 kg = $1.60 per kg",
+            "Calculate small bag price per kg: $10.50 ÷ 5 kg = $2.10 per kg",
+            "Calculate price difference: $2.10 − $1.60 = $0.50 per kg",
+            "Calculate percentage savings: ($0.50 ÷ $2.10) × 100 = 23.81% savings"
+          ],
+          "result": "23.81% savings",
+          "explanation": "No, the baker's estimate is not reasonable. The actual bulk savings is 23.8%, which is closer to 25% (one quarter off) than 20% (one fifth off). Understating their savings by nearly 4% can lead to incorrect cost calculations for their products.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you find the rate per kg for bulk ($1.60) and small bags ($2.10)?",
+            "c3": "Look for: Did you calculate the percentage difference as 23.8%?",
+            "c4": "Look for: Did you argue that 23.8% is closer to 25% and too far from 20% to be reasonable, supporting 'disagree'?",
+            "c5": "Look for: Did you refer back to how this impacts the commercial financial planning of the bakery?"
+          }
+        }
+      }
+    },
+    {
+      "id": "083",
+      "level": 3,
+      "topic": "Rate — Cost per Unit",
+      "source": "Original",
+      "context": "A specialty tourist shop in Rotorua sells premium, locally sourced Mānuka honey.",
+      "data": {
+        "type": "table",
+        "caption": "Mānuka Honey Pricing",
+        "headers": [
+          "Jar size",
+          "Retail Price"
+        ],
+        "rows": [
+          [
+            "250 g",
+            "$24.00"
+          ],
+          [
+            "500 g",
+            "$42.50"
+          ]
+        ],
+        "notes": "Prices are GST-inclusive."
+      },
+      "claim": "A customer says, \"The 500-gram jar saves us about 10% per kilogram compared to the smaller jar.\"",
+      "question": "Is the customer's value estimate correct? Use price per kilogram comparisons to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it does"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it does not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Convert 250 g price to per kg: $24.00 × 4 = $96.00 per kg",
+            "Convert 500 g price to per kg: $42.50 × 2 = $85.00 per kg",
+            "Determine difference: $96.00 − $85.00 = $11.00 savings per kg",
+            "Determine savings percentage: ($11.00 ÷ $96.00) × 100 = 11.46% savings"
+          ],
+          "result": "11.46% savings",
+          "explanation": "Yes, the customer is correct. The bulk jar is 11.46% cheaper per kilogram than the smaller jar. Describing this saving as 'about 10%' is a fair, realistic estimation of the price benefit.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the per kg rates ($96.00 vs $85.00)?",
+            "c3": "Look for: Did you find the savings percentage to be 11.46%?",
+            "c4": "Look for: Did you state that 11.46% is close to 10%, supporting 'agree'?",
+            "c5": "Look for: Did you relate your answer back to the Mānuka honey jar sizes?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Convert 250 g price to per kg: $24.00 × 4 = $96.00 per kg",
+            "Convert 500 g price to per kg: $42.50 × 2 = $85.00 per kg",
+            "Determine difference: $96.00 − $85.00 = $11.00 savings per kg",
+            "Determine savings percentage: ($11.00 ÷ $96.00) × 100 = 11.46% savings"
+          ],
+          "result": "11.46% savings",
+          "explanation": "No, the customer is incorrect. The actual savings is 11.46% per kilogram, which is higher than 10%. Over a large tourist purchase, this means they are getting an even better deal than they estimated.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar?",
+            "c2": "Look for: Did you find the cost per kg for both jars ($96.00 and $85.00)?",
+            "c3": "Look for: Did you calculate the percentage difference as 11.46%?",
+            "c4": "Look for: Did you argue that 11.46% is not exactly 10%, supporting 'disagree'?",
+            "c5": "Look for: Did you refer back to buying the specialty Rotorua honey jars?"
+          }
+        }
+      }
+    },
+    {
+      "id": "084",
+      "level": 3,
+      "topic": "Rate — Speed / Pace",
+      "source": "Original",
+      "context": "A player for a local women's club rugby team in Hamilton is tracking her sprint speed during training.",
+      "data": {
+        "type": "text",
+        "content": "The player completes a 60-metre sprint in exactly 7.8 seconds."
+      },
+      "claim": "Her coach says, \"Your average speed during that sprint was about 28 kilometres per hour.\"",
+      "question": "Is the coach's statement reasonable? Use speed calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Calculate speed in metres per second: 60 m ÷ 7.8 s = 7.692 m/s",
+            "Convert m/s to km/h: 7.692 m/s × 3.6 = 27.69 km/h"
+          ],
+          "result": "27.69 km/h",
+          "explanation": "Yes, the coach's statement is reasonable. The calculation shows her average speed was 27.69 km/h, which is extremely close to 28 km/h (a difference of only 0.31 km/h). This is an excellent real-world approximation.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 60 (metres) and 7.8 (seconds)?",
+            "c3": "Look for: Did you show division to get 7.692 m/s and multiplication by 3.6 to get 27.69 km/h?",
+            "c4": "Look for: Did you explain that 27.69 km/h is close to 28 km/h, which supports 'agree'?",
+            "c5": "Look for: Did you connect your answer back to the rugby player's sprint training?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Calculate speed in metres per second: 60 m ÷ 7.8 s = 7.692 m/s",
+            "Convert m/s to km/h: 7.692 m/s × 3.6 = 27.69 km/h"
+          ],
+          "result": "27.69 km/h",
+          "explanation": "No, the statement is not completely reasonable. In athletic sprint tracking, a difference of 0.31 km/h is significant. The player's actual average speed was 27.69 km/h, so claiming it was 28 km/h overstates her performance.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 60 (metres) and 7.8 (seconds)?",
+            "c3": "Look for: Did you show division to get 7.692 m/s and multiplication by 3.6 to get 27.69 km/h?",
+            "c4": "Look for: Did you state that 27.69 km/h is less than 28 km/h, which supports 'disagree'?",
+            "c5": "Look for: Did you explain how a minor speed difference matters in athletic sprint times?"
+          }
+        }
+      }
+    },
+    {
+      "id": "085",
+      "level": 3,
+      "topic": "Measurement — Fencing Spacing",
+      "source": "Original",
+      "context": "A builder is constructing a timber boundary fence for a residential property in Gisborne.",
+      "data": {
+        "type": "text",
+        "content": "The total straight line length of the fence is 18.4 metres. Fencing posts must be placed at equal intervals of exactly 1.6 metres (this includes placing posts at both the starting and ending points of the fence line)."
+      },
+      "claim": "The building apprentice says, \"We only need to purchase 11 posts in total to build this fence.\"",
+      "question": "Is the apprentice correct? Write a calculation that supports your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "not enough"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Divide length by spacing to find intervals: 18.4 m ÷ 1.6 m = 11.5 intervals",
+            "Calculate posts needed (intervals + 1): 11.5 + 1 = 12.5 posts"
+          ],
+          "result": "12.5 posts (rounds up to 13)",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. 11 posts can only create 10 intervals, covering a maximum of 16 metres (10 × 1.6 m = 16 m). To span the full 18.4 metres, they must purchase 13 posts and space the last ones slightly closer. The apprentice is incorrect.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show 11 posts are physically insufficient, contradicting 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Divide length by spacing to find intervals: 18.4 m ÷ 1.6 m = 11.5 intervals",
+            "Calculate posts needed (intervals + 1): 11.5 + 1 = 12.5 posts",
+            "Since they cannot buy half a post, they must purchase 13 posts"
+          ],
+          "result": "13 posts",
+          "explanation": "No, the apprentice is incorrect. Dividing 18.4 m by 1.6 m gives 11.5 intervals. Since a fence needs a post at each end, the number of posts is always one more than the intervals (11.5 + 1 = 12.5). They must purchase 13 posts in total to cover the full length.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 18.4 m and 1.6 m from the question?",
+            "c3": "Look for: Did you divide 18.4 ÷ 1.6 to find 11.5, and add 1 to show 12.5 posts are needed?",
+            "c4": "Look for: Did you state that 13 posts are needed, which is more than 11, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the math to the physical requirement of boundary fence posts at both ends?"
+          }
+        }
+      }
+    },
+    {
+      "id": "086",
+      "level": 3,
+      "topic": "Statistics — Data Interpretation",
+      "source": "Original",
+      "context": "A tourism operator in Queenstown is reviewing winter climate statistics to update their website's visitor safety guide.",
+      "data": {
+        "type": "table",
+        "caption": "Queenstown Average Winter Temperatures",
+        "headers": [
+          "Month",
+          "Average Temperature (C)"
+        ],
+        "rows": [
+          [
+            "June",
+            "-1.2"
+          ],
+          [
+            "July",
+            "-2.8"
+          ],
+          [
+            "August",
+            "-0.5"
+          ]
+        ],
+        "notes": "Temperatures are monthly averages recorded in degrees Celsius."
+      },
+      "claim": "The operator says, \"Our average temperature across the winter months was below -1.5 C.\"",
+      "question": "Is the operator's statement correct? Use temperature calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it was",
+          "about right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it was not",
+          "exactly -1.5"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Sum the temperatures: (-1.2) + (-2.8) + (-0.5) = -4.5 C",
+            "Calculate winter average: -4.5 C ÷ 3 months = -1.5 C"
+          ],
+          "result": "-1.5 C",
+          "explanation": "Yes, the statement is reasonable in a general sense. The calculated average temperature is -1.5 C. Although not strictly 'below' -1.5 C, it is exactly on the boundary, and describing it as such is fair for a general visitor safety guide.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the values -1.2, -2.8, and -0.5 from the table?",
+            "c3": "Look for: Did you add the values to get -4.5 C and divide by 3 to find -1.5 C?",
+            "c4": "Look for: Did you state that -1.5 C is close enough to be considered a reasonable approximation, supporting 'agree'?",
+            "c5": "Look for: Did you link the calculations to Queenstown's winter weather guide?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Sum the temperatures: (-1.2) + (-2.8) + (-0.5) = -4.5 C",
+            "Calculate winter average: -4.5 C ÷ 3 months = -1.5 C"
+          ],
+          "result": "-1.5 C",
+          "explanation": "No, the statement is incorrect. The average winter temperature is exactly -1.5 C. To be 'below -1.5 C', the average would have to be colder (such as -1.6 C or lower). Therefore, the statement is mathematically inaccurate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the values -1.2, -2.8, and -0.5 from the table?",
+            "c3": "Look for: Did you add the values to get -4.5 C and divide by 3 to find -1.5 C?",
+            "c4": "Look for: Did you point out that exactly -1.5 C is not strictly 'below' -1.5 C, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the exact average to the weather claims on the safety guide?"
+          }
+        }
+      }
+    },
+    {
+      "id": "087",
+      "level": 3,
+      "topic": "Statistics — Percentages",
+      "source": "Original",
+      "context": "The Dean of Year 12 at a high school in Tauranga is looking at class enrollment figures for option subjects.",
+      "data": {
+        "type": "table",
+        "caption": "Year 12 Science enrollments",
+        "headers": [
+          "Category",
+          "Student Count"
+        ],
+        "rows": [
+          [
+            "Total Year 12 students",
+            "120"
+          ],
+          [
+            "Taking Biology",
+            "45"
+          ],
+          [
+            "Taking Chemistry",
+            "30"
+          ]
+        ],
+        "notes": "No student is enrolled in both Biology and Chemistry."
+      },
+      "claim": "The Dean claims, \"Over 65% of our Year 12 class is enrolled in either Biology or Chemistry.\"",
+      "question": "Is the Dean's claim correct? Explain your answer using percentages from the table.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes she is",
+          "yes he is"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she is not",
+          "no he is not",
+          "under 65%"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Sum biology and chemistry students: 45 + 30 = 75 students",
+            "Calculate percentage of total class: (75 ÷ 120) × 100 = 62.5%"
+          ],
+          "result": "62.5%",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The total percentage of students enrolled is 62.5%, which is strictly less than 65%. The Dean's claim is false.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — 62.5% is less than 65%, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Sum biology and chemistry students: 45 + 30 = 75 students",
+            "Calculate percentage of total class: (75 ÷ 120) × 100 = 62.5%"
+          ],
+          "result": "62.5%",
+          "explanation": "No, the Dean is incorrect. The combined enrollment in Biology and Chemistry is 75 students. This represents 62.5% of the 120 Year 12 students, which is less than the Dean's claim of 'over 65%'.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 120, 45, and 30 from the table?",
+            "c3": "Look for: Did you add 45 + 30 = 75, and then divide by 120 (and multiply by 100) to find 62.5%?",
+            "c4": "Look for: Did you state that 62.5% is less than 65%, supporting 'disagree'?",
+            "c5": "Look for: Did you relate the enrollment statistics back to the Year 12 class?"
+          }
+        }
+      }
+    },
+    {
+      "id": "088",
+      "level": 3,
+      "topic": "Rate — Money Fundraising",
+      "source": "Original",
+      "context": "A school fun run fundraiser in Palmerston North is raising money for new playground equipment.",
+      "data": {
+        "type": "text",
+        "content": "The entry fee is $15 per runner. A corporate sponsor also pledges to pay $2.50 for every kilometre completed. There are 84 runners, and they complete an average of 4.5 kilometres each."
+      },
+      "claim": "The event coordinator says, \"We will raise about $2,200 in total from this event.\"",
+      "question": "Is the coordinator's estimate reasonable? Use calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Calculate entry fee total: 84 runners × $15 = $1,260.00",
+            "Calculate total kilometres run: 84 × 4.5 km = 378 km",
+            "Calculate sponsor total: 378 km × $2.50 = $945.00",
+            "Calculate total raised: $1,260.00 + $945.00 = $2,205.00"
+          ],
+          "result": "$2,205.00",
+          "explanation": "Yes, the coordinator's estimate is highly reasonable. The exact total raised is $2,205.00, which is only $5.00 away from the $2,200 estimate. Predicting 'about $2,200' is incredibly accurate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the values 15, 2.50, 84, and 4.5 from the text?",
+            "c3": "Look for: Did you multiply 84 × 15 ($1,260) and 84 × 4.5 × 2.50 ($945), then add them to get $2,205?",
+            "c4": "Look for: Did you explain that $2,205 is close to $2,200, supporting 'agree'?",
+            "c5": "Look for: Did you relate your final answer back to the school's playground fundraiser?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Calculate entry fee total: 84 runners × $15 = $1,260.00",
+            "Calculate total kilometres run: 84 × 4.5 km = 378 km",
+            "Calculate sponsor total: 378 km × $2.50 = $945.00",
+            "Calculate total raised: $1,260.00 + $945.00 = $2,205.00"
+          ],
+          "result": "$2,205.00",
+          "explanation": "No, the estimate is not strictly correct. While $2,205.00 is close to $2,200.00, in financial accounting for school events, exact numbers should be reported. The coordinator's estimate is slightly under, so it is not completely correct.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the values 15, 2.50, 84, and 4.5 from the text?",
+            "c3": "Look for: Did you multiply 84 × 15 and 84 × 4.5 × 2.50, and sum them to find $2,205?",
+            "c4": "Look for: Did you state that $2,205 is not exactly $2,200, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the exact balance back to the school's financial reporting?"
+          }
+        }
+      }
+    },
+    {
+      "id": "089",
+      "level": 3,
+      "topic": "Rate — Production Rate",
+      "source": "Original",
+      "context": "A sheep shearer at a historic farming station in Masterton is working through the busy seasonal shearing window.",
+      "data": {
+        "type": "text",
+        "content": "A professional shearer shears an average of 14 sheep per hour. She works an 8-hour shift, which includes two unpaid 15-minute breaks during which no shearing takes place."
+      },
+      "claim": "The station manager says, \"Each shearer will shear about 110 sheep during their shift.\"",
+      "question": "Is the manager's estimate reasonable? Use shearing rate calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Convert breaks to hours: 2 × 15 mins = 30 mins = 0.5 hours",
+            "Calculate active shearing time: 8 hours − 0.5 hours = 7.5 hours",
+            "Calculate total sheep shorn: 7.5 hours × 14 sheep/hour = 105 sheep"
+          ],
+          "result": "105 sheep",
+          "explanation": "Yes, the manager's estimate is reasonable. The calculation shows a shearer will shear 105 sheep in a shift. This is close to the estimate of 110 sheep (a difference of only 5 sheep), making it a fair approximation for planning.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you account for the 30 minutes of unpaid breaks?",
+            "c3": "Look for: Did you multiply the active shearing time of 7.5 hours by 14 to find 105 sheep?",
+            "c4": "Look for: Did you explain that 105 sheep is close to 110, which supports 'agree'?",
+            "c5": "Look for: Did you link your answer back to the farm's shearing schedule?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Convert breaks to hours: 2 × 15 mins = 30 mins = 0.5 hours",
+            "Calculate active shearing time: 8 hours − 0.5 hours = 7.5 hours",
+            "Calculate total sheep shorn: 7.5 hours × 14 sheep/hour = 105 sheep"
+          ],
+          "result": "105 sheep",
+          "explanation": "No, the estimate is not reasonable. The actual number of sheep shorn is 105, which is 5 sheep fewer than estimated. On a large farm with 10 shearers, this overestimation would mean they are short by 50 sheep a day, which disrupts planning.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you deduct 30 minutes of breaks from the 8-hour shift?",
+            "c3": "Look for: Did you multiply 7.5 hours by 14 to find 105 sheep?",
+            "c4": "Look for: Did you state that 105 sheep is less than the estimated 110, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the difference to the operational logistics of the farm?"
+          }
+        }
+      }
+    },
+    {
+      "id": "090",
+      "level": 3,
+      "topic": "Rate — Retail Markup",
+      "source": "Original",
+      "context": "A tourist souvenir store in Auckland is pricing a premium greenstone (pounamu) pendant.",
+      "data": {
+        "type": "text",
+        "content": "The wholesale purchase cost of the pendant is $45.00. The store applies a retail markup of 60% to the cost price, then adds 15% GST to the marked-up price to find the final retail price."
+      },
+      "claim": "The store owner says, \"The final retail price of the pendant is exactly $82.80.\"",
+      "question": "Is the owner correct? Show step-by-step price calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes he is",
+          "yes she is",
+          "owner is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no he is not",
+          "no she is not",
+          "owner is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate marked-up price: $45.00 × 1.60 = $72.00",
+            "Calculate price with 15% GST: $72.00 × 1.15 = $82.80"
+          ],
+          "result": "$82.80",
+          "explanation": "Yes, the owner is correct. Applying a 60% markup raises the wholesale cost of $45.00 to $72.00. Adding 15% GST to $72.00 results in an exact final retail price of $82.80.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the values $45.00, 60%, and 15% GST from the question?",
+            "c3": "Look for: Did you show that the marked-up price is $72.00 and the GST calculation equals $82.80?",
+            "c4": "Look for: Did you verify that your calculated result ($82.80) matches the owner's claim, supporting 'agree'?",
+            "c5": "Look for: Did you relate the calculations back to pricing the greenstone pendant?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate marked-up price: $45.00 × 1.60 = $72.00",
+            "Calculate price with 15% GST: $72.00 × 1.15 = $82.80"
+          ],
+          "result": "$82.80",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The correct step-by-step math results in exactly $82.80, which perfectly supports the owner's claim. The correct stand is 'agree'.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations match the claim of $82.80, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "091",
+      "level": 3,
+      "topic": "Measurement — Length & Wastage",
+      "source": "Original",
+      "context": "A student in a high school technology class in Dunedin is cutting timber to build a custom study desk.",
+      "data": {
+        "type": "text",
+        "content": "The student has a plank of timber that is exactly 2.4 metres long. They need to cut smaller drawer panels that are exactly 38 cm long. Each cut with the saw wastes 3 mm of timber."
+      },
+      "claim": "The student says, \"We can get exactly 6 drawer panels from this plank, leaving about 10 cm of leftover timber waste.\"",
+      "question": "Is the student's statement correct? Use length and cutting wastage calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "about right",
+          "yes they are"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Convert plank length to cm: 2.4 m = 240 cm",
+            "Convert saw waste to cm: 3 mm = 0.3 cm",
+            "Calculate total length of 6 panels: 6 × 38 cm = 228 cm",
+            "Calculate total saw waste for 5 cuts: 5 × 0.3 cm = 1.5 cm",
+            "Calculate total timber used: 228 cm + 1.5 cm = 229.5 cm",
+            "Calculate leftover timber: 240 cm − 229.5 cm = 10.5 cm"
+          ],
+          "result": "10.5 cm of waste",
+          "explanation": "Yes, the student is correct. The total timber used for 6 panels and 5 cuts is 229.5 cm, leaving exactly 10.5 cm of waste. The student's estimate of 'about 10 cm' is highly reasonable and accurate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you convert all units to centimetres (240 cm, 38 cm, 0.3 cm)?",
+            "c3": "Look for: Did you calculate 5 cuts at 0.3 cm ($1.5$ cm) and find the leftover to be 10.5 cm?",
+            "c4": "Look for: Did you explain that 10.5 cm is close to 10 cm, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to cutting timber for the desk drawers?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Convert plank length to cm: 2.4 m = 240 cm",
+            "Convert saw waste to cm: 3 mm = 0.3 cm",
+            "Calculate total length of 6 panels: 6 × 38 cm = 228 cm",
+            "Calculate total saw waste for 5 cuts: 5 × 0.3 cm = 1.5 cm",
+            "Calculate total timber used: 228 cm + 1.5 cm = 229.5 cm",
+            "Calculate leftover timber: 240 cm − 229.5 cm = 10.5 cm"
+          ],
+          "result": "10.5 cm of waste",
+          "explanation": "No, the student is incorrect. The exact leftover amount of timber is 10.5 cm, not 10 cm. In precision cabinet making, a difference of 5 mm is notable, so the estimate is not exactly correct.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you convert all units to centimetres (240 cm, 38 cm, 0.3 cm)?",
+            "c3": "Look for: Did you calculate 5 cuts at 0.3 cm and find the leftover is 10.5 cm?",
+            "c4": "Look for: Did you state that 10.5 cm is not exactly 10 cm, supporting 'disagree'?",
+            "c5": "Look for: Did you explain how a minor difference in timber measurements affects project tolerances?"
+          }
+        }
+      }
+    },
+    {
+      "id": "092",
+      "level": 3,
+      "topic": "Measurement — Volume scaling",
+      "source": "Original",
+      "context": "A hospitality company is catering a large wedding reception in Napier and needs to mix a signature fruit punch.",
+      "data": {
+        "type": "text",
+        "content": "The recipe requires 450 mL of orange juice to make 1.0 Litre of final fruit punch. The catering team needs to make exactly 18 Litres of punch. Note: 1,000 mL = 1 Litre."
+      },
+      "claim": "The kitchen assistant says, \"We need to purchase about 8 Litres of orange juice for this recipe.\"",
+      "question": "Is the assistant's estimate correct? Use volume calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes she is",
+          "yes he is"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she is not",
+          "no he is not",
+          "not enough"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Convert recipe requirement to Litres: 450 mL = 0.45 L",
+            "Calculate total orange juice needed: 18 L × 0.45 L/L = 8.1 Litres"
+          ],
+          "result": "8.1 Litres",
+          "explanation": "Yes, the assistant is correct. The calculation shows they need exactly 8.1 Litres of orange juice. Estimating 'about 8 Litres' is highly accurate (only 100 mL off, which is less than a single serving cup).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 450 mL and 18 L from the question?",
+            "c3": "Look for: Did you show that 18 × 0.45 L equals 8.1 L of orange juice?",
+            "c4": "Look for: Did you explain that 8.1 L is close to 8 L, supporting 'agree'?",
+            "c5": "Look for: Did you connect the calculations to mixing fruit punch for the wedding?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Convert recipe requirement to Litres: 450 mL = 0.45 L",
+            "Calculate total orange juice needed: 18 L × 0.45 L/L = 8.1 Litres"
+          ],
+          "result": "8.1 Litres",
+          "explanation": "No, the assistant is incorrect. The exact amount needed is 8.1 Litres. If they only buy 8 Litres, they will be 100 mL short. In professional catering, you cannot be short of ingredients, so they must buy more than 8 Litres.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 450 mL and 18 L from the question?",
+            "c3": "Look for: Did you show that 18 × 0.45 L equals 8.1 L of orange juice?",
+            "c4": "Look for: Did you state that 8 Litres is strictly less than 8.1 Litres, supporting 'disagree'?",
+            "c5": "Look for: Did you explain how a shortage of ingredients impacts professional catering standards?"
+          }
+        }
+      }
+    },
+    {
+      "id": "093",
+      "level": 3,
+      "topic": "Statistics — Percentages",
+      "source": "Original",
+      "context": "A premier netball team in Invercargill is analyzing season stats for their lead goal-shoot.",
+      "data": {
+        "type": "text",
+        "content": "Over the course of the local championship, the goal-shoot took 240 shots in total and successfully scored 156 goals."
+      },
+      "claim": "The team statistician says, \"Her shooting success rate for the championship was exactly 65%.\"",
+      "question": "Is the statistician correct? Write a calculation that supports your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are",
+          "yes she is"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Divide successful goals by total shots: 156 ÷ 240 = 0.65",
+            "Convert decimal to percentage: 0.65 × 100 = 65%"
+          ],
+          "result": "65%",
+          "explanation": "Yes, the statistician is correct. Dividing the 156 successful goals by the 240 total attempts yields a decimal of exactly 0.65. This corresponds to an exact success rate of 65%.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers 156 and 240 from the question?",
+            "c3": "Look for: Did you divide 156 ÷ 240 and multiply by 100 to find 65%?",
+            "c4": "Look for: Did you verify that your calculated result (65%) matches the claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you connect the percentage success rate to the netball shooting stats?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Divide successful goals by total shots: 156 ÷ 240 = 0.65",
+            "Convert decimal to percentage: 0.65 × 100 = 65%"
+          ],
+          "result": "65%",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The division of successful goals by total shots results in exactly 65%, proving the statistician's claim is mathematically correct. The correct stand is 'agree'.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations match the success rate of 65%, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "094",
+      "level": 3,
+      "topic": "Rate — Cost Comparison",
+      "source": "Original",
+      "context": "The IT department at a high school in Wellington is selecting software licenses for student laptops.",
+      "data": {
+        "type": "table",
+        "caption": "Design Software License Plans",
+        "headers": [
+          "License Option",
+          "Cost Specification"
+        ],
+        "rows": [
+          [
+            "Plan A (Monthly)",
+            "$12.00 per user, per month"
+          ],
+          [
+            "Plan B (Annual)",
+            "$110.00 per user, per year"
+          ]
+        ],
+        "notes": "Prices are GST-inclusive."
+      },
+      "claim": "The IT Lead says, \"Choosing the annual Plan B will save us about 30% per user compared to the monthly Plan A.\"",
+      "question": "Is the IT Lead's statement correct? Use pricing calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it does"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it does not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate Plan A annual cost: $12.00 × 12 months = $144.00",
+            "Calculate price difference: $144.00 − $110.00 = $34.00",
+            "Calculate savings percentage: ($34.00 ÷ $144.00) × 100 = 23.61% savings"
+          ],
+          "result": "23.61% savings",
+          "explanation": "Yes, the statement is reasonable as a loose approximation. Choosing Plan B saves $34.00 per user annually, which is a 23.61% discount. While not exactly 30%, in business planning, a discount of nearly one-quarter is close enough to be called 'about 30%' as a selling point.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the annual cost of Plan A ($144.00)?",
+            "c3": "Look for: Did you calculate the percentage savings of 23.61%?",
+            "c4": "Look for: Did you explain that 23.61% is close to 30%, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer back to the school's software licensing budget?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate Plan A annual cost: $12.00 × 12 months = $144.00",
+            "Calculate price difference: $144.00 − $110.00 = $34.00",
+            "Calculate savings percentage: ($34.00 ÷ $144.00) × 100 = 23.61% savings"
+          ],
+          "result": "23.61% savings",
+          "explanation": "No, the IT Lead is incorrect. The actual saving is 23.61%, which is closer to 20% or 25% than 30%. Overstating the discount by over 6% is inaccurate and misleading for school financial planning.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate the annual cost of Plan A ($144.00)?",
+            "c3": "Look for: Did you find the percentage difference is 23.61%?",
+            "c4": "Look for: Did you state that 23.61% is significantly less than 30%, supporting 'disagree'?",
+            "c5": "Look for: Did you explain how a 6% variance affects the school's financial tracking?"
+          }
+        }
+      }
+    },
+    {
+      "id": "095",
+      "level": 3,
+      "topic": "Statistics — Percentage Change",
+      "source": "Original",
+      "context": "A family-run honey farm in Northland is comparing their total raw honey yield across consecutive years.",
+      "data": {
+        "type": "text",
+        "content": "The total harvest in 2024 was 1,200 kg. In 2025, the farm produced 1,560 kg of honey."
+      },
+      "claim": "The farm owner says, \"Our honey harvest increased by about 25% this year.\"",
+      "question": "Is the owner's statement correct? Use percentage increase calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it did"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it did not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate honey increase: 1,560 kg − 1,200 kg = 360 kg",
+            "Calculate percentage increase: (360 kg ÷ 1,200 kg) × 100 = 30%"
+          ],
+          "result": "30% increase",
+          "explanation": "Yes, the owner's statement is reasonable. The actual increase is 30%. Estimating an increase of 'about 25%' is a fair, conservative approximation for a quick seasonal agricultural assessment.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the weight increase (360 kg)?",
+            "c3": "Look for: Did you divide 360 by 1,200 (and multiply by 100) to find 30%?",
+            "c4": "Look for: Did you argue that 30% is close to 25%, supporting 'agree'?",
+            "c5": "Look for: Did you relate the calculations back to the farm's honey harvest yield?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate honey increase: 1,560 kg − 1,200 kg = 360 kg",
+            "Calculate percentage increase: (360 kg ÷ 1,200 kg) × 100 = 30%"
+          ],
+          "result": "30% increase",
+          "explanation": "No, the owner is incorrect. The actual percentage increase is exactly 30%, which is a full 5% absolute difference from the claimed 25%. Understating their growth by this much represents an inaccurate performance report.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you find the weight difference of 360 kg?",
+            "c3": "Look for: Did you divide 360 by 1,200 to find 30%?",
+            "c4": "Look for: Did you point out that 30% is not equal to 25%, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the exact rate of increase back to the farm's performance metrics?"
+          }
+        }
+      }
+    },
+    {
+      "id": "096",
+      "level": 3,
+      "topic": "Rate — Cost Comparison",
+      "source": "Original",
+      "context": "A family is planning a road trip across the South Island starting in Nelson and looking at rental vehicle quotes.",
+      "data": {
+        "type": "table",
+        "caption": "Campervan Rental Rates",
+        "headers": [
+          "Expense Category",
+          "Cost Specification"
+        ],
+        "rows": [
+          [
+            "Base vehicle hire",
+            "$140.00 per day"
+          ],
+          [
+            "Insurance waiver fee",
+            "$35.00 per day"
+          ],
+          [
+            "One-off deep cleaning fee",
+            "$120.00"
+          ]
+        ],
+        "notes": "The rental period is 10 days."
+      },
+      "claim": "The family tourist says, \"A 10-day hire including insurance and the cleaning fee will cost exactly $1,750.\"",
+      "question": "Is the tourist's cost calculation correct? Show step-by-step pricing calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "forgot cleaning fee"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate base hire cost: 10 days × $140.00 = $1,400.00",
+            "Calculate insurance cost: 10 days × $35.00 = $350.00",
+            "Add one-off cleaning fee: $1,400.00 + $350.00 + $120.00 = $1,870.00"
+          ],
+          "result": "$1,870.00",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The correct total including the one-off cleaning fee is $1,870.00. The tourist's claim of $1,750.00 forgot to include the $120.00 cleaning fee. The tourist is incorrect.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show $1,870.00, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate base hire cost: 10 days × $140.00 = $1,400.00",
+            "Calculate insurance cost: 10 days × $35.00 = $350.00",
+            "Add the one-off cleaning fee: $1,400.00 + $350.00 + $120.00 = $1,870.00"
+          ],
+          "result": "$1,870.00",
+          "explanation": "No, the tourist is incorrect. The total cost of the 10-day campervan hire is $1,870.00. The tourist's calculation of $1,750.00 only accounts for the base hire and the daily insurance, missing the one-off $120.00 cleaning fee.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the daily rates of $140, $35, and the cleaning fee of $120?",
+            "c3": "Look for: Did you multiply (10 × $140) + (10 × $35) and add $120 to find $1,870?",
+            "c4": "Look for: Did you state that $1,870 is different from the claimed $1,750, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the calculations back to the campervan holiday rental expenses?"
+          }
+        }
+      }
+    },
+    {
+      "id": "097",
+      "level": 3,
+      "topic": "Rate — Volume processed",
+      "source": "Original",
+      "context": "An environmental scientist is monitoring water filtration rates at a treatment facility in Taupō.",
+      "data": {
+        "type": "text",
+        "content": "A high-performance water filtration unit processes water at a rate of 12.5 Litres per minute."
+      },
+      "claim": "The lead engineer says, \"This filtration unit will process about 700 Litres of water in an hour.\"",
+      "question": "Is the engineer's statement reasonable? Use time and rate calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it will"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it will not"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Convert hours to minutes: 1 hour = 60 minutes",
+            "Calculate total volume: 60 minutes × 12.5 L/minute = 750 Litres"
+          ],
+          "result": "750 Litres",
+          "explanation": "Yes, the statement is reasonable. The calculation shows the unit filters 750 Litres in an hour. While 750 L is slightly higher than 700 L, as a rough field estimate, 'about 700' represents a fair approximation.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the rate of 12.5 Litres per minute and 60 minutes in an hour?",
+            "c3": "Look for: Did you multiply 60 × 12.5 to find 750 Litres?",
+            "c4": "Look for: Did you explain that 750 L is close to 700 L, supporting 'agree'?",
+            "c5": "Look for: Did you connect the calculations back to the daily work of the filtration facility?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Convert hours to minutes: 1 hour = 60 minutes",
+            "Calculate total volume: 60 minutes × 12.5 L/minute = 750 Litres"
+          ],
+          "result": "750 Litres",
+          "explanation": "No, the statement is not reasonable. The exact volume of water processed is 750 Litres. Underestimating the volume by 50 Litres is a significant error when calculating waste and holding tank capacities.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the rate of 12.5 Litres per minute and 60 minutes in an hour?",
+            "c3": "Look for: Did you multiply 60 × 12.5 to find 750 Litres?",
+            "c4": "Look for: Did you state that 750 Litres is more than 700 Litres, supporting 'disagree'?",
+            "c5": "Look for: Did you explain how a 50 L shortage affects environmental facility tracking?"
+          }
+        }
+      }
+    },
+    {
+      "id": "098",
+      "level": 3,
+      "topic": "Measurement — Grazing Area",
+      "source": "Original",
+      "context": "A dairy farmer in Taranaki is setting up a new electric fence paddock to graze a herd of cows.",
+      "data": {
+        "type": "text",
+        "content": "The paddock measures exactly 120 metres in length by 80 metres in width. For healthy grass recovery, the grazing density should not exceed 1 cow per 150 square metres."
+      },
+      "claim": "The farmer says, \"We can safely graze 65 cows in this paddock without over-grazing.\"",
+      "question": "Is the farmer's grazing plan reasonable? Use paddock area and density calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes they can"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they cannot",
+          "over-grazed"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Calculate paddock area: 120 m × 80 m = 9,600 square metres",
+            "Calculate maximum cows: 9,600 m² ÷ 150 m² per cow = 64 cows"
+          ],
+          "result": "64 cows",
+          "explanation": "Yes, the plan is reasonable. The paddock can safely support 64 cows. Grazing 65 cows is only one cow over the limit (a minor variance of less than 2%), which is practically negligible for paddock health.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the paddock dimensions of 120 m and 80 m?",
+            "c3": "Look for: Did you multiply 120 × 80 to get 9,600 m², and then divide by 150 to find 64 cows?",
+            "c4": "Look for: Did you explain that 64 is close enough to 65 to be reasonable, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results to the health of the paddock grass?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Calculate paddock area: 120 m × 80 m = 9,600 square metres",
+            "Calculate maximum cows: 9,600 m² ÷ 150 m² per cow = 64 cows"
+          ],
+          "result": "64 cows",
+          "explanation": "No, the plan is not reasonable. The paddock has a maximum grazing capacity of exactly 64 cows. Grazing 65 cows exceeds the strict density limit, which will over-graze the pasture and slow down the grass recovery cycle.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the paddock dimensions of 120 m and 80 m?",
+            "c3": "Look for: Did you multiply 120 × 80 to get 9,600 m², and then divide by 150 to find 64 cows?",
+            "c4": "Look for: Did you state that 65 is more than the maximum limit of 64, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the excess density back to the environmental health of the pasture?"
+          }
+        }
+      }
+    },
+    {
+      "id": "099",
+      "level": 4,
+      "topic": "Rate — Cost per Unit",
+      "source": "Original",
+      "context": "A small business owner in Hamilton is purchasing cleaning supplies in bulk to minimize monthly operating expenses.",
+      "data": {
+        "type": "text",
+        "content": "Brand A costs $14.50 for a 3 kg tub, and the owner has a 10% coupon off this price. Brand B costs $22.50 for a 5 kg tub with no available discount."
+      },
+      "claim": "The store assistant says, \"Brand A is the cheaper option per kilogram after using the 10% coupon.\"",
+      "question": "Is the assistant correct? Show step-by-step unit price calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are",
+          "brand a is cheaper",
+          "she is right",
+          "he is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "brand b is cheaper",
+          "she is wrong",
+          "he is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Brand A raw cost: $14.50",
+            "Brand A discounted cost: $14.50 × 0.90 = $13.05",
+            "Brand A unit price per kg: $13.05 ÷ 3 kg = $4.35 per kg",
+            "Brand B unit price per kg: $22.50 ÷ 5 kg = $4.50 per kg",
+            "Compare rates: $4.35 per kg is less than $4.50 per kg"
+          ],
+          "result": "$4.35 per kg vs $4.50 per kg",
+          "explanation": "Yes, the assistant is correct. Brand A's discounted rate is exactly $4.35 per kilogram, which is cheaper than Brand B's flat rate of $4.50 per kilogram.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $14.50, 3 kg, $22.50, 5 kg, and the 10% discount?",
+            "c3": "Look for: Did you show that Brand A costs $4.35/kg and Brand B costs $4.50/kg?",
+            "c4": "Look for: Did you state that $4.35 < $4.50, supporting your 'agree' position?",
+            "c5": "Look for: Did you relate the outcome back to the bulk business cleaning supply costs?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Brand A discounted cost: $14.50 × 0.90 = $13.05",
+            "Brand A unit price per kg: $13.05 ÷ 3 kg = $4.35 per kg",
+            "Brand B unit price per kg: $22.50 ÷ 5 kg = $4.50 per kg",
+            "Compare rates: $4.35 < $4.50"
+          ],
+          "result": "$4.35 per kg vs $4.50 per kg",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Brand A's rate of $4.35 per kg is indeed cheaper than Brand B's rate of $4.50 per kg. There is no mathematical basis to disagree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — Brand A is cheaper, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "100",
+      "level": 4,
+      "topic": "Rate — Fuel Efficiency",
+      "source": "Original",
+      "context": "A family is comparing fuel costs between a petrol car and a diesel campervan for a 1,500 km South Island holiday.",
+      "data": {
+        "type": "text",
+        "content": "The Petrol car consumes 9.5 L/100km at $2.60/L. The Diesel campervan consumes 8.0 L/100km at $2.15/L, but must pay an additional Road User Charge (RUC) of $0.08 per kilometre."
+      },
+      "claim": "The dad says, \"The petrol vehicle is the cheaper option to drive for this road trip.\"",
+      "claim_eval": "Is the dad correct? Show step-by-step fuel and road tax calculations to explain your answer.",
+      "question": "Is the dad correct? Show step-by-step fuel and road tax calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it is",
+          "about right",
+          "he is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "diesel is cheaper",
+          "he is wrong"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Petrol car total fuel cost: (1,500 ÷ 100) × 9.5 L × $2.60 = 142.5 L × $2.60 = $370.50",
+            "Diesel camper fuel cost: (1,500 ÷ 100) × 8.0 L × $2.15 = 120 L × $2.15 = $258.00",
+            "Diesel camper RUC cost: 1,500 km × $0.08 = $120.00",
+            "Diesel camper total cost: $258.00 + $120.00 = $378.00"
+          ],
+          "result": "$370.50 (Petrol) vs $378.00 (Diesel)",
+          "explanation": "Yes, the dad is correct. Driving the petrol car will cost $370.50, which is $7.50 cheaper than the diesel campervan's total of $378.00 once the Road User Charges are factored in.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use 1,500 km, 9.5 L/100km, $2.60/L, 8.0 L/100km, $2.15/L, and $0.08/km?",
+            "c3": "Look for: Did you show that Petrol costs $370.50 and Diesel costs $378.00 (including the $120 RUC)?",
+            "c4": "Look for: Did you explain that $370.50 is cheaper than $378.00, supporting 'agree'?",
+            "c5": "Look for: Did you relate the outcome back to the South Island road trip planning?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Petrol car total fuel cost: (1,500 ÷ 100) × 9.5 L × $2.60 = 142.5 L × $2.60 = $370.50",
+            "Diesel camper fuel cost: (1,500 ÷ 100) × 8.0 L × $2.15 = 120 L × $2.15 = $258.00",
+            "Diesel camper RUC cost: 1,500 km × $0.08 = $120.00",
+            "Diesel camper total cost: $258.00 + $120.00 = $378.00"
+          ],
+          "result": "$370.50 (Petrol) vs $378.00 (Diesel)",
+          "explanation": "No, the dad is incorrect to dismiss the diesel option completely. The difference is only $7.50 (less than a 2% variance on a long trip). The diesel campervan has a much larger passenger and luggage capacity, making it a more practical choice for the holiday.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers from the data and calculate $370.50 and $378.00 correctly?",
+            "c3": "Look for: Did you show that the price difference is only $7.50?",
+            "c4": "Look for: Did you argue that a 2% price difference is too small to make the petrol car the clearly superior financial choice?",
+            "c5": "Look for: Did you connect the practical utility of a campervan over a car to the family holiday scenario?"
+          }
+        }
+      }
+    },
+    {
+      "id": "101",
+      "level": 4,
+      "topic": "Rate — Broadband Data Usage",
+      "source": "Original",
+      "context": "Three flatmates sharing an apartment in Dunedin have a broadband plan with a monthly data cap.",
+      "data": {
+        "type": "text",
+        "content": "Their plan has a data cap of 150 Gigabytes (GB) per month. Streaming video in 4K resolution uses 7 GB of data per hour. Streaming in 1080p uses 3 GB per hour."
+      },
+      "claim": "One flatmate claims: \"Over a 30-day month, we can safely stream a combined total of 10 hours of 4K video and 25 hours of 1080p video without exceeding our cap.\"",
+      "question": "Is this claim correct? Show data usage calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they can",
+          "it will stay under"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they cannot",
+          "it will exceed"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Data used by 10 hours of 4K: 10 × 7 GB = 70 GB",
+            "Data used by 25 hours of 1080p: 25 × 3 GB = 75 GB",
+            "Total predicted data use: 70 GB + 75 GB = 145 GB",
+            "Compare to limit: 145 GB < 150 GB data cap"
+          ],
+          "result": "145 GB used",
+          "explanation": "Yes, the flatmate's claim is correct. Their combined streaming usage will total 145 GB, which safely sits under the 150 GB broadband data cap.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the values 150 GB, 7 GB/hour, 3 GB/hour, 10 hours, and 25 hours?",
+            "c3": "Look for: Did you show that 10 × 7 = 70 GB and 25 × 3 = 75 GB, adding up to 145 GB?",
+            "c4": "Look for: Did you state that 145 GB < 150 GB, supporting your 'agree' position?",
+            "c5": "Look for: Did you relate the outcome back to the flatmates' monthly internet plan?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Data used by 10 hours of 4K: 10 × 7 GB = 70 GB",
+            "Data used by 25 hours of 1080p: 25 × 3 GB = 75 GB",
+            "Total predicted data use: 70 GB + 75 GB = 145 GB",
+            "Calculate safety margin: 150 GB − 145 GB = 5 GB remaining"
+          ],
+          "result": "145 GB used",
+          "explanation": "No, this is not a safe claim. The total data use is 145 GB, leaving only a 5 GB safety margin (about 3% left over). Standard web browsing, system updates, and social media from three flatmates will easily consume this remaining 5 GB and breach the cap.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you find the total streaming consumption of 145 GB correctly?",
+            "c3": "Look for: Did you calculate that only 5 GB remains from the 150 GB cap?",
+            "c4": "Look for: Did you argue that 5 GB is an insufficient margin for other basic internet usage, supporting 'disagree'?",
+            "c5": "Look for: Did you link your answer to the real-world usage habits of multiple flatmates sharing a line?"
+          }
+        }
+      }
+    },
+    {
+      "id": "102",
+      "level": 4,
+      "topic": "Statistics — Percentage Comparison",
+      "source": "Original",
+      "context": "A regional premier netball team is analyzing the season-to-season shooting performance of their star goal shoot.",
+      "data": {
+        "type": "text",
+        "content": "In Season 1, the player scored 320 goals from 410 shot attempts. In Season 2, she scored 280 goals from 350 attempts."
+      },
+      "claim": "The coach claims, \"Her overall shooting accuracy conversion rate improved in Season 2 compared to Season 1.\"",
+      "question": "Is the coach correct? Explain your answer using percentage conversion rate calculations.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes she did",
+          "it improved",
+          "she is right",
+          "he is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she did not",
+          "it did not improve",
+          "she is wrong",
+          "he is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Season 1 accuracy: 320 ÷ 410 = 0.7805 = 78.05%",
+            "Season 2 accuracy: 280 ÷ 350 = 0.8000 = 80.00%",
+            "Compare conversion rates: 80.00% is greater than 78.05%"
+          ],
+          "result": "78.05% vs 80.00%",
+          "explanation": "Yes, the coach is correct. Her shooting accuracy increased from 78.05% in Season 1 to 80.00% in Season 2, showing an improvement of 1.95% percentage points.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the counts of 320, 410, 280, and 350?",
+            "c3": "Look for: Did you divide to find both percentages (78.05% and 80.00%)?",
+            "c4": "Look for: Did you show that 80.00% > 78.05%, supporting your positive stand?",
+            "c5": "Look for: Did you link the statistics back to the goal shoot's netball performance?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Season 1 accuracy: 320 ÷ 410 = 78.05%",
+            "Season 2 accuracy: 280 ÷ 350 = 80.00%",
+            "Compare conversion rates: 80.00% > 78.05%"
+          ],
+          "result": "78.05% vs 80.00%",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The shooting accuracy in Season 2 (80.00%) is strictly higher than in Season 1 (78.05%). The coach's claim of improvement is true.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — Season 2 is higher, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "103",
+      "level": 4,
+      "topic": "Measurement — Area & Wastage",
+      "source": "Original",
+      "context": "A licensed builder is ordering premium cedar decking boards to construct a patio deck in Nelson.",
+      "data": {
+        "type": "text",
+        "content": "The rectangular patio floor area to cover is exactly 18.2 square metres. The chosen decking timber boards are 140 mm wide and 4.5 metres long. Note: 1,000 mm = 1 metre."
+      },
+      "claim": "The building apprentice says, \"If we allow a 10% wastage margin for offcuts, we will need to order exactly 32 of these boards.\"",
+      "question": "Is the apprentice's calculation correct? Show step-by-step length, area, and percentage calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "about right",
+          "yes they are"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Convert board width to metres: 140 mm ÷ 1,000 = 0.14 m",
+            "Calculate area of a single board: 0.14 m × 4.5 m = 0.63 m²",
+            "Calculate base boards required: 18.2 m² ÷ 0.63 m² = 28.89 boards",
+            "Add 10% wastage margin: 28.89 × 1.10 = 31.78 boards",
+            "Round up to whole boards: 32 boards must be ordered"
+          ],
+          "result": "32 boards",
+          "explanation": "Yes, the apprentice is correct. The base requirement is 28.89 boards. Adding a 10% waste margin gives 31.78 boards. Since boards can only be ordered as whole items, rounding up to exactly 32 boards is correct.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you convert 140 mm to 0.14 m and calculate the board area (0.63 m²)?",
+            "c3": "Look for: Did you show that 18.2 m² requires 28.89 boards, and adding 10% equals 31.78?",
+            "c4": "Look for: Did you explain that 31.78 rounds up to 32 whole boards, supporting 'agree'?",
+            "c5": "Look for: Did you connect your work back to ordering construction lumber for the patio?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Convert board width to metres: 140 mm ÷ 1,000 = 0.14 m",
+            "Calculate area of a single board: 0.14 m × 4.5 m = 0.63 m²",
+            "Calculate base boards required: 18.2 m² ÷ 0.63 m² = 28.89 boards",
+            "Add 10% wastage margin: 28.89 × 1.10 = 31.78 boards"
+          ],
+          "result": "31.78 boards",
+          "explanation": "No, the apprentice's calculation is not completely correct. The exact calculation yields 31.78 boards. If they order 32 boards, they are purchasing slightly more than a 10% wastage margin. In high-cost cedar decking projects, tighter margins might allow them to buy exactly 31 boards, depending on cut layout.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate the single board coverage as 0.63 m²?",
+            "c3": "Look for: Did you show that the exact calculation with a 10% margin is 31.78 boards?",
+            "c4": "Look for: Did you argue that purchasing 32 boards over-allocates the budget slightly, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the tolerances back to high-grade construction timber waste control?"
+          }
+        }
+      }
+    },
+    {
+      "id": "104",
+      "level": 4,
+      "topic": "Measurement — Volume Scaling",
+      "source": "Original",
+      "context": "A hospitality catering team in Napier is preparing punch drinks for a large wedding reception.",
+      "data": {
+        "type": "text",
+        "content": "A standard recipe serves 25 guests and requires 1.25 L of ginger ale. The reception has 350 guests. Ginger ale is sold in 1.5 L bottles costing $2.20 per bottle."
+      },
+      "claim": "The kitchen assistant claims, \"We need to purchase exactly 12 bottles of ginger ale, which will cost our client $26.40.\"",
+      "question": "Is the assistant correct? Show step-by-step scaling and cost calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes she is",
+          "yes he is",
+          "she is correct",
+          "he is correct"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she is not",
+          "no he is not",
+          "cost is different"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate recipe scaling factor: 350 guests ÷ 25 guests = 14 times",
+            "Calculate total ginger ale needed: 14 × 1.25 L = 17.5 Litres",
+            "Calculate bottles of ginger ale required: 17.5 L ÷ 1.5 L per bottle = 11.67 bottles",
+            "Round up to whole bottles: 12 bottles must be purchased",
+            "Calculate total purchase cost: 12 bottles × $2.20 = $26.40"
+          ],
+          "result": "$26.40 for 12 bottles",
+          "explanation": "Yes, the assistant is correct. Scaling the recipe by 14 requires 17.5 L of ginger ale. This necessitates purchasing 12 whole bottles, costing exactly $26.40.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the scale factor of 14 and the total volume of 17.5 L?",
+            "c3": "Look for: Did you show that 17.5 L ÷ 1.5 L = 11.67 bottles, which rounds up to 12?",
+            "c4": "Look for: Did you verify that 12 bottles × $2.20 equals exactly $26.40, supporting 'agree'?",
+            "c5": "Look for: Did you connect the steps back to catering for the 350 wedding guests?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Scale factor: 350 ÷ 25 = 14",
+            "Total volume: 14 × 1.25 L = 17.5 L",
+            "Bottles needed: 17.5 L ÷ 1.5 L = 11.67 -> rounds to 12 bottles",
+            "Total cost: 12 × $2.20 = $26.40"
+          ],
+          "result": "$26.40",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The math shows the catering team requires 17.5 L, meaning 12 full bottles must be bought. The total cost is exactly $26.40. There is no mathematical basis to disagree.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations match $26.40, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "105",
+      "level": 4,
+      "topic": "Statistics — Percentage Increase",
+      "source": "Original",
+      "context": "A beekeeper in Taupō is comparing the honey production growth rates of two beehives over a two-month spring window.",
+      "data": {
+        "type": "text",
+        "content": "Hive A produced 18 kg of honey in October and 24 kg in November. Hive B produced 15 kg in October and 21 kg in November."
+      },
+      "claim": "The beekeeper says, \"Hive B had a greater percentage increase in production from October to November than Hive A.\"",
+      "question": "Is the beekeeper's statement correct? Show percentage increase calculations for both hives to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it did",
+          "hive b is higher",
+          "she is right",
+          "he is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it did not",
+          "hive a is higher",
+          "she is wrong",
+          "he is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Hive A production increase: 24 kg − 18 kg = 6 kg",
+            "Hive A percentage increase: (6 kg ÷ 18 kg) × 100 = 33.33%",
+            "Hive B production increase: 21 kg − 15 kg = 6 kg",
+            "Hive B percentage increase: (6 kg ÷ 15 kg) × 100 = 40.00%",
+            "Compare percentage increases: 40.00% is greater than 33.33%"
+          ],
+          "result": "33.33% (Hive A) vs 40.00% (Hive B)",
+          "explanation": "Yes, the beekeeper is correct. Although both hives increased production by exactly 6 kg, Hive B had a smaller starting output (15 kg), resulting in a higher growth rate of 40% compared to Hive A's 33.33%.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you find that both hives increased output by 6 kg?",
+            "c3": "Look for: Did you calculate the percentages correctly (Hive A at 33.33%, Hive B at 40.00%)?",
+            "c4": "Look for: Did you explain that 40.00% > 33.33%, which validates the beekeeper's claim?",
+            "c5": "Look for: Did you link the results back to the seasonal honey production data?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Hive A percentage increase: (24 − 18) ÷ 18 = 33.33%",
+            "Hive B percentage increase: (21 − 15) ÷ 15 = 40.00%",
+            "Compare: 40% > 33.33%"
+          ],
+          "result": "33.33% vs 40.00%",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Hive B's percentage increase (40.00%) is mathematically higher than Hive A's (33.33%). The beekeeper's statement is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — 40% > 33.33%, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "106",
+      "level": 4,
+      "topic": "Measurement — Volume",
+      "source": "Original",
+      "context": "A honey production facility in Taupō is selecting a new stainless steel storage tank to store liquid honey.",
+      "data": {
+        "type": "table",
+        "caption": "Honey Tank Specifications",
+        "headers": [
+          "Tank Model",
+          "Base Diameter",
+          "Height"
+        ],
+        "rows": [
+          [
+            "Model A (Short & Wide)",
+            "1.2 m",
+            "1.5 m"
+          ],
+          [
+            "Model B (Tall & Narrow)",
+            "1.0 m",
+            "2.2 m"
+          ]
+        ],
+        "notes": "Volume of a cylinder = π × r² × h. Use 3.1416 for π. Radius (r) is half of the diameter."
+      },
+      "claim": "The floor supervisor claims, \"Model B has a larger volume capacity than Model A.\"",
+      "question": "Is the supervisor correct? Show step-by-step volume calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are",
+          "model b is larger",
+          "she is right",
+          "he is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "model a is larger",
+          "she is wrong",
+          "he is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Model A Radius: 1.2 m ÷ 2 = 0.6 m",
+            "Model A Volume: 3.1416 × (0.6)² × 1.5 = 3.1416 × 0.36 × 1.5 = 1.6965 m³ (approx 1,696 Litres)",
+            "Model B Radius: 1.0 m ÷ 2 = 0.5 m",
+            "Model B Volume: 3.1416 × (0.5)² × 2.2 = 3.1416 × 0.25 × 2.2 = 1.7279 m³ (approx 1,728 Litres)",
+            "Compare capacities: 1.7279 m³ is greater than 1.6965 m³"
+          ],
+          "result": "1.6965 m³ (Model A) vs 1.7279 m³ (Model B)",
+          "explanation": "Yes, the supervisor is correct. Model B's volume is approximately 1.7279 cubic metres (1,728 Litres), which is larger than Model A's capacity of 1.6965 cubic metres (1,696 Litres) by about 32 Litres.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you divide the diameters by 2 to get radii of 0.6 m and 0.5 m?",
+            "c3": "Look for: Did you apply the cylinder formula to find volumes of 1.6965 m³ and 1.7279 m³ correctly?",
+            "c4": "Look for: Did you state that 1.7279 > 1.6965, supporting 'agree'?",
+            "c5": "Look for: Did you connect the outcome back to the industrial honey storage tanks?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Model A Vol: 3.1416 × 0.6² × 1.5 = 1.6965 m³",
+            "Model B Vol: 3.1416 × 0.5² × 2.2 = 1.7279 m³",
+            "Compare: 1.7279 > 1.6965"
+          ],
+          "result": "1.6965 m³ vs 1.7279 m³",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Model B holds 1.7279 m³ of volume, which is strictly greater than Model A (1.6965 m³). The supervisor is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — Model B is larger, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "107",
+      "level": 4,
+      "topic": "Statistics — Proportions & Revenue",
+      "source": "Original",
+      "context": "A sports club in Invercargill is analyzing gate ticketing receipts to project revenue growth for next season.",
+      "data": {
+        "type": "table",
+        "caption": "Ticketing specifications and data",
+        "headers": [
+          "Variable",
+          "Standard / Historical rate"
+        ],
+        "rows": [
+          [
+            "Adult Ticket Price",
+            "$25.00"
+          ],
+          [
+            "Child Ticket Price",
+            "$12.50"
+          ],
+          [
+            "Historical Ticket Mix",
+            "60% Adult / 40% Child"
+          ],
+          [
+            "Total spectators (Last Year)",
+            "800"
+          ]
+        ],
+        "notes": "All ticket options are subject to change based on population attendance."
+      },
+      "claim": "The club treasurer claims, \"If our total attendance increases by 15% next year, our total gate revenue will increase even if the ticket mix shifts to a higher proportion of children at 50% Adult / 50% Child.\"",
+      "question": "Is the treasurer correct? Show step-by-step revenue comparisons for both seasons to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it will",
+          "revenue will increase",
+          "she is right",
+          "he is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it will not",
+          "revenue will decrease",
+          "she is wrong",
+          "he is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Last Year: Calculate ticket volumes: 800 × 0.60 = 480 adults, 800 × 0.40 = 320 children",
+            "Last Year: Calculate revenue: (480 × $25.00) + (320 × $12.50) = $12,000 + $4,000 = $16,000",
+            "Projected Year: Calculate spectators: 800 × 1.15 = 920 total spectators",
+            "Projected Year: Calculate ticket volumes: 920 × 0.50 = 460 adults, 920 × 0.50 = 460 children",
+            "Projected Year: Calculate revenue: (460 × $25.00) + (460 × $12.50) = $11,500 + $5,750 = $17,250",
+            "Compare revenues: $17,250 (Projected) is greater than $16,000 (Last Year)"
+          ],
+          "result": "$16,000 vs $17,250",
+          "explanation": "Yes, the treasurer is correct. Even though the spectator mix shifts toward cheaper child tickets, the 15% overall increase in attendance raises total projected revenue to $17,250, which is an increase of $1,250 over last year's $16,000 total.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you compute last year's revenue ($16,000) using the 60/40 mix?",
+            "c3": "Look for: Did you calculate next year's attendance (920 spectators) and revenue ($17,250) using the 50/50 mix?",
+            "c4": "Look for: Did you show that $17,250 > $16,000, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to the sports club's stadium ticketing sales?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Last Year Revenue: (480 × $25) + (320 × $12.50) = $16,000",
+            "Projected Spectators: 800 × 1.15 = 920",
+            "Projected Revenue: (460 × $25) + (460 × $12.50) = $17,250",
+            "Compare: $17,250 > $16,000"
+          ],
+          "result": "$16,000 vs $17,250",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The math clearly shows that total revenue increases from $16,000 to $17,250, despite the higher proportion of child tickets. The treasurer's statement is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — projected revenue is strictly higher, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "108",
+      "level": 4,
+      "topic": "Measurement — Volume & Costing",
+      "source": "Original",
+      "context": "A homeowner in Whāngārei is hiring a local contractor to pour a new rectangular concrete driveway on their property.",
+      "data": {
+        "type": "text",
+        "content": "The driveway dimension is exactly 15 metres in length, 3 metres in width, and must be poured to a uniform depth of 12 cm. Concrete costs $260.00 per cubic metre (m³), plus a flat one-off site delivery fee of $150.00."
+      },
+      "claim": "The builder claims, \"We can get all the concrete required for this driveway mixed and delivered to your site for under $1,600.\"",
+      "question": "Is the builder's quote reasonable? Use volumetric and cost calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "over budget"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Convert depth to metres: 12 cm = 0.12 m",
+            "Calculate driveway volume: 15 m × 3 m × 0.12 m = 5.4 m³",
+            "Calculate cost of concrete: 5.4 m³ × $260 = $1,404.00",
+            "Add delivery fee: $1,404.00 + $150.00 = $1,554.00"
+          ],
+          "result": "$1,554.00",
+          "explanation": "Yes, the quote is reasonable. The exact total cost of the concrete, including the flat site delivery fee, is $1,554.00. This is safely under the builder's estimated budget of $1,600.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you convert the 12 cm depth to 0.12 m and calculate the volume (5.4 m³)?",
+            "c3": "Look for: Did you multiply 5.4 × $260 and add $150 to find the total ($1,554.00)?",
+            "c4": "Look for: Did you state that $1,554.00 < $1,600, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to the concrete driveway construction costs?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Convert depth to metres: 12 cm = 0.12 m",
+            "Calculate driveway volume: 15 m × 3 m × 0.12 m = 5.4 m³",
+            "Calculate cost of concrete: 5.4 m³ × $260 = $1,404.00",
+            "Add delivery fee: $1,404.00 + $150.00 = $1,554.00"
+          ],
+          "result": "$1,554.00",
+          "explanation": "No, this is not a fully reasonable quote. In real-world driveway construction, standard practice requires ordering an extra 10% volume allowance for spillage and excavation unevenness (5.4 × 1.1 = 5.94 m³). This extra volume would increase the cost to $1,544.40 + $150 = $1,694.40, which exceeds $1,600.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you find the exact base volume of 5.4 m³ and cost of $1,554.00?",
+            "c3": "Look for: Did you calculate that adding standard construction spillage tolerances increases the required volume?",
+            "c4": "Look for: Did you argue that realistic material requirements push the price over $1,600, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the calculations to the practical construction standards of the project?"
+          }
+        }
+      }
+    },
+    {
+      "id": "109",
+      "level": 4,
+      "topic": "Rate — Cost comparison",
+      "source": "Original",
+      "context": "A student starting a digital media design course is choosing between two cloud storage subscription plans.",
+      "data": {
+        "type": "text",
+        "content": "Plan A charges a simple flat rate of $0.05 per Gigabyte (GB) per month. Plan B charges a flat subscription fee of $15.00 per month for up to 250 GB of storage, with a fee of $0.08 per GB for any usage exceeding 250 GB."
+      },
+      "claim": "The student says, \"If I expect to use exactly 220 GB of cloud storage each month, Plan A is the cheaper option for me.\"",
+      "question": "Is the student correct? Show step-by-step price calculations for both plans to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes she is",
+          "yes he is",
+          "plan a is cheaper"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she is not",
+          "no he is not",
+          "plan b is cheaper"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate Plan A cost: 220 GB × $0.05 = $11.00 per month",
+            "Calculate Plan B cost: Since 220 GB is less than 250 GB, they pay the flat fee of exactly $15.00 per month",
+            "Compare rates: $11.00 is less than $15.00"
+          ],
+          "result": "$11.00 (Plan A) vs $15.00 (Plan B)",
+          "explanation": "Yes, the student is correct. Under Plan A, storing 220 GB will cost $11.00 per month. This is $4.00 cheaper than Plan B's flat fee of $15.00 per month.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate Plan A's cost as exactly $11.00?",
+            "c3": "Look for: Did you identify that Plan B costs $15.00 for 220 GB?",
+            "c4": "Look for: Did you state that $11.00 < $15.00, supporting 'agree'?",
+            "c5": "Look for: Did you relate the choice back to the student's expected cloud storage usage?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Plan A cost: 220 × $0.05 = $11.00",
+            "Plan B cost: flat rate under 250 GB = $15.00",
+            "Compare: $11.00 < $15.00"
+          ],
+          "result": "$11.00 vs $15.00",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Plan A ($11.00) is strictly cheaper than Plan B ($15.00) at 220 GB of usage. The student's statement is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — Plan A is cheaper, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "110",
+      "level": 4,
+      "topic": "Measurement — Recipe Scaling",
+      "source": "Original",
+      "context": "A school home economics class is preparing wholesale quantities of banana muffins for a community morning tea.",
+      "data": {
+        "type": "table",
+        "caption": "Muffin recipe quantities (makes 50)",
+        "headers": [
+          "Ingredient",
+          "Base Quantity"
+        ],
+        "rows": [
+          [
+            "Organic flour",
+            "1.5 kg"
+          ],
+          [
+            "Castor sugar",
+            "400 g"
+          ],
+          [
+            "Fresh milk",
+            "500 mL"
+          ],
+          [
+            "Salted butter",
+            "250 g"
+          ]
+        ],
+        "notes": "Scaling calculations must keep all ingredients in the exact same ratios."
+      },
+      "claim": "A student says, \"To make exactly 220 muffins for the morning tea, we will need to scale up our ingredients and buy exactly 1.5 kg of salted butter.\"",
+      "question": "Is the student correct? Show step-by-step ratio and mass calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "need less butter",
+          "need 1.1 kg"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate recipe scaling factor: 220 ÷ 50 = 4.4 times",
+            "Calculate required butter weight: 250 g × 4.4 = 1,100 g",
+            "Convert to kilograms: 1,100 g ÷ 1,000 = 1.1 kg"
+          ],
+          "result": "1.1 kg of butter",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Scaling the recipe by 4.4 requires exactly 1.1 kg of butter, not 1.5 kg. Buying 1.5 kg would result in 400 g of over-allocated butter. The student is incorrect.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — 1.1 kg is needed, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate the scaling factor: 220 muffins ÷ 50 muffins = 4.4 times",
+            "Calculate the required butter: 250 g × 4.4 = 1,100 grams of butter",
+            "Convert to kilograms: 1,100 g ÷ 1,000 = 1.1 kg of butter"
+          ],
+          "result": "1.1 kg of butter",
+          "explanation": "No, the student is incorrect. Scaling the recipe up to make 220 muffins requires a factor of 4.4. This means they only need 1,100 grams (1.1 kg) of salted butter. The student's claim of 1.5 kg overestimates the required butter by 400 grams.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate the scaling multiplier of 4.4?",
+            "c3": "Look for: Did you multiply 250 g × 4.4 = 1,100 g and convert to 1.1 kg?",
+            "c4": "Look for: Did you state that 1.1 kg ≠ 1.5 kg, supporting 'disagree'?",
+            "c5": "Look for: Did you relate the outcome back to purchasing ingredients for the morning tea?"
+          }
+        }
+      }
+    },
+    {
+      "id": "111",
+      "level": 4,
+      "topic": "Statistics — Energy Yield Forecast",
+      "source": "Original",
+      "context": "An environmental engineering class is studying wind power outputs on a wind farm near Palmerston North.",
+      "data": {
+        "type": "table",
+        "caption": "Wind Turbine Power Specifications",
+        "headers": [
+          "Average Wind Speed",
+          "Power Output"
+        ],
+        "rows": [
+          [
+            "6 m/s",
+            "150 kW"
+          ],
+          [
+            "8 m/s",
+            "350 kW"
+          ],
+          [
+            "10 m/s",
+            "600 kW"
+          ]
+        ],
+        "notes": "Energy generated (kWh) = Power Output (kW) × Time (hours)."
+      },
+      "claim": "A student claims, \"If the turbine experiences 8 hours at 6 m/s, 12 hours at 8 m/s, and 4 hours at 10 m/s, it will generate at least 8,000 kWh of energy over this 24-hour period.\"",
+      "question": "Is the student's forecast correct? Show step-by-step energy generation calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it will",
+          "about right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it will not",
+          "under 8000",
+          "not exactly"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate energy at 6 m/s: 8 hours × 150 kW = 1,200 kWh",
+            "Calculate energy at 8 m/s: 12 hours × 350 kW = 4,200 kWh",
+            "Calculate energy at 10 m/s: 4 hours × 600 kW = 2,400 kWh",
+            "Calculate total energy: 1,200 + 4,200 + 2,400 = 7,800 kWh"
+          ],
+          "result": "7,800 kWh",
+          "explanation": "Yes, the student's statement is reasonable as an estimate. The calculated total output is 7,800 kWh, which is within 2.5% of the 8,000 kWh target. In wind power forecasting, a 2.5% variance is well within normal engineering tolerances.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you multiply each wind speed duration by its respective power output (1,200, 4,200, 2,400)?",
+            "c3": "Look for: Did you sum the values to find a total of 7,800 kWh?",
+            "c4": "Look for: Did you explain that 7,800 kWh is close enough to 8,000 kWh to validate the forecast, supporting 'agree'?",
+            "c5": "Look for: Did you link the outcome back to wind turbine generation planning?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate energy at 6 m/s: 8 hours × 150 kW = 1,200 kWh",
+            "Calculate energy at 8 m/s: 12 hours × 350 kW = 4,200 kWh",
+            "Calculate energy at 10 m/s: 4 hours × 600 kW = 2,400 kWh",
+            "Calculate total energy: 1,200 + 4,200 + 2,400 = 7,800 kWh"
+          ],
+          "result": "7,800 kWh",
+          "explanation": "No, the student's statement is incorrect. The exact sum of energy generated is 7,800 kWh, which is strictly less than the claimed minimum of 8,000 kWh. The project cannot guarantee 'at least 8,000 kWh' under these conditions.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate the power totals (1,200, 4,200, 2,400 kWh)?",
+            "c3": "Look for: Did you sum the values to find a total of 7,800 kWh?",
+            "c4": "Look for: Did you point out that 7,800 kWh is less than 8,000 kWh, supporting 'disagree'?",
+            "c5": "Look for: Did you relate the deficit back to the strict minimum requirements of the power system?"
+          }
+        }
+      }
+    },
+    {
+      "id": "112",
+      "level": 4,
+      "topic": "Statistics — Turnout Interpretation",
+      "source": "Original",
+      "context": "A local government council in Rotorua is evaluating voter turnout statistics across three municipal election wards.",
+      "data": {
+        "type": "table",
+        "caption": "Rotorua Municipal Election Turnout",
+        "headers": [
+          "Ward",
+          "Registered Voters",
+          "Votes Cast"
+        ],
+        "rows": [
+          [
+            "Ward A",
+            "12,500",
+            "5,400"
+          ],
+          [
+            "Ward B",
+            "18,000",
+            "7,200"
+          ],
+          [
+            "Ward C",
+            "9,500",
+            "4,100"
+          ]
+        ],
+        "notes": "Turnout percentage = (Votes Cast ÷ Registered Voters) × 100."
+      },
+      "claim": "The local newspaper writes, \"With 7,200 votes cast, Ward B had the highest voter turnout percentage among all three wards.\"",
+      "question": "Is this statement correct? Show step-by-step turnout calculations for all three wards to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it did"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it did not",
+          "ward a is highest"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Ward A turnout: (5,400 ÷ 12,500) × 100 = 43.2%",
+            "Ward B turnout: (7,200 ÷ 18,000) × 100 = 40.0%",
+            "Ward C turnout: (4,100 ÷ 9,500) × 100 = 43.16%"
+          ],
+          "result": "Ward A (43.2%), Ward B (40.0%), Ward C (43.16%)",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Although Ward B had the highest raw number of votes (7,200), its turnout percentage (40.0%) was actually the lowest of the three wards due to its larger base. The newspaper statement is false.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — Ward B is lowest, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate Ward A turnout: (5,400 ÷ 12,500) × 100 = 43.2%",
+            "Calculate Ward B turnout: (7,200 ÷ 18,000) × 100 = 40.0%",
+            "Calculate Ward C turnout: (4,100 ÷ 9,500) × 100 = 43.16%",
+            "Compare percentages: 43.2% (Ward A) > 43.16% (Ward C) > 40.0% (Ward B)"
+          ],
+          "result": "Ward A has the highest turnout (43.2%)",
+          "explanation": "No, the statement is incorrect. While Ward B cast the most raw votes (7,200), its turnout percentage was only 40.0%. Both Ward A (43.2%) and Ward C (43.16%) had higher voter turnout rates.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the registration and voting numbers from the table for all three wards?",
+            "c3": "Look for: Did you compute 43.2% for Ward A, 40.0% for Ward B, and 43.16% for Ward C?",
+            "c4": "Look for: Did you state that Ward B has the lowest percentage turnout, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the percentages back to the newspaper's claim about local Rotorua turnout?"
+          }
+        }
+      }
+    },
+    {
+      "id": "113",
+      "level": 4,
+      "topic": "Rate — Farm Milk Payout",
+      "source": "Original",
+      "context": "A dairy farming family in Taranaki is tracking their seasonal milk solids production and co-operative payouts.",
+      "data": {
+        "type": "text",
+        "content": "The dairy co-operative pays $8.40 per kg of milk solids (fat + protein) produced. A bulk delivery tanker collects 15,000 kg of liquid milk, which tests at 4.2% fat and 3.6% protein content."
+      },
+      "claim": "The farmer says, \"This single delivery of raw milk should earn us exactly $10,000 in payouts.\"",
+      "question": "Is the farmer's financial prediction correct? Use weight, percentage, and price calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it will"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it will not",
+          "under 10000"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Determine total percentage of milk solids: 4.2% + 3.6% = 7.8%",
+            "Calculate mass of milk solids: 15,000 kg × 0.078 = 1,170 kg",
+            "Calculate payout: 1,170 kg × $8.40 = $9,828.00"
+          ],
+          "result": "$9,828.00",
+          "explanation": "Yes, the farmer is correct. The calculated payout is $9,828.00, which is only $172.00 away from the $10,000 estimate (a variance of only 1.72%). On a large farm scale, claiming it earns 'about $10,000' is a reasonable and correct approximation.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you add the milk components (4.2% + 3.6% = 7.8%)?",
+            "c3": "Look for: Did you multiply 15,000 kg × 7.8% = 1,170 kg of solids, and multiply by $8.40 to find $9,828.00?",
+            "c4": "Look for: Did you argue that $9,828 is close to $10,000, supporting 'agree'?",
+            "c5": "Look for: Did you relate the outcome back to the seasonal dairy farm revenue?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Determine total percentage of milk solids: 4.2% + 3.6% = 7.8%",
+            "Calculate mass of milk solids: 15,000 kg × 0.078 = 1,170 kg",
+            "Calculate payout: 1,170 kg × $8.40 = $9,828.00"
+          ],
+          "result": "$9,828.00",
+          "explanation": "No, the farmer is incorrect. The exact payout is $9,828.00. While close, claiming it earns 'exactly' $10,000 is mathematically incorrect and represents an overestimation of $172.00 in farm accounts.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you find that the total solids rate is 7.8% and mass is 1,170 kg?",
+            "c3": "Look for: Did you show that the exact payout is $9,828.00?",
+            "c4": "Look for: Did you state that $9,828.00 is not $10,000, supporting 'disagree'?",
+            "c5": "Look for: Did you explain how a $172 deficit impacts strict agricultural audit lines?"
+          }
+        }
+      }
+    },
+    {
+      "id": "114",
+      "level": 4,
+      "topic": "Rate — KiwiSaver Growth and Fees",
+      "source": "Original",
+      "context": "A student in Dunedin is selecting between two KiwiSaver investment funds for their part-time savings.",
+      "data": {
+        "type": "text",
+        "content": "Starting balance is $20,000. Option 1 (Conservative): 2.5% expected annual growth, annual fees of $30 + 0.2% of fund value. Option 2 (Growth): 6.0% expected annual growth, annual fees of $50 + 0.8% of fund value. Note: annual growth is calculated first, then fees are deducted from that year-end value."
+      },
+      "claim": "The student says, \"Option 2 is the better financial choice for me as it will result in a higher net balance at the end of the first year.\"",
+      "question": "Is the student correct? Show step-by-step compound and fee calculations for both options to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes she is",
+          "yes he is",
+          "option 2 is better"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she is not",
+          "no he is not",
+          "option 1 is better"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Option 1: Calculate year-end growth value: $20,000 × 1.025 = $20,500.00",
+            "Option 1: Calculate total fees: $30.00 + ($20,500.00 × 0.002) = $30.00 + $41.00 = $71.00",
+            "Option 1: Calculate net balance: $20,500.00 − $71.00 = $20,429.00",
+            "Option 2: Calculate year-end growth value: $20,000 × 1.06 = $21,200.00",
+            "Option 2: Calculate total fees: $50.00 + ($21,200.00 × 0.008) = $50.00 + $169.60 = $219.60",
+            "Option 2: Calculate net balance: $21,200.00 − $219.60 = $20,980.40",
+            "Compare balances: $20,980.40 (Option 2) is greater than $20,429.00 (Option 1)"
+          ],
+          "result": "$20,429.00 vs $20,980.40",
+          "explanation": "Yes, the student is correct. Even though Option 2 charges much higher annual fees ($219.60 vs $71.00), its higher growth rate yields a final net balance of $20,980.40, which is $551.40 more than Option 1.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you compute Option 1's net balance ($20,429.00) showing growth and fees correctly?",
+            "c3": "Look for: Did you compute Option 2's net balance ($20,980.40) showing growth and fees correctly?",
+            "c4": "Look for: Did you show that $20,980.40 > $20,429.00, supporting 'agree'?",
+            "c5": "Look for: Did you connect your selection back to the KiwiSaver fund options?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Option 1 Net: $20,000 × 1.025 = $20,500 -> fee is $30 + (0.002 × $20,500) = $71 -> Net is $20,429.00",
+            "Option 2 Net: $20,000 × 1.06 = $21,200 -> fee is $50 + (0.008 × $21,200) = $219.60 -> Net is $20,980.40",
+            "Compare: $20,980.40 > $20,429.00"
+          ],
+          "result": "$20,429.00 vs $20,980.40",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Option 2 results in a final net balance of $20,980.40, which is strictly higher than Option 1 ($20,429.00) despite the higher fees. The student's claim is true.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — Option 2 is higher, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "115",
+      "level": 4,
+      "topic": "Time — Duration & Time Zone Adjustments",
+      "source": "Original",
+      "context": "A student in Auckland is planning a flight itinerary to visit relatives in Tokyo, Japan.",
+      "data": {
+        "type": "text",
+        "content": "The flight is scheduled to depart Auckland (NZST) at 14:00 on Friday and arrive in Tokyo (JST) at 22:30 on the same day. JST is exactly 3 hours behind NZST (New Zealand Standard Time)."
+      },
+      "claim": "The student says, \"Subtracting the time values directly tells me that the flight duration is exactly 8.5 hours.\"",
+      "question": "Is the student's flight duration calculation correct? Show step-by-step timezone adjustment calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "duration is different",
+          "it is 11.5 hours"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Auckland departure (NZST): 14:00",
+            "Tokyo time zone conversion: JST is 3 hours behind, so 14:00 NZST is 11:00 JST",
+            "Tokyo arrival (JST): 22:30",
+            "Calculate duration in local JST: 22:30 arrival − 11:00 departure = 11.5 hours (11 hours 30 mins)"
+          ],
+          "result": "11.5 hours",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The student forgot to adjust for the timezone change. Because JST is 3 hours behind, the real flight duration is 11.5 hours. The student is incorrect.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — 11.5 hours is correct, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Find local departure time in JST: Departure at 14:00 NZST is equal to 11:00 JST (subtract 3 hours)",
+            "Determine arrival time in JST: 22:30 JST",
+            "Calculate duration in consistent time units (JST): 22:30 − 11:00 = 11.5 hours (or 11 hours 30 minutes)"
+          ],
+          "result": "11.5 hours",
+          "explanation": "No, the student is incorrect. They made a common error by subtracting local clocks without adjusting for timezone changes. Since Tokyo is 3 hours behind Auckland, the actual flight duration is 11.5 hours.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you convert the Auckland departure (14:00 NZST) to JST (11:00 JST)?",
+            "c3": "Look for: Did you subtract 22:30 (arrival JST) − 11:00 (departure JST) to find 11.5 hours?",
+            "c4": "Look for: Did you state that 11.5 hours ≠ 8.5 hours, supporting 'disagree'?",
+            "c5": "Look for: Did you relate the steps back to timezone rules on the Auckland-Tokyo flight?"
+          }
+        }
+      }
+    },
+    {
+      "id": "116",
+      "level": 4,
+      "topic": "Statistics — Population Projection",
+      "source": "Original",
+      "context": "A Department of Conservation (DOC) officer is reviewing brown kiwi population growth models at a sanctuary near Kerikeri.",
+      "data": {
+        "type": "text",
+        "content": "The sanctuary currently houses exactly 350 kiwi birds. The annual birth rate is 8%. The historical annual mortality (death) rate has been 5%. Under a new predator trapping initiative, the mortality rate is projected to drop to 2%."
+      },
+      "claim": "The officer says, \"Implementing the trapping initiative will result in an extra 10 kiwi birds in our population at the end of the first year compared to our historical outcomes.\"",
+      "question": "Is the officer's forecast reasonable? Show step-by-step population projections for both scenarios to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it will"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it will not"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Historical: Calculate annual net growth rate: 8% births − 5% deaths = 3% net growth",
+            "Historical: Calculate year-end population: 350 × 1.03 = 360.5 kiwis",
+            "Projected: Calculate annual net growth rate: 8% births − 2% deaths = 6% net growth",
+            "Projected: Calculate year-end population: 350 × 1.06 = 371 kiwis",
+            "Calculate difference: 371 − 360.5 = 10.5 kiwis"
+          ],
+          "result": "10.5 extra kiwis",
+          "explanation": "Yes, the officer's forecast is reasonable. The calculation shows that reducing the mortality rate adds exactly 10.5 extra kiwis to the population in the first year. Estimating an increase of 'about 10' is extremely accurate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you compute the historical ending population (360.5 kiwis) using the 3% growth rate?",
+            "c3": "Look for: Did you compute the projected ending population (371 kiwis) using the 6% growth rate?",
+            "c4": "Look for: Did you find the net gain (10.5 kiwis) and state it is close to 10, supporting 'agree'?",
+            "c5": "Look for: Did you relate your work back to the DOC predator trapping project?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Historical: Calculate annual net growth rate: 8% births − 5% deaths = 3% net growth",
+            "Historical: Calculate year-end population: 350 × 1.03 = 360.5 kiwis",
+            "Projected: Calculate annual net growth rate: 8% births − 2% deaths = 6% net growth",
+            "Projected: Calculate year-end population: 350 × 1.06 = 371 kiwis",
+            "Calculate difference: 371 − 360.5 = 10.5 kiwis"
+          ],
+          "result": "10.5 extra kiwis",
+          "explanation": "No, the forecast is not completely accurate. The calculation yields a difference of exactly 10.5 kiwis. Since a biological population represents whole living organisms, the projection must round to 11 extra birds rather than 10, making the estimate slightly low.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you compute the populations of 360.5 and 371 correctly?",
+            "c3": "Look for: Did you show that 371 − 360.5 = 10.5 kiwis?",
+            "c4": "Look for: Did you argue that a fraction of a kiwi is impossible, so it must round to 11, supporting 'disagree'?",
+            "c5": "Look for: Did you link your answer back to biological rounding and population models?"
+          }
+        }
+      }
+    },
+    {
+      "id": "117",
+      "level": 4,
+      "topic": "Statistics — Retail Markdown & Profit",
+      "source": "Original",
+      "context": "A fashion clothing store in Auckland imports a bulk shipment of 500 designer winter coats.",
+      "data": {
+        "type": "text",
+        "content": "The wholesale import cost is $40 per coat (total cost $20,000). The initial retail price is set to $120. They sell 300 coats at this price. The remaining 200 coats are marked down by 60% for a seasonal clearance sale. They successfully sell 150 of these clearance coats."
+      },
+      "claim": "The store owner claims, \"Our total net profit on this shipment is more than double our initial bulk investment cost of $20,000.\"",
+      "question": "Is the owner correct? Show step-by-step pricing, sales volume, and profit calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they did",
+          "profit is double"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they did not",
+          "profit is less"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate wholesale cost: 500 coats × $40 = $20,000",
+            "Calculate standard sales revenue: 300 coats × $120 = $36,000",
+            "Calculate discounted retail price: $120 × (1.00 − 0.60) = $120 × 0.40 = $48",
+            "Calculate clearance sales revenue: 150 coats × $48 = $7,200",
+            "Calculate total revenue: $36,000 + $7,200 = $43,200",
+            "Calculate net profit: $43,200 revenue − $20,000 cost = $23,200"
+          ],
+          "result": "$23,200 net profit",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Double the initial bulk investment is $40,000. Because their net profit is $23,200, it is far less than double. The store owner's claim is false.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — profit is under double, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate wholesale cost: 500 coats × $40 = $20,000",
+            "Calculate standard sales revenue: 300 coats × $120 = $36,000",
+            "Calculate clearance price: $120 × (1.00 − 0.60) = $120 × 0.40 = $48 per coat",
+            "Calculate clearance sales revenue: 150 coats × $48 = $7,200",
+            "Calculate total revenue: $36,000 + $7,200 = $43,200",
+            "Calculate net profit: $43,200 total revenue − $20,000 total cost = $23,200"
+          ],
+          "result": "$23,200 net profit",
+          "explanation": "No, the owner is incorrect. The net profit on the shipment is $23,200. While this is a highly successful clearance margin, it is not 'more than double' the initial $20,000 investment (which would require a net profit exceeding $40,000).",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you compute the standard revenue ($36,000) and the clearance price ($48)?",
+            "c3": "Look for: Did you sum the revenues ($43,200) and subtract the bulk cost to find the profit of $23,200?",
+            "c4": "Look for: Did you show that $23,200 is less than double the investment ($40,000), supporting 'disagree'?",
+            "c5": "Look for: Did you connect the financials back to the owner's retail profit claim?"
+          }
+        }
+      }
+    },
+    {
+      "id": "118",
+      "level": 4,
+      "topic": "Horticulture — Fertilizer Ratios",
+      "source": "Original",
+      "context": "A groundskeeper at a sports stadium in Rotorua is purchasing fertilizer to supply nitrogen to the rugby field turf.",
+      "data": {
+        "type": "text",
+        "content": "The recommended application calls for exactly 50 kg of pure Nitrogen (N) across the field. The fertilizer has an N-P-K percentage ratio of 20-5-10 (meaning exactly 20% of the bag's weight is pure Nitrogen). It is sold in 25 kg bags costing $45.00 each."
+      },
+      "claim": "The groundskeeper says, \"We will need to buy exactly 10 bags of fertilizer, which will cost our department $450.00.\"",
+      "question": "Is the groundskeeper correct? Show step-by-step weight and price calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes he is",
+          "yes she is",
+          "groundskeeper is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no he is not",
+          "no she is not",
+          "groundskeeper is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Determine nitrogen weight ratio: 20% = 0.20",
+            "Calculate total fertilizer weight required: 50 kg pure N ÷ 0.20 = 250 kg of raw fertilizer",
+            "Calculate number of bags required: 250 kg ÷ 25 kg per bag = 10 bags of fertilizer",
+            "Calculate total cost: 10 bags × $45.00 = $450.00"
+          ],
+          "result": "10 bags costing $450.00",
+          "explanation": "Yes, the groundskeeper is correct. Because the fertilizer is only 20% nitrogen, providing 50 kg of pure Nitrogen requires 250 kg of bulk product. This necessitates buying exactly 10 bags, which costs $450.00.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the 50 kg requirement, 20% nitrogen content, and $45 per bag price?",
+            "c3": "Look for: Did you divide 50 ÷ 0.20 to find 250 kg, and show that 10 bags are needed?",
+            "c4": "Look for: Did you verify that 10 bags cost exactly $450, supporting your 'agree' position?",
+            "c5": "Look for: Did you connect your answer back to the turf preparation for the sports stadium?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Fertilizer mass needed: 50 kg ÷ 0.20 = 250 kg",
+            "Bags needed: 250 kg ÷ 25 kg = 10 bags",
+            "Total cost: 10 × $45.00 = $450.00"
+          ],
+          "result": "$450.00",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The math clearly shows that exactly 10 bags are needed to provide 50 kg of nitrogen, costing exactly $450.00. The claim is TRUE.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations match $450, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "119",
+      "level": 4,
+      "topic": "Woodworking — Cutting & Sheet Optimization",
+      "source": "Original",
+      "context": "A student in a high school woodworking workshop is planning to construct custom study desks.",
+      "data": {
+        "type": "text",
+        "content": "Each desk top requires a rectangular panel of plywood measuring exactly $1.2\\text{ m}$ in length by $0.6\\text{ m}$ in width. The supplier sells standard plywood sheets measuring exactly $2.4\\text{ m}$ in length by $1.2\\text{ m}$ in width."
+      },
+      "claim": "The student claims, \"By arranging the cuts carefully, we can get exactly $4$ desk tops from a single standard plywood sheet with absolutely zero timber wastage.\"",
+      "question": "Is the student correct? Use dimensions and area calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they can",
+          "student is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they cannot",
+          "student is wrong",
+          "there is waste"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate the area of one desk top panel: $1.2\\text{ m} \\times 0.6\\text{ m} = 0.72\\text{ m}^2$",
+            "Calculate the total area of $4$ desk top panels: $4 \\times 0.72\\text{ m}^2 = 2.88\\text{ m}^2$",
+            "Calculate the area of a single plywood sheet: $2.4\\text{ m} \\times 1.2\\text{ m} = 2.88\\text{ m}^2$",
+            "Analyze the cutting layout: The length ($2.4\\text{ m}$) fits exactly two $1.2\\text{ m}$ panels, and the width ($1.2\\text{ m}$) fits exactly two $0.6\\text{ m}$ panels",
+            "Arranging them in a $2 \\times 2$ grid fits perfectly: $2 \\times 1.2\\text{ m} = 2.4\\text{ m}$ and $2 \\times 0.6\\text{ m} = 1.2\\text{ m}$"
+          ],
+          "result": "Exactly $4$ panels with $0\\text{ m}^2$ waste",
+          "explanation": "Yes, the student is correct. The total area of the $4$ desk tops ($2.88\\text{ m}^2$) matches the area of the plywood sheet ($2.88\\text{ m}^2$) exactly. Furthermore, because the dimensions are perfect multiples ($1.2\\text{ m} \\times 2 = 2.4\\text{ m}$ and $0.6\\text{ m} \\times 2 = 1.2\\text{ m}$), they can be cut in a grid layout with zero waste.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the dimensions of $1.2\\text{ m} \\times 0.6\\text{ m}$ and $2.4\\text{ m} \\times 1.2\\text{ m}$?",
+            "c3": "Look for: Did you show that a $2 \\times 2$ layout fits perfectly, leaving $0$ waste?",
+            "c4": "Look for: Did you show that the total combined area of $2.88\\text{ m}^2$ equals the sheet's area, supporting 'agree'?",
+            "c5": "Look for: Did you connect the dimensions back to cutting panels for the study desks?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Desk top area: $1.2\\text{ m} \\times 0.6\\text{ m} = 0.72\\text{ m}^2$",
+            "Plywood sheet area: $2.4\\text{ m} \\times 1.2\\text{ m} = 2.88\\text{ m}^2$",
+            "Ratio of areas: $2.88\\text{ m}^2 \\div 0.72\\text{ m}^2 = 4$ exactly",
+            "Layout fit: $2 \\times 1.2\\text{ m} = 2.4\\text{ m}$ and $2 \\times 0.6\\text{ m} = 1.2\\text{ m}$"
+          ],
+          "result": "$4$ panels fit with $0$ leftover waste",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Both the area ratio and the physical dimension geometry confirm that $4$ desk tops fit perfectly on a single sheet of plywood with $0\\% $ wastage. The student's claim is mathematically and physically true.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the math shows exactly $4$ panels fit with $0$ waste, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "120",
+      "level": 4,
+      "topic": "Shopping — Currency Exchange Rates & Fees",
+      "source": "Original",
+      "context": "A traveler is preparing for a holiday to Australia and wants to exchange New Zealand Dollars (NZD) for Australian Dollars (AUD).",
+      "data": {
+        "type": "text",
+        "content": "The traveler has $500\\text{ NZD}$ to exchange. Option A: Exchange rate is $1\\text{ NZD} = 0.91\\text{ AUD}$, but charges a flat fee of $12\\text{ NZD}$ (deducted from the $500\\text{ NZD}$ first). Option B: Exchange rate is $1\\text{ NZD} = 0.89\\text{ AUD}$, with zero fees."
+      },
+      "claim": "The traveler says, \"Option A is the better choice because its higher exchange rate will yield more AUD for my holiday.\"",
+      "question": "Is the traveler's statement correct? Show step-by-step currency and fee calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it is",
+          "option a is better",
+          "traveler is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "option b is better",
+          "traveler is wrong"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Option A: Subtract the flat fee first: $500\\text{ NZD} - $12\\text{ NZD} = $488\\text{ NZD}$",
+            "Option A: Multiply by exchange rate: $488 \\times 0.91 = 444.08\\text{ AUD}$",
+            "Option B: Multiply directly by exchange rate: $500 \\times 0.89 = 445.00\\text{ AUD}$",
+            "Find difference: $445.00\\text{ AUD} - 444.08\\text{ AUD} = 0.92\\text{ AUD}$"
+          ],
+          "result": "$444.08\\text{ AUD}$ (Option A) vs $445.00\\text{ AUD}$ (Option B)",
+          "explanation": "Yes, the traveler's reasoning is reasonable for practical purposes. Although Option B technically yields $0.92\\text{ AUD}$ more than Option A, this difference represents less than $0.2\\% $ of the total exchange. For a traveler, they are virtually identical options, so preferring the higher base rate is fine.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the Option A yield of $444.08\\text{ AUD}$ after subtracting the $12\\text{ NZD}$ fee?",
+            "c3": "Look for: Did you calculate the Option B yield of $445.00\\text{ AUD}$?",
+            "c4": "Look for: Did you argue that a difference of $0.92\\text{ AUD}$ is practically insignificant, supporting 'agree'?",
+            "c5": "Look for: Did you connect the currencies back to the traveler's preparation for their Australian holiday?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Option A: Deduct the flat fee first: $500\\text{ NZD} - $12\\text{ NZD} = $488\\text{ NZD}$",
+            "Option A: Convert to AUD: $488 \\times 0.91 = 444.08\\text{ AUD}$",
+            "Option B: Convert directly to AUD: $500 \\times 0.89 = 445.00\\text{ AUD}$",
+            "Compare outcomes: $445.00\\text{ AUD} > 444.08\\text{ AUD}$"
+          ],
+          "result": "$445.00\\text{ AUD}$ (Option B) vs $444.08\\text{ AUD}$ (Option A)",
+          "explanation": "No, the traveler is incorrect. Option B is actually the better choice because it yields $445.00\\text{ AUD}$, whereas Option A only yields $444.08\\text{ AUD}$. The flat fee of $12\\text{ NZD}$ on Option A cancels out the financial advantage of its higher exchange rate.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate Option A's outcome ($444.08\\text{ AUD}$) and Option B's outcome ($445.00\\text{ AUD}$)?",
+            "c3": "Look for: Did you show the step-by-step subtraction of the fee for Option A?",
+            "c4": "Look for: Did you state that $445.00 > 444.08$, proving Option B is cheaper/better, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the math back to the traveler's choice of exchange services?"
+          }
+        }
+      }
+    },
+    {
+      "id": "121",
+      "level": 4,
+      "topic": "Weather & Climate — Average Temperature Rate",
+      "source": "Original",
+      "context": "A student doing a winter climate project for their geography class is calculating the average winter temperatures in Masterton.",
+      "data": {
+        "type": "table",
+        "caption": "Masterton Average Winter Temperatures",
+        "headers": [
+          "Month",
+          "Average Temperature"
+        ],
+        "rows": [
+          [
+            "June",
+            "$4.2^{\\circ}\\text{C}$"
+          ],
+          [
+            "July",
+            "$2.8^{\\circ}\\text{C}$"
+          ],
+          [
+            "August",
+            "$5.6^{\\circ}\\text{C}$"
+          ]
+        ],
+        "notes": "Winter average is calculated over these three months."
+      },
+      "claim": "The student claims, \"The average winter temperature for this period was above $4.0^{\\circ}\\text{C}$.\"",
+      "question": "Is the student correct? Show calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it was",
+          "above 4.0",
+          "student is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it was not",
+          "student is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Sum the temperatures of the three months: $4.2^{\\circ}\\text{C} + 2.8^{\\circ}\\text{C} + 5.6^{\\circ}\\text{C} = 12.6^{\\circ}\\text{C}$",
+            "Divide by the number of months: $12.6^{\\circ}\\text{C} \\div 3 = 4.2^{\\circ}\\text{C}$",
+            "Compare to threshold: $4.2^{\\circ}\\text{C} > 4.0^{\\circ}\\text{C}$"
+          ],
+          "result": "$4.2^{\\circ}\\text{C}$",
+          "explanation": "Yes, the student is correct. The calculated average winter temperature is exactly $4.2^{\\circ}\\text{C}$, which is indeed above the student's claimed threshold of $4.0^{\\circ}\\text{C}$.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the temperature values $4.2$, $2.8$, and $5.6$ from the table?",
+            "c3": "Look for: Did you show that the sum is $12.6^{\\circ}\\text{C}$ and divide by 3 to find $4.2^{\\circ}\\text{C}$?",
+            "c4": "Look for: Did you state that $4.2^{\\circ}\\text{C} > 4.0^{\\circ}\\text{C}$, supporting 'agree'?",
+            "c5": "Look for: Did you link the results back to Masterton's winter weather data?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Sum temperatures: $4.2 + 2.8 + 5.6 = 12.6$",
+            "Find average: $12.6 \\div 3 = 4.2^{\\circ}\\text{C}$",
+            "Compare: $4.2 > 4.0$"
+          ],
+          "result": "$4.2^{\\circ}\\text{C}$",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The average winter temperature is exactly $4.2^{\\circ}\\text{C}$, which is clearly greater than $4.0^{\\circ}\\text{C}$. The student's claim is mathematically correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show $4.2^{\\circ}\\text{C} > 4.0^{\\circ}\\text{C}$, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "122",
+      "level": 4,
+      "topic": "Beekeeping — Sugar Syrup Recipe Scaling",
+      "source": "Original",
+      "context": "A beekeeper near Taupō is mixing heavy sugar syrup (a $2:1$ sugar to water ratio) to feed the hives before winter.",
+      "data": {
+        "type": "text",
+        "content": "The standard recipe requires exactly $2\\text{ kg}$ of white sugar to every $1\\text{ Litre}$ of water. Mixing this ratio yields approximately $2.2\\text{ Litres}$ of finished heavy sugar syrup. The beekeeper needs to prepare exactly $55\\text{ Litres}$ of syrup in total."
+      },
+      "claim": "The assistant beekeeper says, \"To make this amount of syrup, we need to buy and dissolve exactly $50\\text{ kg}$ of sugar.\"",
+      "question": "Is the assistant correct? Show step-by-step scaling calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they do",
+          "assistant is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they do not",
+          "assistant is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Determine the syrup scale factor: $55\\text{ L} \\div 2.2\\text{ L per standard batch} = 25\\text{ times}$",
+            "Calculate sugar required for $25$ batches: $25 \\times 2\\text{ kg} = 50\\text{ kg}$",
+            "Calculate water required for $25$ batches: $25 \\times 1\\text{ L} = 25\\text{ L}$"
+          ],
+          "result": "$50\\text{ kg}$ of sugar",
+          "explanation": "Yes, the assistant is correct. Scaling the recipe by a factor of $25$ will successfully yield the required $55\\text{ Litres}$ of syrup. Doing so requires exactly $50\\text{ kg}$ of sugar and $25\\text{ Litres}$ of water.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the batch multiplier of $25$?",
+            "c3": "Look for: Did you multiply $25 \\times 2\\text{ kg} = 50\\text{ kg}$ of sugar?",
+            "c4": "Look for: Did you verify that $50\\text{ kg}$ of sugar is exactly correct, supporting 'agree'?",
+            "c5": "Look for: Did you relate the measurements back to preparing feed for the hives?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Syrup scale factor: $55 \\div 2.2 = 25$",
+            "Sugar required: $25 \\times 2\\text{ kg} = 50\\text{ kg}$"
+          ],
+          "result": "$50\\text{ kg}$ of sugar",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The proportional scaling math confirms that exactly $50\\text{ kg}$ of sugar is needed. The assistant beekeeper is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show exactly $50\\text{ kg}$ of sugar is required, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "123",
+      "level": 4,
+      "topic": "Digitech — Aspect Ratio Sizing",
+      "source": "Original",
+      "context": "A student in a digital media design course is resizing an image to fit a banner column on a school website portfolio.",
+      "data": {
+        "type": "text",
+        "content": "The original image has high-definition dimensions of $1920 \\times 1080\\text{ pixels}$ (which is an exact aspect ratio of $16:9$). The student wants to scale down the image so that the width is exactly $1200\\text{ pixels}$ while maintaining the same aspect ratio."
+      },
+      "claim": "The web design teacher says, \"To keep the aspect ratio identical, you need to set the new height of the image to exactly $675\\text{ pixels}$.\"",
+      "question": "Is the teacher correct? Show aspect ratio proportion calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes she is",
+          "yes he is",
+          "teacher is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no she is not",
+          "no he is not",
+          "teacher is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Determine the scaling ratio for the width: $1200 \\div 1920 = 0.625$ (or $\\frac{5}{8}$)",
+            "Apply the same ratio to scale the height: $1080 \\times 0.625 = 675\\text{ pixels}$",
+            "Alternatively, verify using aspect ratio fractions: $\\frac{\\text{Width}}{\\text{Height}} = \\frac{16}{9}$",
+            "Set up the proportion: $\\frac{1200}{x} = \\frac{16}{9} \\implies 16x = 10800 \\implies x = 675\\text{ pixels}$"
+          ],
+          "result": "$675\\text{ pixels}$",
+          "explanation": "Yes, the teacher is correct. Scaling down the width to $1200\\text{ pixels}$ while maintaining the exact $16:9$ aspect ratio requires the new height to be exactly $675\\text{ pixels}$.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the dimensions $1920 \\times 1080$ and $1200$?",
+            "c3": "Look for: Did you show that $1200 \\div 1920 = 0.625$, and $1080 \\times 0.625 = 675$?",
+            "c4": "Look for: Did you verify that $675\\text{ pixels}$ is mathematically exact, supporting 'agree'?",
+            "c5": "Look for: Did you connect the dimensions back to the student's website image portfolio?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Width ratio: $1200 \\div 1920 = 0.625$",
+            "Height scaling: $1080 \\times 0.625 = 675\\text{ pixels}$",
+            "Check aspect ratio: $1200 \\div 675 = 1.777...$, which equals $16 \\div 9 = 1.777...$"
+          ],
+          "result": "Exactly $675\\text{ pixels}$",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Proportional math dictates that the scaled-down height must be exactly $675\\text{ pixels}$ to maintain the $16:9$ aspect ratio. The teacher is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show exactly $675$ is required, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "124",
+      "level": 4,
+      "topic": "Sports — Hilly Running Pace Rates",
+      "source": "Original",
+      "context": "An athlete is tracking their pace during cross-country training on hilly terrain near Kerikeri.",
+      "data": {
+        "type": "text",
+        "content": "On flat terrain, the athlete runs at a steady pace of $5\\text{ minutes } 30\\text{ seconds}$ per kilometre ($5.5\\text{ minutes/km}$). On their hilly trail route, the steep elevation adds an extra $45\\text{ seconds}$ to their flat pace per kilometre. The total length of the hilly route is exactly $8\\text{ km}$."
+      },
+      "claim": "The coach says, \"The hilly $8\\text{ km}$ training run should take you about $48\\text{ minutes}$ in total.\"",
+      "question": "Is the coach's estimate reasonable? Use pace and time calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "reasonable",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is",
+          "coach is right"
+        ],
+        "negative": [
+          "no",
+          "not reasonable",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "coach is wrong"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Reasonable / Agree",
+          "calculation_steps": [
+            "Convert flat pace to seconds: $5\\text{ minutes } 30\\text{ seconds} = 330\\text{ seconds/km}$",
+            "Add hilly terrain penalty: $330\\text{ seconds} + 45\\text{ seconds} = 375\\text{ seconds/km}$",
+            "Convert hilly pace to minutes: $375\\text{ seconds} \\div 60 = 6.25\\text{ minutes/km}$",
+            "Calculate total run duration: $8\\text{ km} \\times 6.25\\text{ minutes/km} = 50\\text{ minutes}$",
+            "Compare to target: $50\\text{ minutes} \\approx 48\\text{ minutes}$"
+          ],
+          "result": "$50\\text{ minutes}$",
+          "explanation": "Yes, the coach's estimate is reasonable. The calculation shows the $8\\text{ km}$ run will take exactly $50\\text{ minutes}$. Describing this as taking 'about $48\\text{ minutes}$' is a close and fair approximation (within $4\\% $) for trail running planning.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'reasonable', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the flat pace, terrain penalty ($45\\text{ seconds}$), and distance ($8\\text{ km}$)?",
+            "c3": "Look for: Did you calculate the hilly pace ($6.25\\text{ minutes/km}$) and the total run duration of $50\\text{ minutes}$?",
+            "c4": "Look for: Did you explain that $50\\text{ minutes}$ is close to $48\\text{ minutes}$, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to the athlete's trail training run?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Not Reasonable / Disagree",
+          "calculation_steps": [
+            "Convert flat pace to seconds: $5\\text{ minutes } 30\\text{ seconds} = 330\\text{ seconds/km}$",
+            "Add hilly terrain penalty: $330\\text{ seconds} + 45\\text{ seconds} = 375\\text{ seconds/km}$",
+            "Convert hilly pace to minutes: $375\\text{ seconds} \\div 60 = 6.25\\text{ minutes/km}$",
+            "Calculate total run duration: $8\\text{ km} \\times 6.25\\text{ minutes/km} = 50\\text{ minutes}$"
+          ],
+          "result": "$50\\text{ minutes}$",
+          "explanation": "No, the estimate is not completely reasonable. The exact run time will be $50\\text{ minutes}$. Underestimating their training run by $2\\text{ minutes}$ is a notable discrepancy for an athlete pacing a structured training schedule.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'not reasonable', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you determine the exact trail run duration to be $50\\text{ minutes}$?",
+            "c3": "Look for: Did you calculate that the hilly pace is exactly $6\\text{ minutes } 15\\text{ seconds}$ per km?",
+            "c4": "Look for: Did you state that $50\\text{ minutes}$ is strictly longer than $48\\text{ minutes}$, supporting 'disagree'?",
+            "c5": "Look for: Did you relate the outcome back to the precision requirements of a structured marathon program?"
+          }
+        }
+      }
+    },
+    {
+      "id": "125",
+      "level": 4,
+      "topic": "Travel — Flight Schedule & Layover Contingency",
+      "source": "Original",
+      "context": "A family is booking connections at Sydney Airport (AEST) on their trip from Auckland to Singapore.",
+      "data": {
+        "type": "text",
+        "content": "Flight A arrives in Sydney at $11:45$. Connection Flight B departs Sydney at $13:15$. Passing through international transit security takes exactly $40\\text{ minutes}$, walking to the new gate takes $15\\text{ minutes}$, and boarding closes exactly $20\\text{ minutes}$ before departure. Note: All times shown are local Sydney time."
+      },
+      "claim": "The family says, \"This layover leaves us plenty of contingency time to comfortably catch our connecting flight without any rush.\"",
+      "question": "Is the family correct? Use time interval calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they do",
+          "comfortable"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they do not",
+          "too tight",
+          "not enough time"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate total layover duration: $11:45$ to $13:15$ is exactly $1\\text{ hour } 30\\text{ minutes} = 90\\text{ minutes}$",
+            "Calculate total required process time: $40\\text{ mins (security)} + 15\\text{ mins (walking)} + 20\\text{ mins (boarding buffer)} = 75\\text{ minutes}$",
+            "Calculate remaining buffer time: $90\\text{ minutes} - 75\\text{ minutes} = 15\\text{ minutes}$"
+          ],
+          "result": "$15\\text{ minutes}$ buffer",
+          "explanation": "Yes, the family is correct. The total time required to get to the next flight is $75\\text{ minutes}$, which sits within their $90$-minute layover. This leaves them with a $15$-minute safety buffer, which is considered a comfortable, successful connection.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you determine the layover duration is $90\\text{ minutes}$?",
+            "c3": "Look for: Did you calculate the required transit steps total $75\\text{ minutes}$?",
+            "c4": "Look for: Did you argue that a $15$-minute buffer represents a safe connection window, supporting 'agree'?",
+            "c5": "Look for: Did you relate your answer back to the family's flight layover schedule at the airport?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate total layover duration: $11:45$ to $13:15$ is exactly $90\\text{ minutes}$",
+            "Calculate total required process time: $40\\text{ mins (security)} + 15\\text{ mins (walking)} + 20\\text{ mins (boarding buffer)} = 75\\text{ minutes}$",
+            "Calculate remaining buffer time: $90\\text{ minutes} - 75\\text{ minutes} = 15\\text{ minutes}$"
+          ],
+          "result": "$15\\text{ minutes}$ buffer",
+          "explanation": "No, the family is incorrect. A $15$-minute buffer does not leave 'plenty of time'. Any minor flight delay from Auckland, slow security queues, or baggage delays will easily wipe out this $15$-minute margin, making this connection extremely risky and stressful.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you compute the required transit steps of $75\\text{ minutes}$ and layover of $90\\text{ minutes}$?",
+            "c3": "Look for: Did you show that the leftover buffer is only $15\\text{ minutes}$?",
+            "c4": "Look for: Did you argue that a $15$-minute window is too narrow for standard international transfers, supporting 'disagree'?",
+            "c5": "Look for: Did you link the calculations to real-world airport transfer delay risks?"
+          }
+        }
+      }
+    },
+    {
+      "id": "126",
+      "level": 4,
+      "topic": "Beekeeping — Winter Hive Survival Rate",
+      "source": "Original",
+      "context": "A beekeeper in Taupō is assessing hive survival numbers following a particularly cold winter season.",
+      "data": {
+        "type": "text",
+        "content": "At the start of winter, the apiary had exactly $40\\text{ active hives}$. Record books show that exactly $15\\% $ of the hives did not survive the cold season."
+      },
+      "claim": "The apiary apprentice writes in the report: \"Our winter loss was significant; we lost exactly $8\\text{ hives}$ over the season.\"",
+      "question": "Is the apprentice's report correct? Show percentage calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it was",
+          "apprentice is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it was not",
+          "apprentice is wrong",
+          "lost 6 hives"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate the number of hives lost: $40\\text{ hives} \\times 0.15 = 6\\text{ hives}$"
+          ],
+          "result": "6 hives lost",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. $15\\% $ of $40$ hives is exactly $6$ hives lost, not $8$. The apprentice's report overstates the losses by $2$ hives. The correct stand is 'disagree'.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show $6$ hives were lost, which contradicts the claim of $8$ and 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate the number of hives lost: $40\\text{ hives} \\times 0.15 = 6\\text{ hives}$",
+            "Calculate the number of hives that survived: $40\\text{ hives} - 6\\text{ hives} = 34\\text{ hives}$"
+          ],
+          "result": "6 hives lost",
+          "explanation": "No, the apprentice's report is incorrect. A loss rate of $15\\% $ of $40$ hives corresponds to exactly $6$ hives lost. The apprentice overstated the hive losses by $2$ hives.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $40$ (hives) and $15\\% $?",
+            "c3": "Look for: Did you multiply $40 \\times 0.15 = 6$ hives lost?",
+            "c4": "Look for: Did you state that $6 \\neq 8$, supporting 'disagree'?",
+            "c5": "Look for: Did you connect your answer back to the winter survival rates of the bee colony?"
+          }
+        }
+      }
+    },
+    {
+      "id": "127",
+      "level": 4,
+      "topic": "Construction — Volumetric Capacity",
+      "source": "Original",
+      "context": "A landscape builder is pouring a new rectangular concrete patio slab for a house in Gisborne.",
+      "data": {
+        "type": "text",
+        "content": "The required dimensions of the concrete slab are exactly $6.0\\text{ m}$ in length by $4.0\\text{ m}$ in width, with a uniform pour depth of exactly $15\\text{ cm}$. Standard concrete trucks have a maximum delivery capacity of exactly $3.0\\text{ m}^3$."
+      },
+      "claim": "The construction apprentice says, \"Since the truck holds $3.0\\text{ m}^3$, we can complete this entire pour in a single full truck delivery.\"",
+      "question": "Is the apprentice's claim correct? Show step-by-step volume calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they can"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they cannot",
+          "need more than one",
+          "volume is 3.6"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Convert depth to metres: $15\\text{ cm} \\div 100 = 0.15\\text{ m}$",
+            "Calculate slab volume: $6.0\\text{ m} \\times 4.0\\text{ m} \\times 0.15\\text{ m} = 3.6\\text{ m}^3$",
+            "Compare to truck capacity: $3.6\\text{ m}^3 > 3.0\\text{ m}^3$"
+          ],
+          "result": "3.6 m³ required",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The volume required for the pour is $3.6\\text{ m}^3$, which exceeds the single-truck capacity of $3.0\\text{ m}^3$. They will be short by $0.6\\text{ m}^3$. The apprentice is incorrect.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show $3.6\\text{ m}^3$ is needed, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Convert depth to metres: $15\\text{ cm} \\div 100 = 0.15\\text{ m}$",
+            "Calculate the required volume of the slab: $6.0\\text{ m} \\times 4.0\\text{ m} \\times 0.15\\text{ m} = 3.6\\text{ m}^3$",
+            "Compare with truck capacity: $3.6\\text{ m}^3$ is greater than the $3.0\\text{ m}^3$ truck limit"
+          ],
+          "result": "3.6 m³ required",
+          "explanation": "No, the apprentice is incorrect. The slab's volume is exactly $3.6\\text{ m}^3$. Since a single truck only holds $3.0\\text{ m}^3$, they cannot complete the job in a single delivery and will need to order a second delivery of $0.6\\text{ m}^3$.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you convert the $15\\text{ cm}$ depth to $0.15\\text{ m}$?",
+            "c3": "Look for: Did you multiply $6 \\times 4 \\times 0.15$ to find the required volume of $3.6\\text{ m}^3$?",
+            "c4": "Look for: Did you point out that $3.6\\text{ m}^3 > 3.0\\text{ m}^3$, supporting your 'disagree' stand?",
+            "c5": "Look for: Did you relate the outcome to concrete mixing and delivery truck capacities?"
+          }
+        }
+      }
+    },
+    {
+      "id": "128",
+      "level": 4,
+      "topic": "Hospitality — Recipe Ingredient Cost Optimization",
+      "source": "Original",
+      "context": "A bakery team in Whāngārei is scaling up a recipe to make large quantities of standard scones for a school event.",
+      "data": {
+        "type": "table",
+        "caption": "Scone Recipe Ingredients & Options",
+        "headers": [
+          "Variable",
+          "Standard / Retail rate"
+        ],
+        "rows": [
+          [
+            "Flour needed for 20 scones",
+            "$500\\text{ g}$"
+          ],
+          [
+            "Target scones to make",
+            "$300$"
+          ],
+          [
+            "Option A: 1.5 kg small flour bag",
+            "$3.20 per bag"
+          ],
+          [
+            "Option B: 10 kg bulk flour sack",
+            "$18.00 per sack"
+          ]
+        ],
+        "notes": "Flour must be purchased in whole packages."
+      },
+      "claim": "The kitchen manager says, \"Since buying in bulk is generally cheaper, buying the 10 kg bulk sack (Option B) is the cheapest way to get the flour we need.\"",
+      "question": "Is the manager correct? Show step-by-step recipe scaling and cost comparison calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "option a is cheaper",
+          "manager is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Scale factor: $300 \\div 20 = 15\\text{ times}$",
+            "Flour needed: $15 \\times 500\\text{ g} = 7,500\\text{ g} = 7.5\\text{ kg}$",
+            "Option A: $7.5\\text{ kg} \\div 1.5\\text{ kg/bag} = 5\\text{ bags exactly}$",
+            "Option A Cost: $5 \\times $3.20 = $16.00$",
+            "Option B Cost (10 kg bulk): $18.00$",
+            "Compare costs: $16.00 < $18.00"
+          ],
+          "result": "$16.00$ vs $18.00$",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. While the bulk sack provides more total flour per dollar, buying the exact amount needed using $5$ small bags of $1.5\\text{ kg}$ costs exactly $16.00$. This is $2.00$ cheaper than buying the $10\\text{ kg}$ bulk sack ($18.00$). The manager is incorrect.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — Option A is cheaper, which contradicts 'agree'.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate recipe scaling factor: $300 \\div 20 = 15\\text{ times}$",
+            "Calculate total flour needed: $15 \\times 500\\text{ g} = 7,500\\text{ grams} = 7.5\\text{ kg}$",
+            "Option A (Small bags): $7.5\\text{ kg} \\div 1.5\\text{ kg} = 5\\text{ bags exactly}$",
+            "Calculate Option A cost: $5 \\times $3.20 = $16.00$",
+            "Option B (Bulk sack): Needs to purchase $1\\text{ sack}$, costing $18.00$",
+            "Compare costs: $16.00$ (Option A) is cheaper than $18.00$ (Option B)"
+          ],
+          "result": "$16.00$ (Option A) vs $18.00$ (Option B)",
+          "explanation": "No, the manager is incorrect. To make $300$ scones, they require exactly $7.5\\text{ kg}$ of flour. This can be bought using $5$ small bags ($7.5\\text{ kg}$ total) for exactly $16.00$. This is $2.00$ cheaper than purchasing the $10\\text{ kg}$ bulk sack for $18.00$.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you compute the required flour mass ($7.5\\text{ kg}$)?",
+            "c3": "Look for: Did you show that $5$ bags of $1.5\\text{ kg}$ cost $16.00$ and a $10\\text{ kg}$ bulk sack costs $18.00$?",
+            "c4": "Look for: Did you state that $16.00 < $18.00, supporting your 'disagree' stand?",
+            "c5": "Look for: Did you connect the prices back to the flour budget for making the scones?"
+          }
+        }
+      }
+    },
+    {
+      "id": "129",
+      "level": 4,
+      "topic": "School & Population — Staffing Ratios",
+      "source": "Original",
+      "context": "A school board in Masterton is checking class sizes and staffing compliance for its Year 12 level.",
+      "data": {
+        "type": "text",
+        "content": "There are currently $420\\text{ Year 12 students}$ and $28\\text{ full-time teachers}$ employed. The Ministry of Education recommendation states the student-to-teacher ratio should not exceed $16:1$."
+      },
+      "claim": "The principal says, \"Our school's Year 12 student-to-teacher ratio currently meets the Ministry recommendation limit.\"",
+      "question": "Is the principal correct? Use ratio calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it does",
+          "meets limits"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it does not",
+          "over limit"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Determine the observed ratio of students per teacher: $420\\text{ students} \\div 28\\text{ teachers} = 15$",
+            "Express as a ratio: $15:1$",
+            "Compare to threshold: $15:1 < 16:1$"
+          ],
+          "result": "$15:1$ ratio",
+          "explanation": "Yes, the principal is correct. The calculated student-to-teacher ratio is exactly $15:1$. Since $15$ is less than the Ministry's maximum recommended limit of $16$ students per teacher, the school complies with the guidelines.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $420$ and $28$?",
+            "c3": "Look for: Did you divide $420 \\div 28 = 15$ to find the ratio?",
+            "c4": "Look for: Did you state that $15 \\leq 16$, supporting 'agree'?",
+            "c5": "Look for: Did you link the results back to the student-to-teacher staffing counts?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Ratio calculation: $420 \\div 28 = 15$",
+            "Compare to standard: $15 \\le 16$"
+          ],
+          "result": "$15:1$ ratio",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The school's ratio of $15$ is mathematically less than the maximum limit of $16$. The principal is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show the school meets compliance, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "130",
+      "level": 4,
+      "topic": "Weather & Climate — Percentage Rainfall Thresholds",
+      "source": "Original",
+      "context": "A horticultural expert in Hawkes Bay is monitoring rainfall data to evaluate drought onset criteria.",
+      "data": {
+        "type": "text",
+        "content": "The historical average rainfall for the month of April is $80\\text{ mm}$. A drought warning is officially declared if the recorded rainfall falls below $40\\% $ of this historical average. This year, the total rainfall recorded in April was exactly $35\\text{ mm}$."
+      },
+      "claim": "The local farm coordinator writes: \"The rainfall has dropped low enough to officially trigger a drought warning this April.\"",
+      "question": "Is the coordinator's statement correct? Use percentage threshold calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it is",
+          "warning triggered"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "warning not triggered"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate drought trigger rainfall limit: $80\\text{ mm} \\times 0.40 = 32\\text{ mm}$",
+            "Compare current rainfall to threshold: $35\\text{ mm} \\approx 32\\text{ mm}$",
+            "Determine difference: $35\\text{ mm} - 32\\text{ mm} = 3\\text{ mm}$"
+          ],
+          "result": "$32\\text{ mm}$ threshold",
+          "explanation": "Yes, the statement is practically correct. While the actual rainfall of $35\\text{ mm}$ is slightly above the $32\\text{ mm}$ mathematical trigger, it is within a very narrow margin of only $3\\text{ mm}$ (or $3.75\\% $ of the average). For agricultural planning, the conditions are severe enough to warn farmers.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the drought trigger limit of $32\\text{ mm}$?",
+            "c3": "Look for: Did you show that $35\\text{ mm}$ is very close to $32\\text{ mm}$, leaving only a $3\\text{ mm}$ difference?",
+            "c4": "Look for: Did you argue that a $3\\text{ mm}$ variance is negligible in real-world soil moisture planning, supporting 'agree'?",
+            "c5": "Look for: Did you connect your answer to the Hawkes Bay region drought monitoring scenario?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate drought trigger rainfall limit: $80\\text{ mm} \\times 0.40 = 32\\text{ mm}$",
+            "Compare current rainfall to threshold: $35\\text{ mm}$ is greater than $32\\text{ mm}$"
+          ],
+          "result": "$32\\text{ mm}$ threshold",
+          "explanation": "No, the statement is incorrect. The drought warning is triggered only if rainfall drops below $32\\text{ mm}$ ($40\\% $ of $80\\text{ mm}$). Because the actual recorded rainfall was $35\\text{ mm}$, the trigger criteria have not officially been met yet.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you multiply $80 \\times 0.40 = 32\\text{ mm}$ to find the trigger threshold?",
+            "c3": "Look for: Did you show that $35\\text{ mm} > 32\\text{ mm}$?",
+            "c4": "Look for: Did you state that the recorded rainfall is still above the limit, supporting your 'disagree' stand?",
+            "c5": "Look for: Did you connect the results back to Hawkes Bay's climate parameters?"
+          }
+        }
+      }
+    },
+    {
+      "id": "131",
+      "level": 4,
+      "topic": "Digitech — Cloud Server Pricing Plans",
+      "source": "Original",
+      "context": "A student startup in Wellington is choosing between two cloud database hosting platforms.",
+      "data": {
+        "type": "text",
+        "content": "The startup expects to use exactly $38,000\\text{ minutes}$ of active compute time per month. Plan A: charges $0.3\\text{ cents}$ ($0.003\\text{ Dollars}$) per active minute. Plan B: charges a flat fee of $120.00\\text{ Dollars}$ per month for up to $50,000\\text{ minutes}$ of compute time."
+      },
+      "claim": "The developer says, \"Plan A is the cheaper option for our expected database hosting needs.\"",
+      "question": "Is the developer correct? Show step-by-step cost comparison calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are",
+          "plan a is cheaper"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "plan b is cheaper"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate Plan A cost: $38,000\\text{ minutes} \\times $0.003 = $114.00$",
+            "Calculate Plan B cost: $120.00$ (since $38,000\\text{ minutes} \\le 50,000\\text{ minutes}$)",
+            "Compare prices: $114.00 < $120.00$"
+          ],
+          "result": "$114.00$ (Plan A) vs $120.00$ (Plan B)",
+          "explanation": "Yes, the developer is correct. Plan A will cost exactly $114.00$ for the month. This is $6.00$ cheaper than Plan B's flat price of $120.00$.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you multiply $38,000 \\times 0.003 = 114$ to find Plan A's cost?",
+            "c3": "Look for: Did you identify that Plan B is a flat $120.00$?",
+            "c4": "Look for: Did you state that $114.00 < $120.00, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to the startup's database usage needs?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate Plan A cost: $38,000\\text{ minutes} \\times $0.003 = $114.00$",
+            "Calculate Plan B cost: $120.00$",
+            "Identify price difference: $120.00 - $114.00 = $6.00$"
+          ],
+          "result": "$114.00$ (Plan A) vs $120.00$ (Plan B)",
+          "explanation": "No, Plan A is not practically the better choice. The difference is only $6.00$ (about $5\\% $). If the startup grows slightly and experiences higher traffic than $38,000\\text{ minutes}$, Plan A's pay-per-minute costs will exceed $120.00$, making Plan B's unlimited cap a much safer commercial choice.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate Plan A's cost to be $114.00$?",
+            "c3": "Look for: Did you show that Plan B is $120.00$?",
+            "c4": "Look for: Did you argue that a $5\\% $ price margin is too small to choose Plan A over the security of Plan B's larger cap, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the calculations to the risk of server scaling spikes?"
+          }
+        }
+      }
+    },
+    {
+      "id": "132",
+      "level": 4,
+      "topic": "Woodworking — Joint Lengths & Spacing",
+      "source": "Original",
+      "context": "A high school woodworking student is installing supportive timber dowels along the edge of a custom cabinet shelf.",
+      "data": {
+        "type": "text",
+        "content": "The shelf board has a length of exactly $90\\text{ cm}$. Dowel joints must be placed at each end, and evenly spaced along the entire length. The spacing interval between the center of each dowel should be exactly $15\\text{ cm}$."
+      },
+      "claim": "The student claims, \"To achieve the target spacing, we need to purchase and install exactly $7\\text{ dowels}$ in total.\"",
+      "question": "Is the student correct? Show spacing and interval calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they do",
+          "student is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they do not",
+          "student is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Determine intervals created by $7$ dowels: $7 - 1 = 6\\text{ intervals}$",
+            "Calculate interval length: $90\\text{ cm} \\div 6\\text{ intervals} = 15\\text{ cm per interval}$",
+            "Check endpoints: Placing dowels at positions $0, 15, 30, 45, 60, 75, 90\\text{ cm}$ satisfies all criteria"
+          ],
+          "result": "6 intervals of 15 cm",
+          "explanation": "Yes, the student is correct. Installing $7$ dowels creates exactly $6$ spacing intervals. Spanning $90\\text{ cm}$ over $6$ intervals yields an exact spacing of $15\\text{ cm}$ between each joint, with dowels perfectly placed at both ends.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you identify that $7$ dowels create $6$ physical spacing intervals?",
+            "c3": "Look for: Did you show that $90\\text{ cm} \\div 6 = 15\\text{ cm}$?",
+            "c4": "Look for: Did you verify that this arrangement satisfies the endpoint constraint, supporting 'agree'?",
+            "c5": "Look for: Did you connect the joints back to the shelf assembly plans?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Intervals for $7$ dowels: $7 - 1 = 6$",
+            "Dowel spacing: $90 \\div 6 = 15\\text{ cm}$"
+          ],
+          "result": "Exactly 15 cm spacing",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The proportional spacing geometry proves that exactly $7$ dowels are needed to yield $15\\text{ cm}$ intervals along a $90\\text{ cm}$ shelf. The student's claim is mathematically correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations show exactly $7$ is correct, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "133",
+      "level": 4,
+      "topic": "Sports — Shooting Efficiency Rates",
+      "source": "Original",
+      "context": "A basketball coach in Hamilton is analyzing free-throw statistics to select the lead shooter for the final tournament.",
+      "data": {
+        "type": "text",
+        "content": "Player A successfully scored $48\\text{ goals}$ out of $80\\text{ total attempts}$. Player B successfully scored $35\\text{ goals}$ out of $50\\text{ total attempts}$."
+      },
+      "claim": "The captain says, \"Player B is the more accurate shooter based on their overall free-throw conversion percentage.\"",
+      "question": "Is the captain's statement correct? Show percentage calculations for both players to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they are",
+          "player b is better",
+          "captain is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they are not",
+          "player a is better",
+          "captain is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate Player A's success percentage: $(48 \\div 80) \\times 100 = 60\\% $",
+            "Calculate Player B's success percentage: $(35 \\div 50) \\times 100 = 70\\% $",
+            "Compare rates: $70\\% $ is greater than $60\\% $"
+          ],
+          "result": "60% (Player A) vs 70% (Player B)",
+          "explanation": "Yes, the captain is correct. Player B has a free-throw conversion rate of $70\\% $, which is higher than Player A's conversion rate of $60\\% $.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the counts of $48$, $80$, $35$, and $50$ correctly?",
+            "c3": "Look for: Did you compute the accuracy percentages ($60\\% $ and $70\\% $)?",
+            "c4": "Look for: Did you show that $70\\% > 60\\% $, which supports the captain's claim?",
+            "c5": "Look for: Did you relate the outcome back to the basketball players' free-throw performance?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Player A rate: $(48 \\div 80) \\times 100 = 60\\% $",
+            "Player B rate: $(35 \\div 50) \\times 100 = 70\\% $",
+            "Compare: $70\\% > 60\\% $"
+          ],
+          "result": "60% vs 70%",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. Player B's success rate ($70\\% $) is mathematically higher than Player A's ($60\\% $). The captain's statement is correct.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — Player B's rate is higher, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "134",
+      "level": 4,
+      "topic": "Shopping — Hire Purchase Interest Rates",
+      "source": "Original",
+      "context": "An office worker in Christchurch is purchasing a new laptop for remote work.",
+      "data": {
+        "type": "text",
+        "content": "The laptop cash price is exactly $1,200.00$. Hire Purchase Option: requires a $10\\% $ deposit ($120.00$), followed by exactly $12\\text{ monthly payments}$ of $105.00$ each."
+      },
+      "claim": "The buyer claims, \"The hire purchase option will cost me about $15\\% $ more than paying cash upfront.\"",
+      "question": "Is the buyer's percentage markup estimate correct? Use interest and price calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it does",
+          "buyer is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it does not",
+          "buyer is wrong"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate monthly payments total: $12 \\times 105.00 = $1,260.00$",
+            "Calculate total hire purchase cost: $120.00\\text{ (deposit)} + $1,260.00 = $1,380.00$",
+            "Calculate absolute price markup: $1,380.00 - $1,200.00 = $180.00$",
+            "Calculate percentage markup: ($180.00 \\div $1,200.00) \\times 100 = 15.0\\% $"
+          ],
+          "result": "15.0% markup",
+          "explanation": "Yes, the buyer is correct. The total cost of the hire purchase is exactly $1,380.00$, which is $180.00$ more than the cash price. This difference represents an exact interest markup of $15.0\\% $.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you compute the total hire purchase cost of $1,380.00$?",
+            "c3": "Look for: Did you show that the extra cost is $180.00$, and divide by $1,200.00$ to get $15.0\\% $?",
+            "c4": "Look for: Did you verify that your calculated markup matches the $15\\% $ claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you connect the results back to the retail purchasing plans of the laptop?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate total hire purchase cost: $120.00\\text{ deposit} + (12 \\times $105.00) = $1,380.00$",
+            "Calculate finance charge: $1,380.00 - $1,200.00 = $180.00$",
+            "Calculate percentage markup: ($180.00 \\div $1,200.00) \\times 100 = 15.0\\% $"
+          ],
+          "result": "15.0% markup",
+          "explanation": "No, the buyer's estimate is not reasonable for comparative finance. The markup on the cash price is $15.0\\% $, but this ignores the fact that they are paying a deposit upfront. In credit interest terms, because the average balance owed throughout the year is less than $1,200.00$, the true annual percentage rate (APR) is significantly higher than $15\\% $.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate the total cost of the hire purchase option ($1,380.00$)?",
+            "c3": "Look for: Did you identify that the nominal cost increase is exactly $15.0\\% $?",
+            "c4": "Look for: Did you argue that nominal markup does not accurately represent interest rates on credit agreements, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the analysis back to retail finance terms and credit borrowing?"
+          }
+        }
+      }
+    },
+    {
+      "id": "135",
+      "level": 4,
+      "topic": "Travel — Hybrid Fuel Economy",
+      "source": "Original",
+      "context": "A driver is planning a holiday trip around the South Island in a hybrid hatchback.",
+      "data": {
+        "type": "text",
+        "content": "The fuel tank capacity is exactly $45\\text{ Litres}$. The highway rating is $4.8\\text{ L/100km}$, and the city rating is $5.5\\text{ L/100km}$. The driver expects to travel exactly $850\\text{ km}$ ($60\\% $ on highway corridors, $40\\% $ within urban city environments)."
+      },
+      "claim": "The driver says, \"We can complete this entire $850\\text{ km}$ trip on a single full tank of petrol without any need to refuel.\"",
+      "question": "Is the driver correct? Use distance splits and fuel consumption rate calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they can",
+          "about right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they cannot",
+          "too close",
+          "need to refuel"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate highway distance: $850\\text{ km} \\times 0.60 = 510\\text{ km}$",
+            "Calculate city distance: $850\\text{ km} \\times 0.40 = 340\\text{ km}$",
+            "Calculate highway fuel: $(510 \\div 100) \\times 4.8\\text{ L} = 24.48\\text{ Litres}$",
+            "Calculate city fuel: $(340 \\div 100) \\times 5.5\\text{ L} = 18.70\\text{ Litres}$",
+            "Calculate total fuel needed: $24.48\\text{ L} + 18.70\\text{ L} = 43.18\\text{ Litres}$",
+            "Compare with tank capacity: $43.18\\text{ L} < 45\\text{ L}$"
+          ],
+          "result": "$43.18\\text{ Litres}$ required",
+          "explanation": "Yes, the driver is correct. The total fuel required is exactly $43.18\\text{ Litres}$. Since this is less than the $45$-Litre fuel tank capacity, they can mathematically complete the trip without stopping to refuel.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the distance splits ($510\\text{ km}$ highway and $340\\text{ km}$ city)?",
+            "c3": "Look for: Did you compute the fuel used for each portion ($24.48\\text{ L}$ and $18.70\\text{ L}$) correctly?",
+            "c4": "Look for: Did you show that the sum of $43.18\\text{ L}$ is less than $45\\text{ L}$, supporting 'agree'?",
+            "c5": "Look for: Did you link the calculations back to the South Island tourist driving trip?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate highway distance: $850\\text{ km} \\times 0.60 = 510\\text{ km}$",
+            "Calculate city distance: $850\\text{ km} \\times 0.40 = 340\\text{ km}$",
+            "Calculate highway fuel: $(510 \\div 100) \\times 4.8\\text{ L} = 24.48\\text{ Litres}$",
+            "Calculate city fuel: $(340 \\div 100) \\times 5.5\\text{ L} = 18.70\\text{ Litres}$",
+            "Calculate total fuel needed: $24.48\\text{ L} + 18.70\\text{ L} = 43.18\\text{ Litres}$",
+            "Calculate fuel remaining: $45\\text{ L} - 43.18\\text{ L} = 1.82\\text{ Litres}$"
+          ],
+          "result": "$43.18\\text{ Litres}$ required",
+          "explanation": "No, this is a dangerous claim. The total minimum fuel consumption is $43.18\\text{ Litres}$, which leaves a safety margin of only $1.82\\text{ Litres}$ (under $5\\% $ of the tank). In a real-world trip, traffic delays, air conditioning, and elevation climb will consume this small buffer, forcing them to refuel.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you calculate the fuel consumption total of $43.18\\text{ Litres}$ correctly?",
+            "c3": "Look for: Did you show that the leftover buffer is only $1.82\\text{ Litres}$?",
+            "c4": "Look for: Did you argue that a $1.82$-Litre margin is too small for road trip driving contingency, supporting 'disagree'?",
+            "c5": "Look for: Did you connect the results to practical road-safety fuel reserve recommendations?"
+          }
+        }
+      }
+    },
+    {
+      "id": "136",
+      "level": 4,
+      "topic": "Charity & Fundraising — Runathon Target Proportions",
+      "source": "Original",
+      "context": "A school council in Palmerston North is organizing a runathon fundraiser to buy sport training gear.",
+      "data": {
+        "type": "text",
+        "content": "The school has a strict target to raise exactly $3,000.00\\text{ Dollars}$. There are exactly $50\\text{ registered runners}$. Each runner pays a flat entry fee of $10.00\\text{ Dollars}$. In addition, a local sponsor pledges to pay exactly $1.50\\text{ Dollars}$ for each completed lap ($400\\text{ m}$ track) run by participants."
+      },
+      "claim": "The student leader says, \"To hit our $3,000$ target, we need each runner to complete an average of at least $35\\text{ laps}$ of the track.\"",
+      "question": "Is the student leader's estimate correct? Show step-by-step pledge and lap calculations to justify your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "about right",
+          "true",
+          "yes it is",
+          "student is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "34 laps is enough",
+          "student is wrong"
+        ]
+      },
+      "both_stands_valid": true,
+      "valid_stand": null,
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Calculate entry fees revenue: $50\\text{ runners} \\times $10 = $500.00$",
+            "Calculate remaining target needed from pledges: $3,000.00 - $500.00 = $2,500.00$",
+            "Calculate total laps needed: $2,500.00 \\div $1.50 = 1,666.67\\text{ laps}$",
+            "Calculate average laps per runner: $1,666.67\\text{ laps} \\div 50\\text{ runners} = 33.33\\text{ laps}$",
+            "Compare to estimate: $33.33 \\le 35$"
+          ],
+          "result": "$33.33\\text{ laps}$",
+          "explanation": "Yes, the estimate is reasonable. The calculation shows each runner needs to complete an average of $33.33\\text{ laps}$ to reach the target. Estimating 'at least $35\\text{ laps}$' is a safe and practical target that guarantees they will exceed the fundraising minimum.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you calculate the entry fee pool ($500\\text{ Dollars}$) and the remaining pledge goal ($2,500\\text{ Dollars}$)?",
+            "c3": "Look for: Did you show that $2,500 \\div 1.50 = 1,666.67\\text{ laps}$, and divide by $50$ to get $33.33\\text{ laps}$?",
+            "c4": "Look for: Did you explain that setting the target at $35\\text{ laps}$ ensures they clear the budget safely, supporting 'agree'?",
+            "c5": "Look for: Did you relate the steps to the school's sports gear fundraiser goals?"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate entry fees revenue: $50\\text{ runners} \\times $10 = $500.00$",
+            "Calculate remaining target needed from pledges: $3,000.00 - $500.00 = $2,500.00$",
+            "Calculate total laps needed: $2,500.00 \\div $1.50 = 1,666.67\\text{ laps}$",
+            "Calculate average laps per runner: $1,666.67\\text{ laps} \\div 50\\text{ runners} = 33.33\\text{ laps}$"
+          ],
+          "result": "$33.33\\text{ laps}$",
+          "explanation": "No, the estimate is incorrect. The exact average required per runner is $33.33\\text{ laps}$. Since they can only run complete laps, each runner must complete at least $34\\text{ laps}$ to reach the goal. Claiming they must run $35\\text{ laps}$ over-allocates the required target by $1.67\\text{ laps}$ per student.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you subtract the $500$ entry fees from the $3,000$ target?",
+            "c3": "Look for: Did you calculate that the required laps per runner is $33.33$?",
+            "c4": "Look for: Did you state that $34\\text{ laps}$ is sufficient, making the claim of $35\\text{ laps}$ too high, supporting 'disagree'?",
+            "c5": "Look for: Did you relate the outcome back to the individual runner's physical challenge targets?"
+          }
+        }
+      }
+    },
+    {
+      "id": "137",
+      "level": 4,
+      "topic": "Hospitality — Payroll Wage Rates",
+      "source": "Original",
+      "context": "A restaurant owner in Whāngārei is calculating the weekly payroll for a kitchen supervisor.",
+      "data": {
+        "type": "text",
+        "content": "The supervisor's standard pay rate is exactly $24.00\\text{ Dollars}$ per hour for up to $40\\text{ hours}$ worked per week. Any overtime hours are paid at an enhanced 'time-and-a-half' rate ($36.00\\text{ Dollars}$ per hour). The supervisor worked a total of $46\\text{ hours}$ this week."
+      },
+      "claim": "The restaurant owner says, \"The total gross pay owed to the supervisor for this week's work is exactly $1,176.00\\text{ Dollars}$.\"",
+      "question": "Is the owner's calculation correct? Show step-by-step wage and overtime calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes it is",
+          "owner is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no it is not",
+          "owner is wrong"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "positive",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "Yes / Correct / Agree",
+          "calculation_steps": [
+            "Determine regular and overtime hours: $40\\text{ regular hours}$ and $6\\text{ overtime hours}$ ($46 - 40 = 6$)",
+            "Calculate standard pay: $40\\text{ hours} \\times $24.00/hour = $960.00$",
+            "Calculate overtime rate: $24.00 \\times 1.5 = $36.00/hour$",
+            "Calculate overtime pay: $6\\text{ hours} \\times $36.00/hour = $216.00$",
+            "Calculate total gross pay: $960.00 + $216.00 = $1,176.00$"
+          ],
+          "result": "$1,176.00$",
+          "explanation": "Yes, the owner is correct. The supervisor earned $960.00$ for standard hours and $216.00$ for the $6\\text{ hours}$ of overtime, resulting in an exact total gross pay of $1,176.00$.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'yes', 'correct', 'agree', or similar at the start?",
+            "c2": "Look for: Did you use the hours of $40$ and $6$, and the pay rates of $24.00$ and $36.00$?",
+            "c3": "Look for: Did you show standard pay ($960.00$) and overtime pay ($216.00$) calculations and sum them to $1,176.00$?",
+            "c4": "Look for: Did you verify that your calculated total matches the claim exactly, supporting 'agree'?",
+            "c5": "Look for: Did you relate the calculations back to the kitchen supervisor's weekly payroll?"
+          }
+        },
+        "disagree": {
+          "stand": "⚠️ INCORRECT STAND — No / Incorrect is NOT supported by this data",
+          "calculation_steps": [
+            "Standard pay: $40 \\times $24 = $960",
+            "Overtime pay: $6 \\times $36 = $216",
+            "Total gross pay: $960 + $216 = $1,176.00$"
+          ],
+          "result": "$1,176.00$",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The correct step-by-step wage analysis results in exactly $1,176.00$, which matches the owner's calculations perfectly. The correct stand is 'agree'.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Agree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — the calculations match $1,176.00$, which contradicts 'disagree'.",
+            "c5": "N/A"
+          }
+        }
+      }
+    },
+    {
+      "id": "138",
+      "level": 4,
+      "topic": "Beekeeping — Varroa Mite Sampling Rates",
+      "source": "Original",
+      "context": "A beekeeper in Masterton is taking parasite samples from their hives to monitor Varroa destructor mite infestation.",
+      "data": {
+        "type": "text",
+        "content": "The standard diagnostic procedure requires collecting a sample of exactly $300\\text{ bees}$ from the brood nest. The action threshold requires chemical treatment if the Varroa count exceeds $2\\% $ of the sample size. During a hive check, the beekeeper finds exactly $7\\text{ mites}$ in their sample of $300\\text{ bees}$."
+      },
+      "claim": "The apprentice beekeeper says, \"Since we found only $7\\text{ mites}$ in our sample, we sit under the action threshold and do not need to apply treatment yet.\"",
+      "question": "Is the apprentice's assessment correct? Use threshold and rate calculations to explain your answer.",
+      "stand_options": {
+        "positive": [
+          "yes",
+          "correct",
+          "agree",
+          "right",
+          "true",
+          "yes they do",
+          "apprentice is right"
+        ],
+        "negative": [
+          "no",
+          "incorrect",
+          "disagree",
+          "wrong",
+          "false",
+          "no they do not",
+          "apprentice is wrong",
+          "need to treat"
+        ]
+      },
+      "both_stands_valid": false,
+      "valid_stand": "negative",
+      "scaffold": null,
+      "model_answers": {
+        "agree": {
+          "stand": "⚠️ INCORRECT STAND — Yes / Correct is NOT supported by this data",
+          "calculation_steps": [
+            "Calculate action threshold mite limit: $300\\text{ bees} \\times 0.02 = 6\\text{ mites}$",
+            "Compare observed mites to limit: $7\\text{ mites} > 6\\text{ mites}$",
+            "Calculate observed percentage: $(7 \\div 300) \\times 100 = 2.33\\% $"
+          ],
+          "result": "2.33% infestation rate",
+          "explanation": "⚠️ This stand is NOT supported by the calculations. The action threshold is reached at exactly $6\\text{ mites}$ ($2\\% $). Because the beekeeper found $7\\text{ mites}$ ($2.33\\% $), the infestation exceeds the limit. They must apply treatment immediately. The apprentice is incorrect.",
+          "evidence_checklist": {
+            "c1": "N/A — this stand is not supported by the data. See the 'Disagree' model answer.",
+            "c2": "N/A",
+            "c3": "N/A",
+            "c4": "N/A — $7 > 6$, which contradicts 'agree' and requires action.",
+            "c5": "N/A"
+          }
+        },
+        "disagree": {
+          "stand": "No / Incorrect / Disagree",
+          "calculation_steps": [
+            "Calculate the maximum healthy mite limit: $300\\text{ bees} \\times 0.02 = 6\\text{ mites}$",
+            "Compare observed mites to the limit: $7\\text{ mites}$ found is greater than the $6\\text{ mites}$ threshold",
+            "Calculate the observed infestation percentage: $(7 \\div 300) \\times 100 = 2.33\\% $"
+          ],
+          "result": "2.33% infestation rate",
+          "explanation": "No, the apprentice's assessment is incorrect. The $2\\% $ safety limit for a sample of $300\\text{ bees}$ is exactly $6\\text{ mites}$. Since the beekeeper found $7\\text{ mites}$ (which represents a $2.33\\% $ rate), the infestation exceeds the action threshold, and they must apply chemical treatment immediately to save the hive.",
+          "evidence_checklist": {
+            "c1": "Look for: Did you write 'no', 'incorrect', 'disagree', or similar at the start?",
+            "c2": "Look for: Did you use the numbers $300$ bees, $2\\% $ threshold, and $7$ mites?",
+            "c3": "Look for: Did you show that $300 \\times 0.02 = 6$ mites, and that $7 > 6$?",
+            "c4": "Look for: Did you state that $2.33\\% > 2\\% $, supporting your 'disagree' stand?",
+            "c5": "Look for: Did you connect the math to the beekeeping practice of parasite action thresholds?"
+          }
+        }
+      }
+    }
+  ]
+};

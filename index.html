@@ -13,7 +13,7 @@
   <!-- MathJax -->
   <script>
     window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      tex: { inlineMath: [['\\(', '\\)']] },
       options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
     };
   </script>
@@ -69,6 +69,8 @@
     }
 
     [hidden] { display: none !important; }
+    .app-view { display: none; }
+    .app-view.active { display: block; }
 
     /* ═══════════════════════════════════════════════════════════════
        HEADER & NAVIGATION
@@ -76,25 +78,59 @@
     header { background-color: var(--navy); color: var(--chalk); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--amber); box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
     .nav-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: stretch; padding: 0 1rem; min-height: 58px; }
     .logo { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer; flex-shrink: 0; }
-    .logo-mark { width: 38px; height: 38px; background: var(--amber); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.25rem; color: var(--navy); }
+    .logo-mark { width: 38px; height: 38px; background: var(--amber); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.25rem; color: var(--navy); transition: transform 0.2s; }
+    .logo:hover .logo-mark { transform: scale(1.05); }
     .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
     .logo-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--chalk); }
     .logo-sub { font-size: 0.625rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); }
 
-    .nav-menu { display: flex; align-items: stretch; list-style: none; }
+    .nav-menu { display: flex; align-items: stretch; list-style: none; margin-left: auto; }
     .nav-item { position: relative; display: flex; align-items: stretch; }
     
     .nav-link { 
-      display: flex; align-items: center; gap: 0.35rem; padding: 0 0.85rem; 
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; 
+      display: flex; align-items: center; gap: 0.35rem; padding: 0 1.25rem; 
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; 
       color: var(--chalk-muted); cursor: pointer; white-space: nowrap; transition: color 0.2s; position: relative; 
     }
     .nav-link::after { 
-      content: ''; position: absolute; bottom: 0; left: 0.85rem; right: 0.85rem; height: 3px; 
+      content: ''; position: absolute; bottom: 0; left: 1.25rem; right: 1.25rem; height: 3px; 
       background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); 
     }
-    .nav-item:hover .nav-link, .nav-link.active-link { color: var(--white); }
-    .nav-item:hover .nav-link::after, .nav-link.active-link::after { transform: scaleX(1); }
+    .nav-item:hover > .nav-link, .nav-link.active-link { color: var(--white); }
+    .nav-item:hover > .nav-link::after, .nav-link.active-link::after { transform: scaleX(1); }
+
+    .caret {
+      display: inline-block; width: 0; height: 0;
+      border-left: 4px solid transparent; border-right: 4px solid transparent;
+      border-top: 5px solid currentColor; margin-left: 6px;
+      transition: transform 0.2s ease;
+    }
+
+    /* Desktop Dropdown Styles */
+    @media (min-width: 769px) {
+      .dropdown-menu {
+        position: absolute; top: 100%; left: 0; min-width: 200px;
+        background-color: var(--navy-mid); border-top: 3px solid var(--amber);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        list-style: none; display: none; z-index: 1001;
+      }
+      .nav-item.dropdown:hover .dropdown-menu { display: block; animation: dropIn 0.2s ease forwards; }
+      .nav-item.dropdown:hover .caret { transform: rotate(180deg); }
+      
+      .dropdown-item {
+        display: block; padding: 0.85rem 1.25rem; color: var(--chalk-dim);
+        font-size: 0.85rem; font-weight: 600; text-decoration: none;
+        transition: background 0.2s, color 0.2s, padding-left 0.2s;
+        border-bottom: 1px solid var(--navy-border); cursor: pointer;
+      }
+      .dropdown-item:last-child { border-bottom: none; }
+      .dropdown-item:hover { background-color: var(--navy-light); color: var(--white); padding-left: 1.5rem; }
+    }
+
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .menu-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 0.5rem; background: none; border: none; margin-left: auto; }
     .menu-toggle span { display: block; width: 22px; height: 2px; background-color: var(--chalk); border-radius: 2px; transition: transform 0.28s, opacity 0.28s; }
@@ -118,8 +154,36 @@
     h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 900; color: var(--navy); line-height: 1.2; }
     
     /* ═══════════════════════════════════════════════════════════════
-       WELCOME SCREEN
+       GLOBAL HOME SCREEN & OVERVIEW
        ═══════════════════════════════════════════════════════════════ */
+    .home-header { text-align: center; margin-bottom: 3rem; }
+    .home-title { font-size: 2.8rem; margin-bottom: 1rem; color: var(--navy); }
+    .home-subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 65ch; margin: 0 auto; line-height: 1.6; }
+    
+    .module-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .module-card {
+      background: var(--chalk); border: 1px solid var(--border);
+      padding: 2.5rem 2rem; text-align: center; cursor: pointer;
+      transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .module-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+      background: var(--navy-light); transition: 0.3s;
+    }
+    .module-card:hover {
+      transform: translateY(-5px); box-shadow: 0 12px 32px rgba(13,27,42,0.1);
+      border-color: var(--amber-dim); background: var(--white);
+    }
+    .module-card:hover::before { background: var(--amber); }
+    
+    .module-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--navy); }
+    .module-title { font-size: 1.75rem; margin-bottom: 1rem; }
+    .module-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+    .module-action {
+      display: inline-block; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--amber-dim);
+    }
+
     .welcome-rule { width: 48px; height: 4px; background: var(--amber); margin: 1.25rem auto; }
     .welcome-intro { font-size: 0.95rem; color: var(--text-muted); max-width: 58ch; margin: 0 auto 0.75rem; }
 
@@ -129,7 +193,7 @@
       background: var(--chalk); border: 1px solid var(--border); padding: 1.5rem 1.75rem; 
       position: relative; cursor: pointer; transition: 0.2s; 
     }
-    .level-card:hover { box-shadow: 0 6px 20px rgba(13,27,42,0.1); transform: translateY(-2px); border-color: var(--amber-dim); }
+    .level-card:hover { box-shadow: 0 6px 20px rgba(13,27,42,0.1); transform: translateY(-2px); border-color: var(--amber-dim); background: var(--white); }
     .level-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--navy-light); transition: 0.2s; }
     .level-card:hover::before { background: var(--amber); }
 
@@ -137,6 +201,12 @@
     .level-card-name { font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
     .level-card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
     .level-card-count { font-size: 0.72rem; color: var(--chalk-muted); margin-top: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Placeholder Screen */
+    .placeholder-wrap { text-align: center; padding: 4rem 2rem; }
+    .placeholder-icon { font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.5; }
+    .placeholder-title { font-size: 2rem; margin-bottom: 1rem; color: var(--navy); }
+    .placeholder-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 50ch; margin: 0 auto 2rem; }
 
     /* ═══════════════════════════════════════════════════════════════
        QUESTION AREA
@@ -293,25 +363,218 @@
 
     .failure-mode-msg { background: var(--warning-bg); border-left: 4px solid var(--warning-border); padding: 1rem 1.5rem; margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--warning-text); line-height: 1.5; }
 
-    /* ═══════════════════════════════════════════════════════════════
-       FOOTER
-       ═══════════════════════════════════════════════════════════════ */
-    footer { background-color: var(--navy); color: var(--chalk-muted); border-top: 4px solid var(--amber); margin-top: auto; }
-    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 2rem; }
-    .footer-bottom { padding-top: 1rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.775rem; }
 
-    /* Responsive */
+    /* Responsive overrides for layout */
     @media (max-width: 768px) {
       .menu-toggle { display: flex; }
       .nav-menu { display: none; flex-direction: column; align-items: stretch; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--navy-mid); border-top: 1px solid var(--navy-border); padding-bottom: 0.5rem; }
       .nav-menu.active { display: flex; }
       .nav-item { flex-direction: column; }
-      .nav-link { padding: 1rem 1.5rem; border-bottom: 1px solid var(--navy-border); justify-content: space-between; font-size: 0.85rem; }
+      
+      /* Mobile Dropdown Accoridon Styles */
+      .nav-item.dropdown > .nav-link { justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--navy-border); }
+      .nav-item.dropdown > .nav-link::after { display: none; }
+      .dropdown-menu { display: none; background-color: var(--navy-light); list-style: none; border-bottom: 1px solid var(--navy-border); }
+      .nav-item.dropdown.open .dropdown-menu { display: block; }
+      .nav-item.dropdown.open .caret { transform: rotate(180deg); color: var(--amber); }
+      .dropdown-item { padding: 1rem 1.5rem 1rem 2.5rem; color: var(--chalk-dim); display: block; text-decoration: none; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      .dropdown-item:last-child { border-bottom: none; }
       
       main { padding: 1.5rem 1rem 3rem; }
       .card-inner-padding { padding: 1.5rem; }
       .verdict-card { flex-direction: column; gap: 1rem; text-align: center; }
       .action-buttons-row { flex-direction: column; gap: 1rem; margin-top: 1rem; }
+      .module-cards { grid-template-columns: 1fr; }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════
+       CALCULATE MODULE
+       ═══════════════════════════════════════════════════════════════ */
+
+    #calculate-area {
+      padding-bottom: 80px; /* Space for the new fixed bottom pane */
+    }
+
+    /* Sticky Question Pane */
+    #calc-question-pane {
+      position: sticky;
+      top: 62px; /* Accounts for header height + border */
+      z-index: 900;
+      max-height: 35vh; /* Restricts height to keep workspace visible */
+      overflow-y: auto;
+      box-shadow: 0 8px 24px rgba(13,27,42,0.12);
+      margin-bottom: 2rem;
+      border-top: 4px solid var(--amber); 
+      border-bottom: 1px solid var(--border);
+    }
+    #calc-question-pane::before { 
+      display: none; /* Override default content-card top gradient to keep it sleek */ 
+    }
+
+    /* Fixed Bottom Progress Pane */
+    .calc-fixed-bottom {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -8px 24px rgba(13,27,42,0.12);
+      z-index: 1000;
+    }
+    .calc-fixed-bottom::before {
+      content: ''; display: block; height: 4px;
+      background: linear-gradient(90deg, var(--amber) 0%, var(--amber-light) 50%, transparent 100%);
+    }
+
+    /* Progress header */
+    .calc-header-inner { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 2rem; flex-wrap: wrap; }
+    .calc-fixed-bottom .calc-header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .calc-progress-wrap { flex: 1; min-width: 120px; }
+    .calc-prog-track { height: 6px; background: var(--chalk-dim); border-radius: 3px; overflow: hidden; }
+    .calc-prog-bar { height: 100%; background: var(--amber); transition: width 0.4s ease; border-radius: 3px; }
+
+    /* Step dots */
+    .calc-dots { display: flex; gap: 0.5rem; align-items: center; }
+    .calc-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--chalk-dim); border: 2px solid var(--border);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; transition: 0.25s;
+    }
+    .calc-dot.active { background: var(--amber); border-color: var(--amber-dim); }
+    .calc-dot.done   { background: var(--navy);  border-color: var(--navy); }
+
+    /* Step cards */
+    .calc-step-card {
+      background: var(--white); border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(13,27,42,0.06); margin-bottom: 1.5rem;
+      /* Ensures scrolling down into new steps accounts for the sticky header height */
+      scroll-margin-top: calc(35vh + 80px); 
+    }
+    .calc-step-card::before {
+      content: ''; display: block; height: 4px;
+      background: linear-gradient(90deg, var(--navy-light) 0%, transparent 100%); transition: background 0.3s;
+    }
+    .calc-step-card.done-card::before {
+      background: linear-gradient(90deg, var(--amber) 0%, var(--amber-light) 50%, transparent 100%);
+    }
+    .calc-step-hd { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .calc-step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--navy); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1rem; flex-shrink: 0; transition: 0.2s;
+    }
+    .calc-step-num.done { background: var(--amber); color: var(--navy); }
+    .calc-step-ttl { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1rem; color: var(--navy); flex: 1; }
+    .calc-step-icon { font-size: 1.2rem; }
+    .calc-step-bd { padding: 1.5rem; }
+
+    /* Operation grid */
+    .calc-op-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+    .calc-op-btn {
+      padding: 0.85rem 1rem; background: var(--chalk); border: 2px solid var(--border);
+      font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: inherit;
+      color: var(--navy); transition: 0.2s; text-align: center;
+    }
+    .calc-op-btn:hover:not(:disabled) { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .calc-op-btn:disabled { cursor: default; }
+    .calc-op-btn.op-correct { background: var(--success-bg); border-color: var(--success-border); color: var(--success-text); }
+    .calc-op-btn.op-wrong   { background: var(--error-bg);   border-color: var(--error-border); }
+
+    /* Feedback banners */
+    .calc-fb { padding: 0.75rem 1rem; font-size: 0.92rem; margin-bottom: 0.5rem; line-height: 1.5; }
+    .fb-ok     { background: var(--success-bg); color: var(--success-text); border-left: 3px solid var(--success-border); }
+    .fb-wrong  { background: var(--error-bg);   color: var(--error-text);   border-left: 3px solid var(--error-border); }
+    .fb-hint   { background: var(--warning-bg); color: var(--warning-text); border-left: 3px solid var(--warning-border); }
+    .fb-info   { background: var(--chalk); color: var(--text-main); border-left: 3px solid var(--navy-light); font-style: italic; }
+    .fb-reveal { background: var(--chalk); color: var(--text-main); border-left: 3px solid var(--amber); }
+
+    /* Step 2 — starter sentence */
+    .calc-starter-sentence {
+      background: var(--chalk); border: 1px solid var(--border); padding: 1rem 1.25rem;
+      font-size: 0.97rem; line-height: 2.2; margin-bottom: 0.75rem;
+    }
+    .calc-blank {
+      display: inline-block; width: 80px; padding: 0.2rem 0.4rem;
+      border: 2px solid var(--border); background: var(--white);
+      font-size: 0.95rem; font-family: inherit; color: var(--text-main);
+      transition: 0.2s; vertical-align: middle;
+    }
+    .calc-blank.xwide { width: 120px; }
+    .calc-blank:focus  { outline: none; border-color: var(--amber); background: var(--white); }
+    .calc-blank.b-ok   { border-color: var(--success-border); background: var(--success-bg); }
+    .calc-blank.b-err  { border-color: var(--error-border);   background: var(--error-bg); }
+
+    .calc-because-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-size: 0.97rem; margin-bottom: 0.75rem; }
+    .calc-because-label { font-weight: 600; white-space: nowrap; }
+    .calc-because-input {
+      flex: 1; min-width: 200px; padding: 0.4rem 0.75rem;
+      border: 2px solid var(--border); background: var(--chalk);
+      font-size: 0.95rem; font-family: inherit; color: var(--text-main); transition: 0.2s;
+    }
+    .calc-because-input:focus { outline: none; border-color: var(--amber); background: var(--white); }
+
+    /* Step 3 — answer input */
+    .calc-ans-row { margin-bottom: 0.75rem; }
+    .calc-ans-input {
+      width: 200px; padding: 0.6rem 1rem; border: 2px solid var(--border);
+      background: var(--chalk); font-size: 1.05rem; font-family: inherit;
+      color: var(--text-main); transition: 0.2s;
+    }
+    .calc-ans-input:focus  { outline: none; border-color: var(--amber); background: var(--white); }
+    .calc-ans-input.b-ok   { border-color: var(--success-border); background: var(--success-bg); }
+    .calc-ans-input.b-err  { border-color: var(--error-border);   background: var(--error-bg); }
+    .calc-attempts-msg { font-size: 0.85rem; color: var(--text-muted); margin-left: 0.5rem; }
+
+    /* Step 4 — meaning input */
+    .calc-meaning-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-size: 0.97rem; margin-bottom: 0.75rem; }
+    .calc-meaning-input {
+      flex: 1; min-width: 200px; padding: 0.4rem 0.75rem;
+      border: 2px solid var(--border); background: var(--chalk);
+      font-size: 0.95rem; font-family: inherit; color: var(--text-main); transition: 0.2s;
+    }
+    .calc-meaning-input:focus { outline: none; border-color: var(--amber); background: var(--white); }
+
+    /* Shared buttons */
+    .calc-btn-row { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+    .calc-btn {
+      padding: 0.65rem 1.5rem; font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; cursor: pointer; font-family: inherit; border: none; transition: 0.2s;
+    }
+    .calc-btn:disabled { opacity: 0.5; cursor: default; }
+    .btn-primary { background: var(--navy); color: var(--white); }
+    .btn-primary:hover:not(:disabled) { background: var(--navy-light); }
+    .btn-action  { background: var(--amber); color: var(--navy); }
+    .btn-action:hover:not(:disabled)  { background: var(--amber-light); }
+
+    /* LaTeX display */
+    .calc-math-line { font-family: inherit; }
+
+    /* Summary screen */
+    #calc-summary { padding: 2.5rem 3rem; text-align: center; }
+    .calc-score-big {
+      font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900;
+      color: var(--navy); line-height: 1; margin: 0.5rem 0;
+    }
+    .calc-score-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .calc-sum-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; text-align: left; }
+    .calc-sum-table th { background: var(--navy); color: var(--chalk); padding: 8px 12px; font-weight: 600; border: 1px solid var(--navy-border); }
+    .calc-sum-table td { padding: 8px 12px; border: 1px solid var(--border); color: var(--text-main); }
+    .calc-sum-table tbody tr:nth-child(even) td { background: var(--chalk); }
+
+    /* Calculate — responsive overrides */
+    @media (max-width: 768px) {
+      #calculate-area { padding-bottom: 100px; }
+      #calc-question-pane { max-height: 40vh; top: 58px; }
+      .calc-header-inner { padding: 0.75rem 1rem; }
+      .calc-op-grid { grid-template-columns: repeat(2, 1fr); }
+      .calc-blank { width: 70px; }
+      .calc-blank.xwide { width: 100px; }
+      #calc-summary { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -322,7 +585,7 @@
   ============================================================ -->
   <header class="no-print">
     <nav class="nav-container">
-      <div class="logo" onclick="location.reload()">
+      <div class="logo" id="logo-btn" title="Home">
         <div class="logo-mark">∑</div>
         <div class="logo-text">
           <span class="logo-title">Numme</span>
@@ -334,11 +597,32 @@
         <span></span><span></span><span></span>
       </button>
 
-      <ul class="nav-menu" id="main-nav" role="tablist" aria-label="Difficulty levels">
-        <li class="nav-item"><a class="nav-link level-tab" data-level="1" role="tab" tabindex="0">Level 1</a></li>
-        <li class="nav-item"><a class="nav-link level-tab" data-level="2" role="tab" tabindex="0">Level 2</a></li>
-        <li class="nav-item"><a class="nav-link level-tab" data-level="3" role="tab" tabindex="0">Level 3</a></li>
-        <li class="nav-item"><a class="nav-link level-tab" data-level="4" role="tab" tabindex="0">Level 4</a></li>
+      <ul class="nav-menu" id="main-nav" role="navigation">
+        <!-- Calculate Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" tabindex="0" aria-expanded="false">
+            Calculate <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item nav-route" data-view="calculate-overview-screen">Overview</a></li>
+            <li><a class="dropdown-item calc-level-tab" data-level="1">Single step</a></li>
+            <li><a class="dropdown-item calc-level-tab" data-level="2">Multi-step</a></li>
+          </ul>
+        </li>
+        
+        <!-- Explain Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" tabindex="0" aria-expanded="false">
+            Explain <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item nav-route" data-view="explain-overview-screen">Overview</a></li>
+            <li><a class="dropdown-item explain-level-tab" data-level="1">Level 1</a></li>
+            <li><a class="dropdown-item explain-level-tab" data-level="2">Level 2</a></li>
+            <li><a class="dropdown-item explain-level-tab" data-level="3">Level 3</a></li>
+            <li><a class="dropdown-item explain-level-tab" data-level="4">Level 4</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </header>
@@ -347,11 +631,75 @@
        MAIN / MODULE ROOT
   ============================================================ -->
   <main id="module-slot">
-    <!-- Future module hook point. Content inside can be extracted. -->
     <div id="nummee-module-root">
 
-      <!-- Welcome screen -->
-      <div class="content-card" id="welcome-screen">
+      <!-- ========================================================
+           VIEW: GLOBAL HOME SCREEN
+      ========================================================= -->
+      <div id="global-home-screen" class="app-view active">
+        <div class="home-header">
+          <h1 class="home-title">Master Numeracy</h1>
+          <p class="home-subtitle">
+            Welcome to Numme, your interactive platform for building and applying essential mathematical skills. Choose an area below to begin your practice.
+          </p>
+        </div>
+        
+        <div class="module-cards">
+          <!-- Calculate Card -->
+          <div class="module-card nav-route" data-view="calculate-overview-screen">
+            <div class="module-icon">🧮</div>
+            <h2 class="module-title">Calculate</h2>
+            <p class="module-desc">
+              Master the fundamentals. Practice identifying correct operations and executing single or multi-step calculations to build strong numeric fluency.
+            </p>
+            <span class="module-action">Explore Calculate &rarr;</span>
+          </div>
+
+          <!-- Explain Card -->
+          <div class="module-card nav-route" data-view="explain-overview-screen">
+            <div class="module-icon">✍️</div>
+            <h2 class="module-title">Explain</h2>
+            <p class="module-desc">
+              Justify your reasoning. Read real-world claims, take a clear position, and support your stance using data-driven mathematical working.
+            </p>
+            <span class="module-action">Explore Explain &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           VIEW: CALCULATE OVERVIEW
+      ========================================================= -->
+      <div id="calculate-overview-screen" class="app-view content-card">
+        <div class="card-inner-padding" style="text-align: center;">
+          <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Calculate the Answer</h1>
+          <div class="welcome-rule"></div>
+          <p class="welcome-intro">
+            For every question you will <strong>read the context</strong>,
+            <strong>determine the operation</strong>, and
+            <strong>execute the calculation</strong> to find the final answer.
+          </p>
+          <p style="font-size: 0.95rem; color: var(--navy); font-weight: 600;">Choose a difficulty level below to get started.</p>
+          
+          <div class="level-cards" id="calc-welcome-level-cards">
+            <div class="level-card calc-level-tab" tabindex="0" data-level="1" role="button" aria-label="Select Level 1">
+              <div class="level-card-num">Level 1</div>
+              <div class="level-card-name">Single Step</div>
+              <div class="level-card-desc">Straightforward questions requiring a single mathematical operation to find the answer.</div>
+            </div>
+            <div class="level-card calc-level-tab" tabindex="0" data-level="2" role="button" aria-label="Select Level 2">
+              <div class="level-card-num">Level 2</div>
+              <div class="level-card-name">Multi-step</div>
+              <div class="level-card-desc">Advanced questions requiring multiple operations and careful step-by-step logic.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           VIEW: EXPLAIN OVERVIEW
+      ========================================================= -->
+      <div id="explain-overview-screen" class="app-view content-card">
         <div class="card-inner-padding" style="text-align: center;">
           <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Explain Your Answer</h1>
           <div class="welcome-rule"></div>
@@ -360,16 +708,41 @@
             <strong>take a clear position</strong>, and
             <strong>justify it with a calculation</strong> using the given data.
           </p>
-          <p style="font-size: 0.95rem; color: var(--navy); font-weight: 600;">Choose a difficulty level above or below to get started.</p>
+          <p style="font-size: 0.95rem; color: var(--navy); font-weight: 600;">Choose a difficulty level below to get started.</p>
           
           <div class="level-cards" id="welcome-level-cards">
-            <!-- Populated by JavaScript -->
+            <div class="level-card explain-level-tab" tabindex="0" data-level="1" role="button" aria-label="Select Level 1">
+              <div class="level-card-num">Level 1</div>
+              <div class="level-card-name">Scaffolded</div>
+              <div class="level-card-desc">Scaffolded — sentence starters and a step-by-step calculation template are provided. Questions involve simple time and multiplication.</div>
+              <div class="level-card-count" id="count-l1">0 questions</div>
+            </div>
+            <div class="level-card explain-level-tab" tabindex="0" data-level="2" role="button" aria-label="Select Level 2">
+              <div class="level-card-num">Level 2</div>
+              <div class="level-card-name">Standard</div>
+              <div class="level-card-desc">No scaffolding — straightforward questions using time, distance, or basic arithmetic.</div>
+              <div class="level-card-count" id="count-l2">0 questions</div>
+            </div>
+            <div class="level-card explain-level-tab" tabindex="0" data-level="3" role="button" aria-label="Select Level 3">
+              <div class="level-card-num">Level 3</div>
+              <div class="level-card-name">Rates &amp; Measures</div>
+              <div class="level-card-desc">No scaffolding — moderate complexity involving rates, unit conversion, or cost-per-unit comparisons.</div>
+              <div class="level-card-count" id="count-l3">0 questions</div>
+            </div>
+            <div class="level-card explain-level-tab" tabindex="0" data-level="4" role="button" aria-label="Select Level 4">
+              <div class="level-card-num">Level 4</div>
+              <div class="level-card-name">Complex</div>
+              <div class="level-card-desc">No scaffolding — complex questions requiring multi-step reasoning or comparison across multiple data points.</div>
+              <div class="level-card-count" id="count-l4">0 questions</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Question area (revealed once a level is chosen) -->
-      <div id="question-area" hidden>
+      <!-- ========================================================
+           VIEW: QUESTION AREA (Explain Module)
+      ========================================================= -->
+      <div id="question-area" class="app-view">
 
         <!-- Question card -->
         <div class="content-card" id="question-card">
@@ -487,7 +860,7 @@
                 <button class="next-btn" id="next-question-btn">Try Another Question</button>
               </div>
               
-              <button class="change-level-btn" id="change-level-btn">Choose a Different Level</button>
+              <button class="change-level-btn" id="back-to-explain-btn">Back to Explain Overview</button>
             </div>
           </div><!-- /verdict-section -->
 
@@ -495,371 +868,163 @@
 
       </div><!-- /question-area -->
 
+
+      <!-- ========================================================
+           VIEW: CALCULATE MODULE
+      ========================================================= -->
+      <div id="calculate-area" class="app-view">
+
+        <!-- Context card + dynamic step cards -->
+        <div id="calc-scroll-pane">
+          
+          <!-- Sticky Top Pane: Always visible Question Context -->
+          <div id="calc-question-pane" class="content-card">
+            <div class="card-inner-padding">
+              <p class="context-text" id="calc-ctx-text"></p>
+              <p class="question-instruction" id="calc-ctx-q"></p>
+            </div>
+          </div>
+
+          <div id="calc-steps"></div>
+        </div>
+
+        <!-- End-of-set summary (shown after last question) -->
+        <div id="calc-summary" class="content-card" style="display:none"></div>
+
+        <!-- Progress header — fixed bottom layout -->
+        <div id="calc-frozen-pane" class="calc-fixed-bottom">
+          <div class="calc-header-inner">
+            <span class="level-badge l1" id="calc-q-badge">Question 1</span>
+            <div class="calc-progress-wrap">
+              <div class="calc-prog-track">
+                <div id="calc-prog-bar" class="calc-prog-bar" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="calc-dots">
+              <span class="calc-dot" id="calc-d1"></span>
+              <span class="calc-dot" id="calc-d2"></span>
+              <span class="calc-dot" id="calc-d3"></span>
+              <span class="calc-dot" id="calc-d4"></span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /calculate-area -->
+
+
     </div><!-- /nummee-module-root -->
   </main>
 
   <footer class="no-print">
     <div class="footer-inner">
       <div class="footer-bottom">
-        <span>&copy; 2026 Sunil Bhave</span>
+        <div>
+          <span>&copy; 2026 Sunil Bhave</span>
+          <span style="margin: 0 0.5rem; opacity: 0.5;">|</span>
+          <a href="#" class="footer-link" onclick="event.preventDefault();">About</a>
+          <span style="margin: 0 0.5rem; opacity: 0.5;">|</span>
+          <a href="#" class="footer-link" onclick="event.preventDefault();">Feedback / Support</a>
+        </div>
         <span style="color: var(--amber);">∑ Striving for Academic Excellence</span>
       </div>
     </div>
   </footer>
 
-<!-- ============================================================
-     QUESTION BANK DATA
-============================================================ -->
-<script id="question-bank-data" src="qa_data.js"></script>
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <!-- 1. Question Bank Data (must load before frameworks) -->
+  <script src="explain_qa.js"></script>
+  <script src="calculate_qa.js"></script>
 
-<!-- ============================================================
-     APP JAVASCRIPT
-============================================================ -->
-<script>
-$(function () {
+  <!-- 2. Module Frameworks (depend on data above) -->
+  <script src="explain_fwk.js"></script>
+  <script src="calculate_fwk.js"></script>
 
-  /* ── Mobile Menu Toggle ─────────────────────────────────── */
-  const mobileBtn = $('#mobile-menu-btn');
-  const mainNav   = $('#main-nav');
-  
-  mobileBtn.on('click', () => {
-      mainNav.toggleClass('active');
-      mobileBtn.toggleClass('open');
-  });
+  <!-- 3. App Shell Logic -->
+  <script>
+  $(function () {
+    /* ── View Management (Global) ───────────────────────────── */
+    window.showView = function(viewId) {
+      $('.app-view').removeClass('active');
+      $('#' + viewId).addClass('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  /* ── State ──────────────────────────────────────────────── */
-  const cfg       = QUESTION_BANK.config;
-  const questions = QUESTION_BANK.questions;
-
-  let currentQ    = null;   // current question object
-  let currentLvl  = null;   // integer 1–4
-  let lastQId     = null;   // avoid immediate repeat
-  let detectedStd = null;   // 'agree' | 'disagree'
-
-  const levelNames = { 1: 'Scaffolded', 2: 'Standard', 3: 'Rates & Measures', 4: 'Complex' };
-
-  /* ── Build welcome level cards ──────────────────────────── */
-  $.each(cfg.level_descriptions, function (lvl, desc) {
-    const n = questions.filter(q => q.level === +lvl).length;
-    $('#welcome-level-cards').append(
-      $('<div class="level-card" tabindex="0"></div>')
-        .attr('data-level', lvl)
-        .attr('role', 'button')
-        .attr('aria-label', 'Select Level ' + lvl)
-        .append($('<div class="level-card-num"></div>').text('Level ' + lvl))
-        .append($('<div class="level-card-name"></div>').text(levelNames[lvl]))
-        .append($('<div class="level-card-desc"></div>').text(desc))
-        .append($('<div class="level-card-count"></div>').text(n + ' question' + (n !== 1 ? 's' : '')))
-    );
-  });
-
-  /* ── Level selection ────────────────────────────────────── */
-  function selectLevel (lvl) {
-    currentLvl = +lvl;
-    $('.level-tab').each(function () {
-      const active = +$(this).data('level') === currentLvl;
-      $(this).toggleClass('active-link', active).attr('aria-selected', active);
-    });
-    
-    // Close mobile menu if open
-    if(window.innerWidth <= 768) {
-        mainNav.removeClass('active');
-        mobileBtn.removeClass('open');
-    }
-
-    loadRandomQuestion();
-  }
-
-  $(document).on('click', '.level-tab', function () { selectLevel($(this).data('level')); });
-  $(document).on('click keypress', '.level-card', function (e) {
-    if (e.type === 'click' || e.key === 'Enter') selectLevel($(this).data('level'));
-  });
-
-  /* ── Load a random question ─────────────────────────────── */
-  function loadRandomQuestion () {
-    const pool = questions.filter(q => q.level === currentLvl);
-    if (!pool.length) { alert('No questions available for this level yet.'); return; }
-    const avail = pool.filter(q => q.id !== lastQId);
-    const src   = avail.length ? avail : pool;
-    currentQ = src[Math.floor(Math.random() * src.length)];
-    lastQId  = currentQ.id;
-    renderQuestion(currentQ);
-  }
-
-  /* ── Render question ────────────────────────────────────── */
-  function renderQuestion (q) {
-    // Meta
-    $('#q-level-badge').text('Level ' + q.level).attr('class', 'level-badge l' + q.level);
-    $('#q-topic').text(q.topic);
-    $('#q-source').text(q.source || '');
-    $('#q-id-display').text('Q-ID: ' + q.id);
-
-    // Content
-    $('#q-context').text(q.context);
-    renderData(q.data);
-    $('#q-claim').text(q.claim);
-    $('#q-instruction').text(q.question);
-
-    // Scaffold
-    if (q.level === 1 && q.scaffold) {
-      $('#scaffold-hint').html('<strong>💡 Hint:</strong> ' + esc(q.scaffold.hint));
-      $('#scaffold-sentence').html('<strong>Sentence starter:</strong> ' + esc(q.scaffold.sentence_starter));
-      $('#scaffold-card').removeAttr('hidden');
-      // Pre-fill calculation template
-      if (q.scaffold.calculation_prompt) {
-        $('#justification-input')
-          .val(q.scaffold.calculation_prompt)
-          .css('font-family', "'Courier New', monospace");
-      } else {
-        $('#justification-input').val('').css('font-family', 'inherit');
+      // Close mobile menu if open
+      if(window.innerWidth <= 768) {
+        $('#main-nav').removeClass('active');
+        $('#mobile-menu-btn').removeClass('open');
+        $('.nav-item.dropdown').removeClass('open'); // Reset accoridons
       }
-    } else {
-      $('#scaffold-card').attr('hidden', true);
-      $('#justification-input').val('').css('font-family', 'inherit');
-    }
-
-    // Reset
-    $('#stand-input').val('').removeClass('unrecognized');
-    $('#stand-error-text').attr('hidden', true).text('');
-    detectedStd = null;
-
-    // Show/hide panels
-    $('#feedback-area').attr('hidden', true);
-    $('#answer-card').removeAttr('hidden');
-    $('#question-area').removeAttr('hidden');
-    $('#welcome-screen').attr('hidden', true);
-
-    // MathJax re-typeset
-    if (window.MathJax) MathJax.typesetPromise(['#question-area']);
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  /* ── Render data (text or table) ────────────────────────── */
-  function renderData (data) {
-    const $c = $('#q-data').empty();
-    if (data.type === 'text') {
-      $c.append($('<div class="data-text"></div>').text(data.content));
-    } else if (data.type === 'table') {
-      const $w = $('<div class="data-table-wrap"></div>');
-      if (data.caption) $w.append($('<div class="data-table-caption"></div>').text(data.caption));
-      const $t = $('<table class="data-table"></table>');
-      const $th = $('<thead><tr></tr></thead>');
-      data.headers.forEach(h => $th.find('tr').append($('<th></th>').text(h)));
-      $t.append($th);
-      const $tb = $('<tbody></tbody>');
-      data.rows.forEach(row => {
-        const $r = $('<tr></tr>');
-        row.forEach(cell => $r.append($('<td></td>').text(cell)));
-        $tb.append($r);
-      });
-      $t.append($tb);
-      $w.append($t);
-      if (data.notes) $w.append($('<div class="data-table-notes"></div>').text('Note: ' + data.notes));
-      $c.append($w);
-    }
-  }
-
-  /* ── Stand detection ────────────────────────────────────── */
-  function detectStand (input) {
-    const s = input.trim().toLowerCase();
-    if (!s) return null;
-    const match = (opts, result) => {
-      for (const opt of opts) {
-        const o = opt.toLowerCase();
-        if (s === o ||
-            s.startsWith(o + ' ') || s.startsWith(o + ',') ||
-            s.startsWith(o + '.') || s.startsWith(o + ':') ||
-            s.startsWith(o + '!')) return result;
-      }
-      return null;
     };
-    return match(currentQ.stand_options.positive, 'agree') ||
-           match(currentQ.stand_options.negative, 'disagree') ||
-           null;
-  }
 
-  /* ── Submit ─────────────────────────────────────────────── */
-  $('#submit-btn').on('click', handleSubmit);
-  $('#stand-input').on('keydown', function (e) { if (e.key === 'Enter') handleSubmit(); });
-
-  function handleSubmit () {
-    const raw = $('#stand-input').val().trim();
-    if (!raw) {
-      showStandError('Please type your position first — use a word like yes, no, agree, disagree, right, wrong, true, or false.');
-      return;
-    }
-    const det = detectStand(raw);
-    if (!det) {
-      showStandError('We couldn\'t recognise "' + raw + '" as a clear position. Try starting with: yes, no, agree, disagree, right, wrong, true, or false.');
-      $('#stand-input').addClass('unrecognized');
-      return;
-    }
-    $('#stand-error-text').attr('hidden', true);
-    $('#stand-input').removeClass('unrecognized');
-    detectedStd = det;
-    showFeedback();
-  }
-
-  function showStandError (msg) {
-    $('#stand-error-text').text(msg).removeAttr('hidden');
-    $('#stand-input').addClass('unrecognized').focus();
-  }
-
-  /* ── Show feedback ──────────────────────────────────────── */
-  function showFeedback () {
-    const q   = currentQ;
-    const std = detectedStd;
-
-    // Record student's raw answer for display
-    const rawStand  = $('#stand-input').val().trim();
-    const rawJust   = $('#justification-input').val().trim();
-    const stdLabel  = std === 'agree' ? 'AGREE / YES / RIGHT' : 'DISAGREE / NO / WRONG';
-
-    $('#your-stand-display').text(rawStand);
-    $('#your-stand-recognised').text(stdLabel);
-    if (rawJust) {
-      $('#your-justification-display').text(rawJust).removeAttr('hidden');
-    } else {
-      $('#your-justification-display').text('(nothing written)');
-    }
-
-    // Determine if wrong stand
-    const isWrong = !q.both_stands_valid && q.valid_stand &&
-                    ((q.valid_stand === 'positive' && std === 'disagree') ||
-                     (q.valid_stand === 'negative' && std === 'agree'));
-
-    if (isWrong) {
-      const correctLabel = q.valid_stand === 'positive' ? 'AGREE / YES / RIGHT' : 'DISAGREE / NO / WRONG';
-      $('#wrong-stand-title').text('⚠️ Your stand is not supported by the data');
-      $('#wrong-stand-body').text(
-        'The calculation shows the correct answer is: ' + correctLabel +
-        '. Review both model answers below to see why.'
-      );
-      $('#wrong-stand-warning').removeAttr('hidden');
-    } else {
-      $('#wrong-stand-warning').attr('hidden', true);
-    }
-
-    // Build model answers
-    const $mc = $('#model-answers-container').empty();
-    if (isWrong) {
-      const wrongAns   = q.model_answers[std];
-      const correctKey = q.valid_stand === 'positive' ? 'agree' : 'disagree';
-      const correctAns = q.model_answers[correctKey];
-      $mc.append(buildModelAnswer(wrongAns,   true,  'Your chosen stand (not supported by the data):'));
-      $mc.append(buildModelAnswer(correctAns, false, 'Correct model answer:'));
-      buildChecklist(correctAns);
-    } else {
-      const ans = q.model_answers[std];
-      $mc.append(buildModelAnswer(ans, false, 'Model answer for your position:'));
-      buildChecklist(ans);
-    }
-
-    // Show feedback panel
-    $('#answer-card').attr('hidden', true);
-    $('#verdict-section').attr('hidden', true);
-    $('#feedback-area').removeAttr('hidden');
-
-    if (window.MathJax) MathJax.typesetPromise(['#feedback-area']);
-
-    setTimeout(() => {
-      document.getElementById('feedback-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 120);
-  }
-
-  /* ── Build a model answer card ──────────────────────────── */
-  function buildModelAnswer (ans, isInvalid, headerText) {
-    const $card = $('<div></div>').addClass('model-answer-card' + (isInvalid ? ' invalid' : ''));
-    $card.append($('<div class="model-answer-header"></div>').text(headerText));
-    $card.append($('<div class="model-answer-stand"></div>').text('Stand: ' + ans.stand));
-    const $steps = $('<div class="calc-steps"></div>');
-    ans.calculation_steps.forEach(s => $steps.append($('<div class="calc-step"></div>').text(s)));
-    $card.append($steps);
-    $card.append($('<div class="result-line"></div>').text('Result: ' + ans.result));
-    $card.append($('<div class="model-answer-explanation"></div>').text(ans.explanation));
-    return $card;
-  }
-
-  /* ── Build self-marking checklist ───────────────────────── */
-  function buildChecklist (ans) {
-    const $c = $('#checklist-items').empty();
-    cfg.checklist_items.forEach(item => {
-      const evidence = ans.evidence_checklist[item.id] || '';
-      const $item = $('<div class="checklist-item"></div>');
-      const $cb   = $('<input type="checkbox" class="checklist-checkbox">').attr('id', 'chk-' + item.id).attr('data-id', item.id);
-      const $content = $('<div class="checklist-item-content"></div>');
-      $content.append($('<label class="checklist-item-label"></label>').attr('for', 'chk-' + item.id).text(item.label));
-      $content.append($('<div class="checklist-item-evidence"></div>').text(evidence));
-      $item.append($cb).append($content);
-      $c.append($item);
+    /* ── Navigation / Routing Events ────────────────────────── */
+    $('#logo-btn').on('click', function() {
+      window.showView('global-home-screen');
     });
-    // Reset state
-    $('.checklist-checkbox').prop('checked', false).prop('disabled', false);
-    $('#score-btn').prop('disabled', false);
-    $('#verdict-section').attr('hidden', true);
-  }
 
-  /* ── Score button ───────────────────────────────────────── */
-  $('#score-btn').on('click', function () {
-    const score   = $('.checklist-checkbox:checked').length;
-    const c1ticked = $('#chk-c1').is(':checked');
-    const c3ticked = $('#chk-c3').is(':checked');
+    $(document).on('click', '.nav-route', function(e) {
+      e.preventDefault();
+      const view = $(this).data('view');
+      window.showView(view);
+    });
 
-    // Lock checklist
-    $('.checklist-checkbox').prop('disabled', true);
-    $(this).prop('disabled', true);
+    /* ── Module Level Routing ───────────────────────────────── */
+    $(document).on('click', '.calc-level-tab', function(e) {
+      e.preventDefault();
+      // Similar to explain, skip if this is the level-card (prevent double firing if we add click logic later)
+      // Though currently Calculate doesn't double-fire like Explain did, this is good practice.
+      
+      const level = $(this).data('level');
+      window.showView('calculate-area');
+      if (typeof CalculateModule !== 'undefined') {
+        CalculateModule.start(level);
+      }
+    });
 
-    // Find verdict
-    const verdict = cfg.verdict_thresholds.find(v => score >= v.min_score && score <= v.max_score)
-                    || cfg.verdict_thresholds[cfg.verdict_thresholds.length - 1];
+    $(document).on('click', '.explain-level-tab', function(e) {
+      e.preventDefault();
+      // If this element is also a level-card, explain_fwk.js already binds to it.
+      // We skip it here to avoid calling selectLevel twice per click.
+      if ($(this).hasClass('level-card')) return;
+      
+      const level = $(this).data('level');
+      if (typeof ExplainModule !== 'undefined') {
+        ExplainModule.selectLevel(level);
+      }
+    });
 
-    // Verdict card
-    $('#verdict-card').attr('class', 'verdict-card ' + verdict.colour);
-    $('#verdict-score').text(score);
-    $('#verdict-label').text(verdict.label);
+    /* ── Mobile Menu Toggle ─────────────────────────────────── */
+    const mobileBtn = $('#mobile-menu-btn');
+    const mainNav   = $('#main-nav');
+    
+    mobileBtn.on('click', () => {
+        mainNav.toggleClass('active');
+        mobileBtn.toggleClass('open');
+    });
 
-    // Failure modes
-    const $fm = $('#failure-modes-container').empty();
-    if (!c1ticked) $fm.append($('<div class="failure-mode-msg"></div>').text(cfg.failure_modes.no_position.message));
-    if (!c3ticked) $fm.append($('<div class="failure-mode-msg"></div>').text(cfg.failure_modes.estimation_only.message));
+    /* ── Mobile Dropdown Accordion Toggle ───────────────────── */
+    $('.dropdown-toggle').on('click', function(e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        // Close other open dropdowns
+        $(this).parent().siblings('.dropdown').removeClass('open');
+        // Toggle this one
+        $(this).parent().toggleClass('open');
+      }
+    });
 
-    // Show verdict
-    $('#verdict-section').removeAttr('hidden');
-    setTimeout(() => {
-      document.getElementById('verdict-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 120);
+    /* ── Initialize Modules ─────────────────────────────────── */
+    // Data scripts load synchronously above, so QUESTION_BANK and
+    // calculate_qa are guaranteed available before either init() runs.
+    if (typeof ExplainModule !== 'undefined') {
+      ExplainModule.init();
+    }
+    if (typeof CalculateModule !== 'undefined') {
+      CalculateModule.init();
+    }
   });
-
-  /* ── Navigation buttons ─────────────────────────────────── */
-  
-  // NEW: Retry current question
-  $('#retry-question-btn').on('click', function () {
-    renderQuestion(currentQ);
-  });
-  
-  $('#next-question-btn').on('click', loadRandomQuestion);
-
-  $('#change-level-btn').on('click', function () {
-    currentLvl = null;
-    currentQ   = null;
-    $('.level-tab').removeClass('active-link').attr('aria-selected', 'false');
-    $('#question-area').attr('hidden', true);
-    $('#welcome-screen').removeAttr('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  /* ── Utility: escape HTML ───────────────────────────────── */
-  function esc (str) {
-    return String(str || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-}); // end document ready
-</script>
+  </script>
 
 </body>
 </html>
