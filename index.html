@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NumMe | Numeracy Practice (for Me)</title>
+  <title>Numme | Numeracy Practice</title>
 
   <!-- YAMA Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -154,6 +154,25 @@
     h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 900; color: var(--navy); line-height: 1.2; }
     
     /* ═══════════════════════════════════════════════════════════════
+       ABOUT SCREEN STYLES
+       ═══════════════════════════════════════════════════════════════ */
+    .about-header { text-align: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+    .about-lead { font-size: 1.25rem; font-weight: 600; color: var(--navy); margin-bottom: 1.5rem; }
+    .about-section { margin-bottom: 3rem; }
+    .about-section-title { font-size: 1.8rem; margin-bottom: 1rem; color: var(--navy); display: flex; align-items: center; gap: 0.75rem; }
+    .about-section-title::after { content: ''; flex: 1; height: 2px; background: var(--chalk-dim); }
+    .about-text { font-size: 1.05rem; color: var(--text-main); margin-bottom: 1.5rem; line-height: 1.8; }
+    
+    .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .mission-item { background: var(--chalk); border: 1px solid var(--border); padding: 1.5rem; border-top: 3px solid var(--amber); }
+    .mission-item-title { font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .mission-item-desc { font-size: 0.95rem; color: var(--text-muted); }
+
+    .commitment-box { background: var(--navy); color: var(--chalk); padding: 2.5rem; text-align: center; border-radius: 4px; }
+    .commitment-title { color: var(--amber); margin-bottom: 1rem; font-size: 2rem; }
+    .commitment-text { font-size: 1.1rem; margin-bottom: 2rem; }
+
+    /* ═══════════════════════════════════════════════════════════════
        GLOBAL HOME SCREEN & OVERVIEW
        ═══════════════════════════════════════════════════════════════ */
     .home-header { text-align: center; margin-bottom: 3rem; }
@@ -201,12 +220,6 @@
     .level-card-name { font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
     .level-card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
     .level-card-count { font-size: 0.72rem; color: var(--chalk-muted); margin-top: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-
-    /* Placeholder Screen */
-    .placeholder-wrap { text-align: center; padding: 4rem 2rem; }
-    .placeholder-icon { font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.5; }
-    .placeholder-title { font-size: 2rem; margin-bottom: 1rem; color: var(--navy); }
-    .placeholder-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 50ch; margin: 0 auto 2rem; }
 
     /* ═══════════════════════════════════════════════════════════════
        QUESTION AREA
@@ -581,15 +594,15 @@
 <body>
 
   <!-- ============================================================
-       HEADER (YAMA INTEGRATED)
+       HEADER
   ============================================================ -->
   <header class="no-print">
     <nav class="nav-container">
       <div class="logo" id="logo-btn" title="Home">
         <div class="logo-mark">∑</div>
         <div class="logo-text">
-          <span class="logo-title">NumMe</span>
-          <span class="logo-sub">NCEA Numeracy (for Me)</span>
+          <span class="logo-title">Numme</span>
+          <span class="logo-sub">NCEA Numeracy</span>
         </div>
       </div>
 
@@ -668,6 +681,66 @@
       </div>
 
       <!-- ========================================================
+           VIEW: ABOUT SCREEN
+      ========================================================= -->
+      <div id="about-screen" class="app-view content-card">
+        <div class="card-inner-padding">
+          <div class="about-header">
+            <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem;">About Numme</h1>
+            <div class="welcome-rule"></div>
+            <p class="about-lead">Unlocking the CAA Numeracy Hurdle</p>
+          </div>
+
+          <div class="about-section">
+            <h2 class="about-section-title">The "New-Me" Philosophy</h2>
+            <p class="about-text">
+              Numme (pronounced <strong>New-me</strong>) stands for "Numeracy and Me." It was born from the belief that when a student clears the numeracy hurdle—a hurdle that often feels impossible—they discover a "New Me." They find a version of themselves that is capable of overcoming academic roadblocks and achieving their NCEA goals.
+            </p>
+          </div>
+
+          <div class="about-section">
+            <h2 class="about-section-title">Why Numme Exists</h2>
+            <p class="about-text">
+              Numme was built to support the students who need it most, focusing on those who face the steepest barriers to success:
+            </p>
+            <div class="mission-grid">
+              <div class="mission-item">
+                <div class="mission-item-title">The "Moved Along" Generation</div>
+                <div class="mission-item-desc">For those who have been passed through year levels without mastering the fundamentals, Numme provides a safe space to catch up.</div>
+              </div>
+              <div class="mission-item">
+                <div class="mission-item-title">ESOL & Multilingual Learners</div>
+                <div class="mission-item-desc">Numme helps students decode the complex wording of CAA questions so their mathematical brilliance can shine through.</div>
+              </div>
+              <div class="mission-item">
+                <div class="mission-item-title">Digital-First Learners</div>
+                <div class="mission-item-desc">Today’s students engage better with technology. Numme is designed to be an interactive tool that meets them where they are.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-section">
+            <h2 class="about-section-title">How the Platform Works</h2>
+            <p class="about-text">
+              Numme is currently focused on two critical areas of the CAA Numeracy standard:
+            </p>
+            <ul class="about-text" style="list-style-position: inside; margin-left: 1rem; margin-bottom: 2rem;">
+              <li><strong>Breaking Down Context:</strong> We separate the mathematical skill from its application, helping students understand exactly what a question is asking.</li>
+              <li><strong>The Art of Justification:</strong> We help students practice explaining their reasoning and evaluating "agree/disagree" statements with clarity.</li>
+            </ul>
+          </div>
+
+          <div class="commitment-box">
+            <h2 class="commitment-title">Our Commitment: Free for All</h2>
+            <p class="commitment-text">
+              Equity in education is non-negotiable. Financial barriers should never stand in the way of a student’s future. Numme is 100% free and always will be.
+            </p>
+            <button class="score-btn nav-route" data-view="global-home-screen" style="max-width: 300px; margin: 0 auto;">Return to Practice</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
            VIEW: CALCULATE OVERVIEW
       ========================================================= -->
       <div id="calculate-overview-screen" class="app-view content-card">
@@ -740,7 +813,7 @@
       </div>
 
       <!-- ========================================================
-           VIEW: QUESTION AREA (Explain Module)
+           VIEW: QUESTION AREA (Explain Module Engine)
       ========================================================= -->
       <div id="question-area" class="app-view">
 
@@ -803,7 +876,7 @@
         </div>
 
         <!-- =========================================================
-             FEEDBACK AREA (hidden until answer submitted)
+             FEEDBACK AREA (Explain Module Feedback Engine)
         ========================================================== -->
         <div id="feedback-area" hidden>
 
@@ -842,7 +915,7 @@
             </div>
           </div>
 
-          <!-- Verdict (hidden until score button clicked) -->
+          <!-- Verdict -->
           <div class="content-card" id="verdict-section" hidden>
             <div class="card-inner-padding">
               <div class="verdict-card" id="verdict-card">
@@ -870,7 +943,7 @@
 
 
       <!-- ========================================================
-           VIEW: CALCULATE MODULE
+           VIEW: CALCULATE MODULE (Calculate Engine)
       ========================================================= -->
       <div id="calculate-area" class="app-view">
 
@@ -888,7 +961,7 @@
           <div id="calc-steps"></div>
         </div>
 
-        <!-- End-of-set summary (shown after last question) -->
+        <!-- End-of-set summary -->
         <div id="calc-summary" class="content-card" style="display:none"></div>
 
         <!-- Progress header — fixed bottom layout -->
@@ -921,7 +994,7 @@
         <div>
           <span>&copy; 2026 Sunil Bhave</span>
           <span style="margin: 0 0.5rem; opacity: 0.5;">|</span>
-          <a href="#" class="footer-link" onclick="event.preventDefault();">About</a>
+          <a class="footer-link nav-route" data-view="about-screen">About Numme</a>
           <span style="margin: 0 0.5rem; opacity: 0.5;">|</span>
           <a href="#" class="footer-link" onclick="event.preventDefault();">Feedback / Support</a>
         </div>
@@ -933,11 +1006,11 @@
   <!-- ============================================================
        SCRIPTS
   ============================================================ -->
-  <!-- 1. Question Bank Data (must load before frameworks) -->
+  <!-- 1. Question Bank Data -->
   <script src="explain_qa.js"></script>
   <script src="calculate_qa.js"></script>
 
-  <!-- 2. Module Frameworks (depend on data above) -->
+  <!-- 2. Module Frameworks -->
   <script src="explain_fwk.js"></script>
   <script src="calculate_fwk.js"></script>
 
@@ -972,9 +1045,6 @@
     /* ── Module Level Routing ───────────────────────────────── */
     $(document).on('click', '.calc-level-tab', function(e) {
       e.preventDefault();
-      // Similar to explain, skip if this is the level-card (prevent double firing if we add click logic later)
-      // Though currently Calculate doesn't double-fire like Explain did, this is good practice.
-      
       const level = $(this).data('level');
       window.showView('calculate-area');
       if (typeof CalculateModule !== 'undefined') {
@@ -985,7 +1055,6 @@
     $(document).on('click', '.explain-level-tab', function(e) {
       e.preventDefault();
       // If this element is also a level-card, explain_fwk.js already binds to it.
-      // We skip it here to avoid calling selectLevel twice per click.
       if ($(this).hasClass('level-card')) return;
       
       const level = $(this).data('level');
@@ -1007,16 +1076,12 @@
     $('.dropdown-toggle').on('click', function(e) {
       if (window.innerWidth <= 768) {
         e.preventDefault();
-        // Close other open dropdowns
         $(this).parent().siblings('.dropdown').removeClass('open');
-        // Toggle this one
         $(this).parent().toggleClass('open');
       }
     });
 
     /* ── Initialize Modules ─────────────────────────────────── */
-    // Data scripts load synchronously above, so QUESTION_BANK and
-    // calculate_qa are guaranteed available before either init() runs.
     if (typeof ExplainModule !== 'undefined') {
       ExplainModule.init();
     }
